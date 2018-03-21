@@ -18,6 +18,8 @@ import spaceJamSrc from './assets/space-jam.png';
 import internetExplorerSrc from './assets/internet-explorer.gif';
 import mcdonaldsSrc from './assets/mcdonalds.gif';
 
+import Hierarchy from './components/Hierarchy';
+
 import Title from './slides/Title';
 import WhoAmI from './slides/WhoAmI';
 import WishTheInternet from './slides/WishTheInternet';
@@ -86,6 +88,19 @@ export default class Presentation extends React.Component {
             The tooling has vastly improved since then, and the web products we build are undeniably much much better. But we've lost some of the charm of the new web.
           `}
         />
+
+        <Slide>
+          <Hierarchy
+            width="100%"
+            levels={[
+              'Does it load',
+              'Does it work',
+              'Is it accessible',
+              'Is it usable',
+              'Does it spark joy',
+            ]}
+          />
+        </Slide>
       </Deck>
     );
   }
