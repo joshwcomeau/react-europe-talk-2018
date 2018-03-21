@@ -10,7 +10,7 @@ class Link extends Component {
 }
 
 const Anchor = styled.a`
-  color: ${COLORS.blue[400]};
+  color: ${props => (props.light ? COLORS.blue[100] : COLORS.blue[500])};
   text-decoration: none;
 `;
 
