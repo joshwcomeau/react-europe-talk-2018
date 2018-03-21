@@ -91,7 +91,7 @@ export default class Presentation extends React.Component {
 
         <Slide>
           <Hierarchy
-            width="100%"
+            height="90%"
             levels={[
               'Does it load',
               'Does it work',
