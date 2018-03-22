@@ -93,11 +93,11 @@ export default class Presentation extends React.Component {
           <Hierarchy
             height="90%"
             levels={[
-              'Does it load',
+              'Does it even load',
               'Does it work',
               'Is it accessible',
               'Is it usable',
-              'Does it spark joy',
+              'Does it\nspark joy',
             ]}
           />
         </Slide>

@@ -1,9 +1,19 @@
-import React, { Component } from 'react';
+import React, { Component, Fragment } from 'react';
+import { Motion, spring } from 'react-motion';
+import styled from 'styled-components';
+
+import { COLORS } from '../../constants';
 
 const INTERNAL_WIDTH = 100;
 const INTERNAL_HEIGHT = 86.6;
 
-const COLORS = ['red', 'orange', 'yellow', 'green', 'blue'];
+const LEVEL_COLORS = [
+  COLORS.indigo[700],
+  COLORS.blue[700],
+  COLORS.teal[700],
+  COLORS.green[700],
+  COLORS.yellow[700],
+];
 
 class Hierarchy extends Component {
   static defaultProps = {
@@ -24,12 +34,13 @@ class Hierarchy extends Component {
       const hasSelection = typeof selectedLevelIndex === 'number';
 
       const isSelected = index === selectedLevelIndex;
+      const isTopLevel = index === numOfLevels - 1;
 
       const equallyDividedSegmentHeight = INTERNAL_HEIGHT / numOfLevels;
 
       // TODO: Allow this to work regardless of `numOfLevels`
       const selectedSegmentHeight = equallyDividedSegmentHeight * 2;
-      const unselectedSegmentHeight = segmentHeight * 0.75;
+      const unselectedSegmentHeight = equallyDividedSegmentHeight * 0.75;
 
       let segmentHeight;
       if (hasSelection) {
@@ -50,10 +61,10 @@ class Hierarchy extends Component {
         y1 = INTERNAL_HEIGHT;
       } else {
         if (isSelected) {
-          if (index === numOfLevels - 1) {
+          if (isTopLevel) {
             // If the top one is selected, it can't squeeze to the top,
             // so it squeezes entirely to the bottom
-            y1 = INTERNAL_HEIGHT - selectedSegmentHeight;
+            y1 = segmentHeight;
           } else {
             y1 = INTERNAL_HEIGHT - index * unselectedSegmentHeight;
           }
@@ -76,7 +87,13 @@ class Hierarchy extends Component {
         }
       }
 
-      const y2 = y1 - segmentHeight;
+      let y2 = y1 - segmentHeight;
+
+      // Add some spacing between each level, but don't "square off" the top
+      if (!isTopLevel) {
+        y2 += 0.5;
+      }
+
       const y3 = y2;
       const y4 = y1;
 
@@ -105,31 +122,111 @@ class Hierarchy extends Component {
     this.setState({ selectedLevelIndex: i });
   };
 
+  handleMouseLeave = () => {
+    this.setState({ selectedLevelIndex: null });
+  };
+
   generatePointsString = ({ x1, y1, x2, y2, x3, y3, x4, y4 }) => {
     return `${x1},${y1} ${x2},${y2} ${x3},${y3} ${x4},${y4}`;
+  };
+
+  deconstructPolygonPointsArray = pointsArray => {
+    return pointsArray.reduce((acc, points, index) => {
+      Object.entries(points).forEach(([key, val]) => {
+        acc[key + '_' + index] = spring(val, { stiffness: 90, damping: 9 });
+      });
+
+      return acc;
+    }, {});
+  };
+
+  reconstructPolygonPointsArray = pointData => {
+    const pointsArray = [{}, {}, {}, {}, {}];
+
+    Object.entries(pointData).forEach(([key, val]) => {
+      const [point, index] = key.split('_');
+
+      pointsArray[index][point] = val;
+    });
+
+    return pointsArray;
   };
 
   render() {
     const polygonPointsArray = this.calculatePolygonPointsArray();
 
+    const flatPolygonData = this.deconstructPolygonPointsArray(
+      polygonPointsArray
+    );
+
     return (
-      <svg
-        width={this.props.width}
-        height={this.props.height}
-        style={{ maxHeight: 620 }}
-        viewBox={`0 0 ${INTERNAL_WIDTH} ${INTERNAL_HEIGHT}`}
-      >
-        {polygonPointsArray.map((polygonPoints, index) => (
-          <polygon
-            key={index}
-            onMouseEnter={() => this.handleMouseEnter(index)}
-            points={this.generatePointsString(polygonPoints)}
-            fill={COLORS[index]}
-          />
-        ))}
-      </svg>
+      <Motion style={flatPolygonData}>
+        {data => (
+          <svg
+            width={this.props.width}
+            height={this.props.height}
+            style={{ maxHeight: 620 }}
+            viewBox={`0 0 ${INTERNAL_WIDTH} ${INTERNAL_HEIGHT}`}
+          >
+            {this.reconstructPolygonPointsArray(data).map(
+              (polygonPoints, index) => (
+                <Fragment key={index}>
+                  <polygon
+                    onMouseEnter={() => this.handleMouseEnter(index)}
+                    onMouseLeave={() => this.handleMouseLeave()}
+                    points={this.generatePointsString(polygonPoints)}
+                    fill={LEVEL_COLORS[index]}
+                  />
+                  {this.props.levels[index]
+                    .split('\n')
+                    .map((levelWord, wordIndex) => (
+                      <Text
+                        key={wordIndex}
+                        index={index}
+                        textAnchor="middle"
+                        x={INTERNAL_WIDTH / 2}
+                        y={
+                          polygonPoints.y2 +
+                          (polygonPoints.y1 - polygonPoints.y2) / 2 +
+                          3
+                        }
+                        dy={wordIndex * 5}
+                        isSelected={this.state.selectedLevelIndex === index}
+                      >
+                        {levelWord}
+                      </Text>
+                    ))}
+                </Fragment>
+              )
+            )}
+          </svg>
+        )}
+      </Motion>
     );
   }
 }
+
+const getTextSizeForIndex = ({ index }) => {
+  switch (index) {
+    case 0:
+      return 10;
+    case 1:
+      return 9;
+    case 2:
+      return 7;
+    case 3:
+      return 6;
+    case 4:
+      return 3;
+  }
+};
+
+const Text = styled.text`
+  font-size: ${getTextSizeForIndex}px;
+  line-height: 10px;
+  pointer-events: none;
+  transition: scale 500ms;
+  fill: #fff;
+`;
 
 export default Hierarchy;
