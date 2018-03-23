@@ -153,6 +153,7 @@ class Hierarchy extends Component {
   };
 
   render() {
+    const { selectedLevelIndex } = this.state;
     const polygonPointsArray = this.calculatePolygonPointsArray();
 
     const flatPolygonData = this.deconstructPolygonPointsArray(
@@ -177,25 +178,23 @@ class Hierarchy extends Component {
                     points={this.generatePointsString(polygonPoints)}
                     fill={LEVEL_COLORS[index]}
                   />
-                  {this.props.levels[index]
-                    .split('\n')
-                    .map((levelWord, wordIndex) => (
-                      <Text
-                        key={wordIndex}
-                        index={index}
-                        textAnchor="middle"
-                        x={INTERNAL_WIDTH / 2}
-                        y={
-                          polygonPoints.y2 +
-                          (polygonPoints.y1 - polygonPoints.y2) / 2 +
-                          3
-                        }
-                        dy={wordIndex * 5}
-                        isSelected={this.state.selectedLevelIndex === index}
-                      >
-                        {levelWord}
-                      </Text>
-                    ))}
+                  <Text
+                    index={index}
+                    textAnchor="middle"
+                    x={INTERNAL_WIDTH / 2}
+                    y={polygonPoints.y2}
+                    dy={
+                      (polygonPoints.y1 - polygonPoints.y2) / 2 +
+                      3 +
+                      (index === 4 ? 2 : 0)
+                    }
+                    muted={
+                      typeof selectedLevelIndex === 'number' &&
+                      selectedLevelIndex !== index
+                    }
+                  >
+                    {this.props.levels[index]}
+                  </Text>
                 </Fragment>
               )
             )}
@@ -209,15 +208,15 @@ class Hierarchy extends Component {
 const getTextSizeForIndex = ({ index }) => {
   switch (index) {
     case 0:
-      return 10;
+      return 9.35;
     case 1:
       return 9;
     case 2:
-      return 7;
-    case 3:
       return 6;
+    case 3:
+      return 5.5;
     case 4:
-      return 3;
+      return 7;
   }
 };
 
@@ -225,8 +224,10 @@ const Text = styled.text`
   font-size: ${getTextSizeForIndex}px;
   line-height: 10px;
   pointer-events: none;
-  transition: scale 500ms;
+  transition: opacity 500ms;
   fill: #fff;
+  opacity: ${props => (props.muted ? 0.5 : 1)};
+  text-shadow: 1px 3px 6px rgba(0, 0, 0, 0.5);
 `;
 
 export default Hierarchy;

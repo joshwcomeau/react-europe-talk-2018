@@ -5,6 +5,7 @@
   "dependencies": {
     "react": "^16.2.0",
     "react-dom": "^16.2.0",
+    "react-highlight": "^0.11.1",
     "react-motion": "^0.5.2",
     "spectacle-scripts": "2.0.0",
     "styled-components": "^3.2.3"

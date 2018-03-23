@@ -3331,6 +3331,10 @@ he@1.1.x, he@^1.1.1:
   version "1.1.1"
   resolved "https://registry.yarnpkg.com/he/-/he-1.1.1.tgz#93410fd21b009735151f8868c2f271f3427e23fd"
 
+highlight.js@^9.11.0:
+  version "9.12.0"
+  resolved "https://registry.yarnpkg.com/highlight.js/-/highlight.js-9.12.0.tgz#e6d9dbe57cbefe60751f02af336195870c90c01e"
+
 history@^4.6.1:
   version "4.7.2"
   resolved "https://registry.yarnpkg.com/history/-/history-4.7.2.tgz#22b5c7f31633c5b8021c7f4a8a954ac139ee8d5b"
@@ -5817,6 +5821,12 @@ react-emotion@^8.0.8:
 react-error-overlay@^3.0.0:
   version "3.0.0"
   resolved "https://registry.yarnpkg.com/react-error-overlay/-/react-error-overlay-3.0.0.tgz#c2bc8f4d91f1375b3dad6d75265d51cd5eeaf655"
+
+react-highlight@^0.11.1:
+  version "0.11.1"
+  resolved "https://registry.yarnpkg.com/react-highlight/-/react-highlight-0.11.1.tgz#d6eccf4f700af1295b30a1daa8f144308ab187ac"
+  dependencies:
+    highlight.js "^9.11.0"
 
 react-live@^1.8.0-2:
   version "1.10.1"
