@@ -12,7 +12,7 @@ const CSS_SNIPPETS = {
 }
 
 .item:hover {
-  opacity: 1;
+  opacity: 1
 }`,
   Grow: `.item {
   transform: scale(1);
@@ -21,7 +21,7 @@ const CSS_SNIPPETS = {
 }
 
 .item:hover {
-  transform: scale(1.1);
+  transform: scale(1.1)
 }`,
 };
 
@@ -83,6 +83,7 @@ const DemoBox = styled.div`
   opacity: ${props => (props.effect === 'fade' ? 0.5 : 1)};
   transform: scale(1);
   transition: 300ms;
+  cursor: default;
 
   &:hover {
     opacity: 1;

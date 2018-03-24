@@ -16,7 +16,10 @@ import { COLORS } from './constants';
 import titleBgSrc from './assets/sprinkles.jpg';
 import spaceJamSrc from './assets/space-jam.png';
 import internetExplorerSrc from './assets/internet-explorer.gif';
-import mcdonaldsSrc from './assets/mcdonalds.gif';
+import mcdonaldsSrc from './assets/mcdonalds-full.gif';
+import mcdonaldsZoomSrc from './assets/mcdonalds-zoom.gif';
+import jesseSkiingSrc from './assets/jesse-skiing.jpg';
+import cameronsWorldSrc from './assets/camerons-world.gif';
 
 import Hierarchy from './components/Hierarchy';
 import CssTransitionDemo from './components/CssTransitionDemo';
@@ -24,6 +27,8 @@ import CssTransitionDemo from './components/CssTransitionDemo';
 import Title from './slides/Title';
 import WhoAmI from './slides/WhoAmI';
 import WishTheInternet from './slides/WishTheInternet';
+import EmbeddedVideo from './components/EmbeddedVideo/EmbeddedVideo';
+import CenteredColumns from './components/CenteredColumns/CenteredColumns';
 
 require('normalize.css');
 require('highlight.js/styles/arta.css');
@@ -70,25 +75,38 @@ export default class Presentation extends React.Component {
         />
 
         <Slide
-          bgImage={internetExplorerSrc}
+          bgImage={jesseSkiingSrc}
           notes={`
-            Here's another example of a classic 90s website, this one I think remains relevant for web developers.<br /><br />
+            This was a time when everything was always under construction, and new sites were discovered via webring.<br /><br />
 
-            The animated flame GIFs really sell it.<br /><br />
-
-            The great thing about the 90s internet is that nobody knew what they were doing.
+            Web developers had one tool and one tool only for animation...
           `}
         />
+
+        <Slide
+          bgImage={cameronsWorldSrc}
+          notes={`
+            The animated GIF.<br/><br />
+
+            The cool thing about this golden era of the web is that nobody knew what they were doing.
+          `}
+        />
+
         <Slide
           bgImage={mcdonaldsSrc}
           notes={`
-            This is actually McDonald's website, circa November 1996.<br /><br />
+            This is actually McDonald's website, circa early 1997.
+          `}
+        />
 
-            It might be hard to tell, but the golden arches GIF features a cleaner who pops out to give it a quick polish.<br /><br />
+        <Slide
+          bgImage={mcdonaldsZoomSrc}
+          notes={`
+            Check it out, there's a little man popping out from behind the golden arches to give them a quick polish.<br /><br />
 
             Web technologies were essentially nonexistent at this time. Javascript was less than a year old, CSS wouldn't show up for another year. And yet, websites still had plenty of animation, in the form of the animated GIF.<br /><br />
 
-            The tooling has vastly improved since then, and the web products we build are undeniably much much better. But we've lost some of the charm of the new web.
+            The tooling has vastly improved since then, and the web products we build are undeniably much much better. But we've lost some of the charm of the old web.
           `}
         />
 
@@ -96,11 +114,11 @@ export default class Presentation extends React.Component {
           notes={`
             I have a theory about why that is, and I've attempted to demonstrate it with a jiggly triangle.<br /><br />
 
-            This is my take on Maslow's Hierarchy of Needs, from the perspective of product managers.<br /><br />
+            This is my take on Maslow's Hierarchy of Needs, from the perspective of product developers.<br /><br />
             
             At the base of the hierarchy, "does it even load". If the user goes to www.yourthing.com and they don't get an HTML page, the most basic need is not being met.<br /><br />
 
-            "Does it work" refers to whether or not the "happy path" is possible, for the developers. When we test our site, does it work?<br /><br />
+            "Does it work" refers to whether or not the "happy path" is possible, for the developers. When we test our site, does it work? Do the tests pass?<br /><br />
 
             "Is it accessible" is all about whether our real users can use it. I'm using the term 'accessible' broadly, to encompass folks with disabilities, but also folks on other browsers, with different network conditions, on mobile devices... Essentially, are the bottom two tiers being met for a wide variety of people.<br /><br />
 
@@ -127,9 +145,9 @@ export default class Presentation extends React.Component {
 
         <Slide
           notes={`
-            So is that it, then? With limited resources, should we just accept that there's no room for fun?
+            So is that it, then? With limited resources, should we just accept that there's no room for fun?<br /><br />
 
-            Not so fast. There's another variable in this equation: effort.
+            Not so fast. There's another variable in this equation: <strong>effort</strong>.
           `}
         >
           <Heading size={1}>🤔</Heading>
@@ -137,29 +155,24 @@ export default class Presentation extends React.Component {
 
         <Slide
           notes={`
-            Plenty of sites use CSS transitions, for example, because they're easy. React CSS Transition Group builds upon them to let us set properties based on component mount status, and so it's not uncommon to see route-based transitions, or 
+            CSS transitions like these are super common, and they add a bit of usability and delight when properly applied. And yet these things aren't cut from scope, because of how trivial they are to implement: only a few lines of CSS.
           `}
         >
           <CssTransitionDemo />
         </Slide>
 
-        <Slide>
-          <Heading textColor="green" size={3} textFont="secondary">
-            That top level is super important tho!
-          </Heading>
-          <br />
-          <br />
-          <Text>
-            Whimsical touches make a product "stickier", can diffuse
-            frustration, and can make the difference between a website and an
-            application.
-          </Text>
+        <Slide
+          notes={`
+            How ca
+          `}
+        >
+          <Heading textColor="green">Mobile is kicking our butts!</Heading>
         </Slide>
 
         <Slide>
-          <Heading textColor="purple" size={2} textFont="secondary">
-            How do we make our products more delightful?
-          </Heading>
+          <CenteredColumns>
+            <EmbeddedVideo src="http://videos.sproutvideo.com/embed/a09bdab51b17ebc728/28d09f93e5927dea?type=sd&showControls=false&loop=true" />
+          </CenteredColumns>
         </Slide>
       </Deck>
     );
