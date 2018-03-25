@@ -20,15 +20,21 @@ import mcdonaldsSrc from './assets/mcdonalds-full.gif';
 import mcdonaldsZoomSrc from './assets/mcdonalds-zoom.gif';
 import jesseSkiingSrc from './assets/jesse-skiing.jpg';
 import cameronsWorldSrc from './assets/camerons-world.gif';
+import jsWordCloudSrc from './assets/js-word-cloud.png';
+import whimsyDefinitionSrc from './assets/whimsy-definition.png';
+import moleskineBallsSrc from './assets/moleskine-balls.gif';
+import flipbookSrc from './assets/flipbook.gif';
+import facebookCongratsSrc from './assets/facebook-congrats.gif';
+import confettiMockupSrc from './assets/confetti-mockup.png';
+import khanConfettiSrc from './assets/khan-confetti.gif';
 
 import Hierarchy from './components/Hierarchy';
 import CssTransitionDemo from './components/CssTransitionDemo';
+import ConfettiManager from './components/ConfettiManager';
 
 import Title from './slides/Title';
 import WhoAmI from './slides/WhoAmI';
 import WishTheInternet from './slides/WishTheInternet';
-import EmbeddedVideo from './components/EmbeddedVideo/EmbeddedVideo';
-import CenteredColumns from './components/CenteredColumns/CenteredColumns';
 
 require('normalize.css');
 require('highlight.js/styles/arta.css');
@@ -38,10 +44,12 @@ const theme = createTheme(
     primary: '#FFFFFF',
     secondary: '#222222',
     purple: COLORS.purple[500],
+    deepPurple: COLORS.deepPurple[700],
     pink: COLORS.pink[500],
     blue: COLORS.blue[500],
     red: COLORS.red[500],
     green: COLORS.green[700],
+    teal: COLORS.teal[700],
   },
   {
     primary: 'Lato',
@@ -104,75 +112,108 @@ export default class Presentation extends React.Component {
           notes={`
             Check it out, there's a little man popping out from behind the golden arches to give them a quick polish.<br /><br />
 
-            Web technologies were essentially nonexistent at this time. Javascript was less than a year old, CSS wouldn't show up for another year. And yet, websites still had plenty of animation, in the form of the animated GIF.<br /><br />
-
-            The tooling has vastly improved since then, and the web products we build are undeniably much much better. But we've lost some of the charm of the old web.
+            Web technologies were essentially nonexistent at this time. Javascript was less than a year old, CSS wouldn't show up for another year. You arranged your HTML using tables, and threw in some animated GIFs for flavour.<br /><br />
           `}
         />
 
-        <Slide
-          notes={`
-            I have a theory about why that is, and I've attempted to demonstrate it with a jiggly triangle.<br /><br />
+        <Slide>
+          <Heading
+            textAlign="left"
+            textFont="secondary"
+            size={3}
+            textColor="purple"
+          >
+            Today's web is much more powerful, and the stuff we build is
+            undeniably better.
+          </Heading>
+          <br />
 
-            This is my take on Maslow's Hierarchy of Needs, from the perspective of product developers.<br /><br />
-            
-            At the base of the hierarchy, "does it even load". If the user goes to www.yourthing.com and they don't get an HTML page, the most basic need is not being met.<br /><br />
-
-            "Does it work" refers to whether or not the "happy path" is possible, for the developers. When we test our site, does it work? Do the tests pass?<br /><br />
-
-            "Is it accessible" is all about whether our real users can use it. I'm using the term 'accessible' broadly, to encompass folks with disabilities, but also folks on other browsers, with different network conditions, on mobile devices... Essentially, are the bottom two tiers being met for a wide variety of people.<br /><br />
-
-            "Is it clear" is the UX tier; is the product easy to understand, can people accomplish the goals they have in a painless way?<br /><br />
-
-            Finally, the top of the pyramid... I'd call this the "Is it delightful" tier. Does the product spark joy? Is it _enjoyable_ to use?<br /><br />
-
-            The problem is that we're all working with limited time and resources. As deadlines approach and it becomes clear that not everything in our list is feasible, we start differentiating between "must-haves" and "nice-to-haves". Inevitably, it's the stuff from the top of the pyramid that is most likely to get cut, because it's objectively the least important.<br /><br />
-
-            And this is the "right answer". I am not advocating that we make our sites less accessible or usable in pursuit of whimsical charm.
-          `}
-        >
-          <Hierarchy
-            height="90%"
-            levels={[
-              'Does it even load',
-              'Does it work',
-              'Is it accessible',
-              'Is it clear',
-              '☺️',
-            ]}
-          />
+          <Heading
+            textAlign="left"
+            textFont="secondary"
+            size={3}
+            textColor="pink"
+          >
+            But I miss the whimsical charm of the old web.
+          </Heading>
         </Slide>
 
         <Slide
           notes={`
-            So is that it, then? With limited resources, should we just accept that there's no room for fun?<br /><br />
+            I don't want y'all to get the wrong idea. When I talk about "whimsy", I don't just mean cheesy 90s GIFs.<br /><br />
 
-            Not so fast. There's another variable in this equation: <strong>effort</strong>.
+            This is the definition I've been working with. "An unexpected flourish that sparks joy". It's not stuff that is critical to the usability of your product, but it's something that makes your users smile, something that makes your product a little more enjoyable to use.<br /><br />
           `}
         >
-          <Heading size={1}>🤔</Heading>
-        </Slide>
-
-        <Slide
-          notes={`
-            CSS transitions like these are super common, and they add a bit of usability and delight when properly applied. And yet these things aren't cut from scope, because of how trivial they are to implement: only a few lines of CSS.
-          `}
-        >
-          <CssTransitionDemo />
-        </Slide>
-
-        <Slide
-          notes={`
-            How ca
-          `}
-        >
-          <Heading textColor="green">Mobile is kicking our butts!</Heading>
+          <img src={whimsyDefinitionSrc} style={{ width: '100%' }} />
         </Slide>
 
         <Slide>
-          <CenteredColumns>
-            <EmbeddedVideo src="http://videos.sproutvideo.com/embed/a09bdab51b17ebc728/28d09f93e5927dea?type=sd&showControls=false&loop=true" />
-          </CenteredColumns>
+          <Heading
+            textAlign="left"
+            textFont="secondary"
+            size={2}
+            textColor="purple"
+          >
+            This isn't a lost art!
+          </Heading>
+          <br />
+          <br />
+
+          <Heading
+            textAlign="left"
+            textFont="secondary"
+            size={3}
+            textColor="pink"
+          >
+            There's still plenty of whimsy in mobile apps.
+          </Heading>
+        </Slide>
+
+        <Slide>
+          <img src={moleskineBallsSrc} style={{ width: '100%' }} />
+        </Slide>
+
+        <Slide>
+          <img src={flipbookSrc} />
+        </Slide>
+
+        <Slide>
+          <img src={facebookCongratsSrc} style={{ height: '100%' }} />
+        </Slide>
+
+        <Slide>
+          <Heading textFont="secondary" size={2} textColor="blue">
+            Let's explore some of these techniques, in React!
+          </Heading>
+        </Slide>
+
+        <Slide bgColor="teal">
+          <Heading
+            size={6}
+            textColor="primary"
+            style={{ opacity: 0.7, fontWeight: 500 }}
+          >
+            Example 1
+          </Heading>
+          <Heading size={1} textColor="primary" textFont="secondary">
+            Confetti
+          </Heading>
+          <br />
+          <br />
+          <br />
+        </Slide>
+
+        <Slide bgColor="secondary" transition={['fade']}>
+          <img src={confettiMockupSrc} style={{ width: '100%' }} />
+        </Slide>
+
+        <Slide bgColor="secondary" transition={['fade']}>
+          <img src={khanConfettiSrc} style={{ width: '100%' }} />
+        </Slide>
+
+        <Slide>
+          <ConfettiManager />
         </Slide>
       </Deck>
     );
