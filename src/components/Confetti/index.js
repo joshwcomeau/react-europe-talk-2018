@@ -1,1 +1,1 @@
-export { default } from './confetti';
+export { default } from './Confetti';
