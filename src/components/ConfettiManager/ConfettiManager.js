@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import styled from 'styled-components';
 
+import ConfettiAnimator from '../Confetti/ConfettiAnimator';
 import Confetti from '../Confetti';
 import Slider from '../Slider';
 
@@ -21,9 +22,13 @@ class ConfettiManager extends Component {
 
     return (
       <Wrapper>
-        <ConfettiContainer>
-          <Confetti
+        <ConfettiContainer
+          onClick={() => this.confettiElem.generateParticles()}
+        >
+          <ConfettiAnimator
             ref={elem => (this.confettiElem = elem)}
+            width={920}
+            height={700}
             numParticles={numParticles}
             gravity={gravity}
             minSpeed={speed}
@@ -32,10 +37,11 @@ class ConfettiManager extends Component {
             maxScale={scale * 2}
             spin={spin}
             twist={twist}
-            width={920}
-            height={700}
-            onClick={() => this.confettiElem.generateParticles()}
-          />
+          >
+            {({ particles }) => (
+              <Confetti particles={particles} width={920} height={700} />
+            )}
+          </ConfettiAnimator>
         </ConfettiContainer>
 
         <Controls>
