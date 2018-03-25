@@ -98,12 +98,6 @@ class Confetti extends Component<Props, State> {
     particles: [],
   };
 
-  componentWillUnmount() {
-    if (this._tickId) {
-      window.cancelAnimationFrame(this._tickId);
-    }
-  }
-
   generateParticles = () => {
     if (this.props.shapes.length === 0) {
       return;
