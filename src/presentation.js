@@ -18,6 +18,7 @@ import spaceJamSrc from './assets/space-jam.png';
 import internetExplorerSrc from './assets/internet-explorer.gif';
 import mcdonaldsSrc from './assets/mcdonalds-full.gif';
 import mcdonaldsZoomSrc from './assets/mcdonalds-zoom.gif';
+import mcdonaldsNowSrc from './assets/mcdonalds-now.png';
 import jesseSkiingSrc from './assets/jesse-skiing.jpg';
 import cameronsWorldSrc from './assets/camerons-world.gif';
 import jsWordCloudSrc from './assets/js-word-cloud.png';
@@ -27,6 +28,7 @@ import flipbookSrc from './assets/flipbook.gif';
 import facebookCongratsSrc from './assets/facebook-congrats.gif';
 import confettiMockupSrc from './assets/confetti-mockup.png';
 import khanConfettiSrc from './assets/khan-confetti.gif';
+import askJeevesSrc from './assets/ask-jeeves.gif';
 
 import Hierarchy from './components/Hierarchy';
 import CssTransitionDemo from './components/CssTransitionDemo';
@@ -74,20 +76,18 @@ export default class Presentation extends React.Component {
         </Slide>
 
         <Slide
-          bgImage={spaceJamSrc}
+          bgImage={jesseSkiingSrc}
           notes={`
-          I started using the internet in the 90s, and at that time, the internet looked like this.<br /><br />
-
-          (This website, incidentally, still exists, and works perfectly.)
+            I started using the internet in the 90s, and at that time, the internet looked like this.<br /><br />
         `}
         />
 
         <Slide
-          bgImage={jesseSkiingSrc}
+          bgImage={askJeevesSrc}
           notes={`
-            This was a time when everything was always under construction, and new sites were discovered via webring.<br /><br />
+            Anyone remember Ask Jeeves? I remember never getting any useful answers out of him, but I found the experience delightful nonetheless.<br /><br />
 
-            Web developers had one tool and one tool only for animation...
+            Web developers had one tool, and one tool only, for animation...
           `}
         />
 
@@ -112,40 +112,51 @@ export default class Presentation extends React.Component {
           notes={`
             Check it out, there's a little man popping out from behind the golden arches to give them a quick polish.<br /><br />
 
-            Web technologies were essentially nonexistent at this time. Javascript was less than a year old, CSS wouldn't show up for another year. You arranged your HTML using tables, and threw in some animated GIFs for flavour.<br /><br />
+            Web technologies were essentially nonexistent at this time. Javascript was less than a year old, CSS wouldn't show up for another year. We built documents, and embedded animated GIFs for flavor.<br /><br />
           `}
         />
 
-        <Slide>
-          <Heading
-            textAlign="left"
-            textFont="secondary"
-            size={3}
-            textColor="purple"
-          >
-            Today's web is much more powerful, and the stuff we build is
-            undeniably better.
-          </Heading>
-          <br />
+        <Slide
+          bgImage={mcdonaldsNowSrc}
+          notes={`
+            By contrast, here's McDonald's website today, 20+ years later.<br /><br />
 
-          <Heading
-            textAlign="left"
-            textFont="secondary"
-            size={3}
-            textColor="pink"
-          >
-            But I miss the whimsical charm of the old web.
-          </Heading>
+            I think most people would agree that this is better, right? There's a ton more info, there's good photos, you can even order it online (I had delivery mcdonalds and it was thoroughly unsettling).
+
+            And yet, this website is bland. It's exactly what it needs to be, and nothing more. I miss the whimsical charm of their old site.
+          `}
+        />
+
+        <Slide
+          notes={`
+            When I say "whimsy", here's what I mean.<br /><br />
+
+            "An unexpected flourish that sparks joy". It's not stuff that is critical to the usability of your product, but it's something that makes your users smile, something that makes your product a little more enjoyable to use.<br /><br />
+          `}
+        >
+          <img src={whimsyDefinitionSrc} style={{ width: '100%' }} />
         </Slide>
 
         <Slide
           notes={`
-            I don't want y'all to get the wrong idea. When I talk about "whimsy", I don't just mean cheesy 90s GIFs.<br /><br />
+            That definition is very broad!<br /><br />
 
-            This is the definition I've been working with. "An unexpected flourish that sparks joy". It's not stuff that is critical to the usability of your product, but it's something that makes your users smile, something that makes your product a little more enjoyable to use.<br /><br />
+            Let's narrow it down to only talk about interactions and animation.
+            <br /><br />
+
+            I chose this scope for a few reasons:<br />
+            - It's what we have the most control over, as developers<br />
+            - It's woefully underdeveloped on web.<br />
+            - "fun problems". interesting technically.<br />
+            - It has huge potential to delight<br />
           `}
         >
-          <img src={whimsyDefinitionSrc} style={{ width: '100%' }} />
+          <Heading textColor="teal">This is a big topic!</Heading>
+          <br />
+          <br />
+          <Heading textColor="green" size={4}>
+            Let's focus on<br />interactions and animation.
+          </Heading>
         </Slide>
 
         <Slide>
