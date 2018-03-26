@@ -223,7 +223,18 @@ export default class Presentation extends React.Component {
           <img src={khanConfettiSrc} style={{ width: '100%' }} />
         </Slide>
 
-        <Slide>
+        <Slide
+          notes={`
+            - Click to show
+            - Increase scale to make it more visible for audience
+            - Talk about how lifeless it is
+            - Add spin
+            - Add twist
+            - add spin + twist
+            - Add gravity
+            - Mention the protip: Building something like this manager, to have a really short feedback loop between a parameter and its effects, is a great way to develop animations and interactions.
+          `}
+        >
           <ConfettiManager />
         </Slide>
       </Deck>

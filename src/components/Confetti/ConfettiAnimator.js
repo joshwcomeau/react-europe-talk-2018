@@ -163,23 +163,16 @@ class ConfettiAnimator extends PureComponent<Props, State> {
 
       // Apply its new Z-axis (2D) rotation (how much spin is currently
       // applied?)
-      const currentSpin = particle.angle + particle.spinForce * age;
+      particle.currentSpin = particle.angle + particle.spinForce * age;
 
       // Apply its new X-axis (3D rotation), and figure out whether it's
       // "backwards" right now.
-      const currentTwist = particle.twistForce
-        ? Math.cos(particle.angle + particle.twist * age)
+      particle.currentTwist = particle.twistForce
+        ? Math.cos(particle.angle + particle.twistForce * age)
         : 1;
     }
 
     return particles;
-
-    window.requestAnimationFrame(() => {
-      this.setState({
-        particles,
-        status: particles.length ? 'running' : 'idle',
-      });
-    });
   };
 
   render() {

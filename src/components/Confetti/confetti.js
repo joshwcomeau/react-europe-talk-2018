@@ -83,9 +83,9 @@ class Confetti extends Component<Props, State> {
       // Apply its new X-axis (3D rotation), and figure out whether it's
       // "backwards" right now.
       const imageElem =
-        particle.twistAmount >= 0 ? particle.front : particle.back;
+        particle.currentTwist >= 0 ? particle.front : particle.back;
 
-      ctx.scale(particle.twistAmount, 1);
+      ctx.scale(particle.currentTwist, 1);
 
       // Draw the image into the context, applying the right scale and
       // position so that it's in the right place.
