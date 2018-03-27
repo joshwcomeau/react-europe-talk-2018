@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Component } from 'react';
 import {
   BlockQuote,
   Cite,
@@ -30,6 +30,7 @@ import confettiMockupSrc from './assets/confetti-mockup.png';
 import khanConfettiSrc from './assets/khan-confetti.gif';
 import askJeevesSrc from './assets/ask-jeeves.gif';
 
+import FullscreenImage from './components/FullscreenImage';
 import Hierarchy from './components/Hierarchy';
 import CssTransitionDemo from './components/CssTransitionDemo';
 import ConfettiManager from './components/ConfettiManager';
@@ -76,48 +77,59 @@ export default class Presentation extends React.Component {
         </Slide>
 
         <Slide
-          bgImage={jesseSkiingSrc}
+          bgColor="secondary"
           notes={`
             I started using the internet in the 90s, and at that time, the internet looked like this.<br /><br />
-        `}
-        />
+          `}
+        >
+          <FullscreenImage src={jesseSkiingSrc} />
+        </Slide>
 
         <Slide
-          bgImage={askJeevesSrc}
+          bgColor="secondary"
           notes={`
             Anyone remember Ask Jeeves? I remember never getting any useful answers out of him, but I found the experience delightful nonetheless.<br /><br />
 
             Web developers had one tool, and one tool only, for animation...
           `}
-        />
+        >
+          <FullscreenImage src={askJeevesSrc} />
+        </Slide>
 
         <Slide
-          bgImage={cameronsWorldSrc}
+          bgColor="secondary"
           notes={`
             The animated GIF.<br/><br />
 
             The cool thing about this golden era of the web is that nobody knew what they were doing.
           `}
-        />
+        >
+          <FullscreenImage src={cameronsWorldSrc} />
+        </Slide>
 
         <Slide
-          bgImage={mcdonaldsSrc}
+          bgColor="secondary"
           notes={`
             This is actually McDonald's website, circa early 1997.
           `}
-        />
+        >
+          <FullscreenImage src={mcdonaldsSrc} />
+        </Slide>
 
         <Slide
-          bgImage={mcdonaldsZoomSrc}
+          bgColor="secondary"
+          transition={['fade']}
           notes={`
-            Check it out, there's a little man popping out from behind the golden arches to give them a quick polish.<br /><br />
+          Check it out, there's a little man popping out from behind the golden arches to give them a quick polish.<br /><br />
 
-            Web technologies were essentially nonexistent at this time. Javascript was less than a year old, CSS wouldn't show up for another year. We built documents, and embedded animated GIFs for flavor.<br /><br />
+          Web technologies were essentially nonexistent at this time. Javascript was less than a year old, CSS wouldn't show up for another year. We built documents, and embedded animated GIFs for flavor.
           `}
-        />
+        >
+          <FullscreenImage src={mcdonaldsZoomSrc} />
+        </Slide>
 
         <Slide
-          bgImage={mcdonaldsNowSrc}
+          bgColor="secondary"
           notes={`
             By contrast, here's McDonald's website today, 20+ years later.<br /><br />
 
@@ -125,7 +137,9 @@ export default class Presentation extends React.Component {
 
             And yet, this website is bland. It's exactly what it needs to be, and nothing more. I miss the whimsical charm of their old site.
           `}
-        />
+        >
+          <FullscreenImage src={mcdonaldsNowSrc} />
+        </Slide>
 
         <Slide
           notes={`
@@ -134,7 +148,7 @@ export default class Presentation extends React.Component {
             "An unexpected flourish that sparks joy". It's not stuff that is critical to the usability of your product, but it's something that makes your users smile, something that makes your product a little more enjoyable to use.<br /><br />
           `}
         >
-          <img src={whimsyDefinitionSrc} style={{ width: '100%' }} />
+          <FullscreenImage src={whimsyDefinitionSrc} />
         </Slide>
 
         <Slide
@@ -151,11 +165,8 @@ export default class Presentation extends React.Component {
             - It has huge potential to delight<br />
           `}
         >
-          <Heading textColor="teal">This is a big topic!</Heading>
-          <br />
-          <br />
-          <Heading textColor="green" size={4}>
-            Let's focus on<br />interactions and animation.
+          <Heading textFont="secondary" textColor="teal">
+            That's a broad definition!
           </Heading>
         </Slide>
 
