@@ -9,60 +9,13 @@ import type { Particle, Shape } from './types.js';
 const PIXEL_RATIO = window.devicePixelRatio || 1;
 
 export type Props = {
-  // The width of the HTML canvas. No default value provided.
   width: number,
-  // The height of the HTML canvas. No default value provided.
   height: number,
-
-  // An array of shapes, used when generating particles
-  // (each item provided has an equal chance of being selected as a
-  // particle)
-  shapes: Array<Shape>,
-
-  // The number of particles to generate, spread over the
-  // `emitDuration` length.
-  numParticles: number,
-
-  // The amount of downward acceleration to provide.
-  // Range: 10 = very slow, 10,000 = very fast.
-  gravity: number,
-  // The amount of Z-axis (2D) rotation to provide to each particle.
-  // Each particle has a random number specified, between 0 and n.
-  // Range: 0 = no spin, 10 = reasonable spin, 100 = pukeville
-  spin: number,
-  // The amount of X-axis (3D) rotation to provide to each particle.
-  // Each particle has a random number specified, between 0 and n.
-  // Range: 0 = no twist, 10 = reasonable twist, 100 = hummingbird
-  twist: number,
-
-  // Each particle will have a random speed assigned, contained by
-  // `minSpeed` and `maxSpeed`.
-  // This is the base speed, which is affected by `gravity`.
-  minSpeed: number,
-  maxSpeed: number,
-  // Each particle will have a random size applied, contained by
-  // `minScale` and `maxScale`. If you'd like all particles to retain
-  // their original size, simply provide `1` for both values.
-  minScale: number,
-  maxScale: number,
-
-  // Amount of time to spread the release of particles, in milliseconds.
-  emitDuration: number,
-
-  // Callback triggered when animation ends.
-  // NOTE: Only fires when all particles are off-canvas. Retriggering
-  // the confetti before it's completed will delay the handler.
-  onComplete?: () => void,
-
+  particles: Array<Particle>,
   onClick?: () => void,
 };
 
-type State = {
-  status: 'idle' | 'running',
-  particles: Array<Particle>,
-};
-
-class Confetti extends Component<Props, State> {
+class Confetti extends Component<Props> {
   draw = ctx => {
     const { width, height, particles } = this.props;
 
