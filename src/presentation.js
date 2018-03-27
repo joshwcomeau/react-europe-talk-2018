@@ -11,24 +11,22 @@ import {
   Text,
 } from 'spectacle';
 import createTheme from 'spectacle/lib/themes/default';
+import preloader from 'spectacle/lib/utils/preloader';
 
 import { COLORS } from './constants';
 import titleBgSrc from './assets/sprinkles.jpg';
-import spaceJamSrc from './assets/space-jam.png';
-import internetExplorerSrc from './assets/internet-explorer.gif';
+import askJeevesSrc from './assets/ask-jeeves.gif';
 import mcdonaldsSrc from './assets/mcdonalds-full.gif';
 import mcdonaldsZoomSrc from './assets/mcdonalds-zoom.gif';
 import mcdonaldsNowSrc from './assets/mcdonalds-now.png';
 import jesseSkiingSrc from './assets/jesse-skiing.jpg';
 import cameronsWorldSrc from './assets/camerons-world.gif';
-import jsWordCloudSrc from './assets/js-word-cloud.png';
 import whimsyDefinitionSrc from './assets/whimsy-definition.png';
 import moleskineBallsSrc from './assets/moleskine-balls.gif';
 import flipbookSrc from './assets/flipbook.gif';
 import facebookCongratsSrc from './assets/facebook-congrats.gif';
 import confettiMockupSrc from './assets/confetti-mockup.png';
 import khanConfettiSrc from './assets/khan-confetti.gif';
-import askJeevesSrc from './assets/ask-jeeves.gif';
 
 import FullscreenImage from './components/FullscreenImage';
 import Video from './components/Video';
@@ -42,6 +40,22 @@ import WishTheInternet from './slides/WishTheInternet';
 
 require('normalize.css');
 require('highlight.js/styles/arta.css');
+
+
+preloader({
+  mcdonaldsSrc,
+  mcdonaldsZoomSrc,
+  mcdonaldsNowSrc,
+  jesseSkiingSrc,
+  askJeevesSrc,
+  cameronsWorldSrc,
+  whimsyDefinitionSrc,
+  moleskineBallsSrc,
+  flipbookSrc,
+  facebookCongratsSrc,
+  confettiMockupSrc,
+  khanConfettiSrc,
+});
 
 const theme = createTheme(
   {
