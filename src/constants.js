@@ -29,6 +29,10 @@ export const COLORS = {
   green: {
     '700': '#00C853',
   },
+  lime: {
+    '500': '#C6FF00',
+    '700': '#AEEA00',
+  },
   yellow: {
     '500': '#FFEA00',
     '700': '#FDD835',

@@ -31,6 +31,7 @@ import khanConfettiSrc from './assets/khan-confetti.gif';
 import askJeevesSrc from './assets/ask-jeeves.gif';
 
 import FullscreenImage from './components/FullscreenImage';
+import Video from './components/Video';
 import Hierarchy from './components/Hierarchy';
 import CssTransitionDemo from './components/CssTransitionDemo';
 import ConfettiManager from './components/ConfettiManager';
@@ -53,6 +54,7 @@ const theme = createTheme(
     red: COLORS.red[500],
     green: COLORS.green[700],
     teal: COLORS.teal[700],
+    lime: COLORS.lime[700],
   },
   {
     primary: 'Lato',
@@ -165,43 +167,55 @@ export default class Presentation extends React.Component {
             - It has huge potential to delight<br />
           `}
         >
-          <Heading textFont="secondary" textColor="teal">
-            That's a broad definition!
+          <Heading size={2} textFont="secondary" textColor="purple">
+            With this <br />
+            <span style={{ color: COLORS.pink[500] }}>broad definition</span>,
+            <br /> it's easy to find examples.
           </Heading>
         </Slide>
 
-        <Slide>
-          <Heading
-            textAlign="left"
-            textFont="secondary"
-            size={2}
-            textColor="purple"
-          >
-            This isn't a lost art!
+        <Slide bgColor="secondary">
+          <Video videoId={261999187} />
+        </Slide>
+
+        <Slide bgColor="secondary">
+          <Video videoId={261999178} />
+        </Slide>
+
+        <Slide
+          bgColor="secondary"
+          notes={`
+            I could spend the rest of my time up here talking about whimsical error pages, but it's not the most important thing to focus on.<br /><br />
+
+            I chose this scope for a few reasons:<br />
+            - It's what we have the most control over, as developers<br />
+            - It's woefully underdeveloped on web.<br />
+            - "fun problems". interesting technically.<br />
+            - It has huge potential to delight<br />
+          `}
+        >
+          <Heading size={3} textFont="secondary" textColor="pink">
+            Let's focus on<br />
+            <span style={{ color: COLORS.lime[500] }}>interaction</span> &{' '}
+            <span style={{ color: COLORS.lime[500] }}>animation</span>.
           </Heading>
-          <br />
-          <br />
+        </Slide>
 
-          <Heading
-            textAlign="left"
-            textFont="secondary"
-            size={3}
-            textColor="pink"
-          >
-            There's still plenty of whimsy in mobile apps.
-          </Heading>
+        <Slide
+          bgColor="secondary"
+          notes={`
+            Timepage, a calendar app from Moleskine
+          `}
+        >
+          <FullscreenImage src={moleskineBallsSrc} />
         </Slide>
 
         <Slide>
-          <img src={moleskineBallsSrc} style={{ width: '100%' }} />
+          <FullscreenImage portrait src={flipbookSrc} />
         </Slide>
 
         <Slide>
-          <img src={flipbookSrc} />
-        </Slide>
-
-        <Slide>
-          <img src={facebookCongratsSrc} style={{ height: '100%' }} />
+          <FullscreenImage portrait src={facebookCongratsSrc} />
         </Slide>
 
         <Slide>
