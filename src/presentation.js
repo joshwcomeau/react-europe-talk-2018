@@ -38,6 +38,7 @@ import Title from './slides/Title';
 import WhoAmI from './slides/WhoAmI';
 import WishTheInternet from './slides/WishTheInternet';
 import ConfettiArchitecture from './slides/ConfettiArchitecture';
+import CanvasCodeSlide from './slides/CanvasCode';
 
 require('normalize.css');
 require('highlight.js/styles/arta.css');
@@ -280,6 +281,8 @@ export default class Presentation extends React.Component {
         <Slide>
           <ConfettiArchitecture />
         </Slide>
+
+        <CanvasCodeSlide />
       </Deck>
     );
   }

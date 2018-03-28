@@ -1,10 +1,18 @@
+// @flow
 import React, { Component } from 'react';
 
-class Canvas extends Component {
+type Props = {
+  width: number,
+  height: number,
+  draw: (ctx: CanvasRenderingContext2D) => void,
+};
+
+class Canvas extends Component<Props> {
   componentDidMount() {
     this.ctx = this.canvas.getContext('2d');
 
     this.scale();
+
     this.props.draw(this.ctx);
   }
 

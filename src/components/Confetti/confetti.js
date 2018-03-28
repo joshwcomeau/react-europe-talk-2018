@@ -62,7 +62,7 @@ class Confetti extends Component<Props> {
       <Canvas
         width={width}
         height={height}
-        draw={ctx => this.draw(ctx)}
+        draw={this.draw}
         ref={(node: HTMLCanvasElement) => (this.canvas = node)}
         onClick={onClick}
       />
