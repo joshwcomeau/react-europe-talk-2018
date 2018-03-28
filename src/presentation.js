@@ -37,10 +37,10 @@ import ConfettiManager from './components/ConfettiManager';
 import Title from './slides/Title';
 import WhoAmI from './slides/WhoAmI';
 import WishTheInternet from './slides/WishTheInternet';
+import ConfettiArchitecture from './slides/ConfettiArchitecture';
 
 require('normalize.css');
 require('highlight.js/styles/arta.css');
-
 
 preloader({
   mcdonaldsSrc,
@@ -275,6 +275,10 @@ export default class Presentation extends React.Component {
           `}
         >
           <ConfettiManager />
+        </Slide>
+
+        <Slide>
+          <ConfettiArchitecture />
         </Slide>
       </Deck>
     );
