@@ -7,7 +7,7 @@ import Slider from '../Slider';
 
 class ConfettiManager extends Component {
   state = {
-    numParticles: 160,
+    numParticles: 100,
     gravity: 0,
     speed: 100,
     scale: 0.5,
@@ -72,7 +72,7 @@ class ConfettiManager extends Component {
             width={200}
             label="Spin"
             min={0}
-            max={60}
+            max={30}
             value={spin}
             onChange={this.updateVal('spin')}
           />
@@ -80,7 +80,7 @@ class ConfettiManager extends Component {
             width={200}
             label="Twist"
             min={0}
-            max={60}
+            max={30}
             value={twist}
             onChange={this.updateVal('twist')}
           />

@@ -1,7 +1,7 @@
 // @flow
 import React, { PureComponent } from 'react';
 
-import { random, sample, getDiameter } from './Confetti.helpers';
+import { random, sample, range, getDiameter } from './Confetti.helpers';
 import {
   createCircle,
   createTriangle,
@@ -73,8 +73,6 @@ type Props = {
   children: (props: ChildFnProps) => React$Node,
 };
 
-const PIXEL_RATIO = window.devicePixelRatio || 1;
-
 class Particles extends PureComponent<Props, State> {
   static defaultProps = {
     shapes: [
@@ -89,7 +87,7 @@ class Particles extends PureComponent<Props, State> {
       createTriangle({ fill: '#aa87ff' }), // Purple
       createTriangle({ fill: '#26edd5' }), // Turquoise
     ],
-    numParticles: 160,
+    numParticles: 100,
     gravity: 1600,
     spin: 20,
     twist: 0,
@@ -97,7 +95,6 @@ class Particles extends PureComponent<Props, State> {
     maxSpeed: 675,
     minScale: 0.4,
     maxScale: 1.0,
-    // By default emit all particles at once.
     emitDuration: 1000,
   };
 
@@ -107,50 +104,88 @@ class Particles extends PureComponent<Props, State> {
   };
 
   generateParticles = () => {
-    const deviceSpecificWidth = this.props.width * PIXEL_RATIO;
+    const newParticles = range(this.props.numParticles).map(i => {
+      // Particles can be spread over a duration.
+      // Each particle should be "born" at a random time during the emit
+      // duration (if this value is 0, they'll all share the same birthdate).
+      const birth = Date.now() + random(0, this.props.emitDuration);
 
-    let particles = [...this.state.particles];
-
-    // TODO: Better iterator.
-    for (let i = 0; i < this.props.numParticles; i++) {
+      // Scale and Speed are specified in ranges. Select a value for this
+      // particle from within the range.
       const speed = random(this.props.minSpeed, this.props.maxSpeed);
+      const scale = random(this.props.minScale, this.props.maxScale);
 
-      // Select a random direction offset to be used.
-      // Controls how far left/right a given piece will move from its origin.
-      const directionOffset = -Math.PI / 2 + 0.7 * random(-0.5, 0.5);
+      // Values for `spin` and `twist` are specified through props, but the
+      // values given represent the maximum absolute values possible.
+      // If `spin` is 30, that means each particle will select a random
+      // `spinForce` between -30 and 30.
+      const spinForce = this.props.spin * random(-1, 1);
+      const twistForce = this.props.twist * random(-1, 1);
+      // `currentSpin` and `currentTwist` are trackers for the current values
+      // as the animation progresses. Start them at `0`.
+      // NOTE: this does not mean that each particle will start with the same
+      // orientation - this is also influenced by `angle`, which is randomized.
+      // This represents the current deviation from the `angle`.
+      const currentSpin = 0;
+      const currentTwist = 0;
 
-      const { front, back } = sample(this.props.shapes);
+      // Each particle starts along the top of the canvas, with a random
+      // `x` coordinate somewhere along its width.
+      const initialPosition = { x: random(0, 1) * this.props.width, y: 0 };
 
-      const initialPosition = {
-        // TODO: -1 to 1?
-        x: random(-0.5, 0.5) * deviceSpecificWidth,
-        y: 0,
-      };
+      const shape = sample(this.props.shapes);
+      const { front, back } = shape;
 
-      particles.push({
-        birth: Date.now() + random(0, this.props.emitDuration),
+      // ~~~ TRIGONOMETRY STUFF ~~~
+      // `angle` is the degree, in radians, that the shape is rotated along
+      // its Z-axis:
+      //                                  ________
+      //      /\         π radians        \      /
+      //    /   \           ->             \   /
+      //  /______\                          \/
+      //
+      const angle = random(0, 2 * Math.PI);
+
+      // `trajectory` represents the angle of the particle's movement.
+      // Larger numbers means the particle deviates further from its initial
+      // `x` coordinate.
+      const trajectoryVariance = random(-1, 1);
+      const trajectory = -Math.PI / 2 + trajectoryVariance;
+
+      // `vx` and `vy` represent the velocity across both axes, and will be
+      // used to compute how much a particle should move in a given frame.
+      const vx = Math.cos(trajectory) * speed;
+      const vy = Math.sin(trajectory) * speed * -1;
+      //
+      // ~~~ END TRIGONOMETRY STUFF ~~~
+
+      return {
+        birth,
         initialPosition,
         currentPosition: initialPosition,
-        spinForce: this.props.spin * random(-0.5, 0.5),
-        currentSpin: 0,
-        twistForce: this.props.twist * random(-0.5, 0.5),
-        currentTwist: 0,
-        angle: random(0, 2 * Math.PI),
-        scale: random(this.props.minScale, this.props.maxScale),
-        vx: Math.cos(directionOffset) * speed,
-        vy: Math.sin(directionOffset) * speed * -1,
+        spinForce,
+        twistForce,
+        currentSpin,
+        currentTwist,
+        angle,
+        vx,
+        vy,
+        scale,
         front,
         back,
         width: front.naturalWidth,
         height: front.naturalHeight,
-      });
-    }
+      };
+    });
 
     if (this.state.status === 'idle') {
       this.tick();
     }
 
-    this.setState({ particles, status: 'running' });
+    this.setState({
+      particles: [...this.state.particles, ...newParticles],
+      status: 'running',
+    });
   };
 
   tick = () => {

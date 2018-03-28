@@ -15,6 +15,8 @@ export const random = (low: number, high: number) =>
 export const sample = (array: Array<any>): any =>
   array[Math.floor(random(0, array.length))];
 
+export const range = (n: number) => Array.from(Array(n).keys());
+
 export const getDiameter = (width: number, height: number) =>
   Math.sqrt(width * width + height * height);
 
