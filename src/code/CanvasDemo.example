@@ -1,0 +1,13 @@
+const CanvasDemo = () => (
+  <Canvas
+    width={200}
+    height={200}
+    style={{ outline: '1px solid' }}
+    draw={ctx => {
+      ctx.fillStyle = 'hotpink';
+      ctx.fillRect(50, 50, 100, 100);
+    }}
+  />
+);
+
+render(<CanvasDemo />);

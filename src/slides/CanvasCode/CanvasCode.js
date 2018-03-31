@@ -1,4 +1,3 @@
-/* eslint-disable import/no-webpack-loader-syntax */
 import React, { Component } from 'react';
 import CodeSlide from 'spectacle-code-slide';
 
@@ -6,7 +5,8 @@ class CanvasCode extends Component {
   render() {
     return (
       <CodeSlide
-        transition={[]}
+        slideIndex={23}
+        bgColor="secondary"
         lang="js"
         code={require('./CanvasCode.example')}
         ranges={[

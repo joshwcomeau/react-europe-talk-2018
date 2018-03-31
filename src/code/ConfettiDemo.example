@@ -1,0 +1,22 @@
+const shape = createZigZag({
+  fill: '#ca337c',
+});
+
+const particle = {
+  currentPosition: { x: 100, y: 100 },
+  scale: 2,
+  currentSpin: 0,
+  currentTwist: 1,
+  front: shape.front,
+  back: shape.back,
+  width: shape.front.naturalWidth,
+  height: shape.front.naturalHeight,
+};
+
+render(
+  <Confetti
+    width={200}
+    height={200}
+    particles={[particle]}
+  />
+);

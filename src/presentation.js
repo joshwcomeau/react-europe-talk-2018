@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import {
   BlockQuote,
   Cite,
+  ComponentPlayground,
   Deck,
   Heading,
   ListItem,
@@ -12,8 +13,10 @@ import {
 } from 'spectacle';
 import createTheme from 'spectacle/lib/themes/default';
 import preloader from 'spectacle/lib/utils/preloader';
+import CodeSlide from 'spectacle-code-slide';
 
 import { COLORS } from './constants';
+
 import titleBgSrc from './assets/sprinkles.jpg';
 import askJeevesSrc from './assets/ask-jeeves.gif';
 import mcdonaldsSrc from './assets/mcdonalds-full.gif';
@@ -33,12 +36,14 @@ import Video from './components/Video';
 import Hierarchy from './components/Hierarchy';
 import CssTransitionDemo from './components/CssTransitionDemo';
 import ConfettiManager from './components/ConfettiManager';
+import Canvas from './components/Canvas';
+import Confetti from './components/Confetti';
 
 import Title from './slides/Title';
 import WhoAmI from './slides/WhoAmI';
 import WishTheInternet from './slides/WishTheInternet';
 import ConfettiArchitecture from './slides/ConfettiArchitecture';
-import CanvasCodeSlide from './slides/CanvasCode';
+import { createZigZag } from './components/Confetti/confetti-shapes.js';
 
 require('normalize.css');
 require('highlight.js/styles/arta.css');
@@ -80,7 +85,12 @@ const theme = createTheme(
 export default class Presentation extends React.Component {
   render() {
     return (
-      <Deck transition={['slide']} transitionDuration={500} theme={theme}>
+      <Deck
+        transition={['slide']}
+        transitionDuration={500}
+        progress={null}
+        theme={theme}
+      >
         <Slide bgImage={titleBgSrc}>
           <Title />
         </Slide>
@@ -99,7 +109,9 @@ export default class Presentation extends React.Component {
             I started using the internet in the 90s, and at that time, the internet looked like this.<br /><br />
           `}
         >
-          <FullscreenImage src={jesseSkiingSrc} />
+          <FullscreenImage
+            src={jesseSkiingSrc}
+          />
         </Slide>
 
         <Slide
@@ -110,7 +122,9 @@ export default class Presentation extends React.Component {
             Web developers had one tool, and one tool only, for animation...
           `}
         >
-          <FullscreenImage src={askJeevesSrc} />
+          <FullscreenImage
+            src={askJeevesSrc}
+          />
         </Slide>
 
         <Slide
@@ -121,7 +135,9 @@ export default class Presentation extends React.Component {
             The cool thing about this golden era of the web is that nobody knew what they were doing.
           `}
         >
-          <FullscreenImage src={cameronsWorldSrc} />
+          <FullscreenImage
+            src={cameronsWorldSrc}
+          />
         </Slide>
 
         <Slide
@@ -130,7 +146,9 @@ export default class Presentation extends React.Component {
             This is actually McDonald's website, circa early 1997.
           `}
         >
-          <FullscreenImage src={mcdonaldsSrc} />
+          <FullscreenImage
+            src={mcdonaldsSrc}
+          />
         </Slide>
 
         <Slide
@@ -142,7 +160,9 @@ export default class Presentation extends React.Component {
           Web technologies were essentially nonexistent at this time. Javascript was less than a year old, CSS wouldn't show up for another year. We built documents, and embedded animated GIFs for flavor.
           `}
         >
-          <FullscreenImage src={mcdonaldsZoomSrc} />
+          <FullscreenImage
+            src={mcdonaldsZoomSrc}
+          />
         </Slide>
 
         <Slide
@@ -155,7 +175,9 @@ export default class Presentation extends React.Component {
             And yet, this website is bland. It's exactly what it needs to be, and nothing more. I miss the whimsical charm of their old site.
           `}
         >
-          <FullscreenImage src={mcdonaldsNowSrc} />
+          <FullscreenImage
+            src={mcdonaldsNowSrc}
+          />
         </Slide>
 
         <Slide
@@ -165,7 +187,9 @@ export default class Presentation extends React.Component {
             "An unexpected flourish that sparks joy". It's not stuff that is critical to the usability of your product, but it's something that makes your users smile, something that makes your product a little more enjoyable to use.<br /><br />
           `}
         >
-          <FullscreenImage src={whimsyDefinitionSrc} />
+          <FullscreenImage
+            src={whimsyDefinitionSrc}
+          />
         </Slide>
 
         <Slide
@@ -182,9 +206,19 @@ export default class Presentation extends React.Component {
             - It has huge potential to delight<br />
           `}
         >
-          <Heading size={2} textFont="secondary" textColor="purple">
+          <Heading
+            size={2}
+            textFont="secondary"
+            textColor="purple"
+          >
             With this <br />
-            <span style={{ color: COLORS.pink[500] }}>broad definition</span>,
+            <span
+              style={{
+                color: COLORS.pink[500],
+              }}
+            >
+              broad definition
+            </span>,
             <br /> it's easy to find examples.
           </Heading>
         </Slide>
@@ -209,10 +243,27 @@ export default class Presentation extends React.Component {
             - It has huge potential to delight<br />
           `}
         >
-          <Heading size={3} textFont="secondary" textColor="pink">
+          <Heading
+            size={3}
+            textFont="secondary"
+            textColor="pink"
+          >
             Let's focus on<br />
-            <span style={{ color: COLORS.lime[500] }}>interaction</span> &{' '}
-            <span style={{ color: COLORS.lime[500] }}>animation</span>.
+            <span
+              style={{
+                color: COLORS.lime[500],
+              }}
+            >
+              interaction
+            </span>{' '}
+            &{' '}
+            <span
+              style={{
+                color: COLORS.lime[500],
+              }}
+            >
+              animation
+            </span>.
           </Heading>
         </Slide>
 
@@ -222,20 +273,33 @@ export default class Presentation extends React.Component {
             Timepage, a calendar app from Moleskine
           `}
         >
-          <FullscreenImage src={moleskineBallsSrc} />
+          <FullscreenImage
+            src={moleskineBallsSrc}
+          />
         </Slide>
 
         <Slide>
-          <FullscreenImage portrait src={flipbookSrc} />
+          <FullscreenImage
+            portrait
+            src={flipbookSrc}
+          />
         </Slide>
 
         <Slide>
-          <FullscreenImage portrait src={facebookCongratsSrc} />
+          <FullscreenImage
+            portrait
+            src={facebookCongratsSrc}
+          />
         </Slide>
 
         <Slide>
-          <Heading textFont="secondary" size={2} textColor="blue">
-            Let's explore some of these techniques, in React!
+          <Heading
+            textFont="secondary"
+            size={2}
+            textColor="blue"
+          >
+            Let's explore some of these
+            techniques, in React!
           </Heading>
         </Slide>
 
@@ -243,11 +307,18 @@ export default class Presentation extends React.Component {
           <Heading
             size={6}
             textColor="primary"
-            style={{ opacity: 0.7, fontWeight: 500 }}
+            style={{
+              opacity: 0.7,
+              fontWeight: 500,
+            }}
           >
             Example 1
           </Heading>
-          <Heading size={1} textColor="primary" textFont="secondary">
+          <Heading
+            size={1}
+            textColor="primary"
+            textFont="secondary"
+          >
             Confetti
           </Heading>
           <br />
@@ -255,12 +326,24 @@ export default class Presentation extends React.Component {
           <br />
         </Slide>
 
-        <Slide bgColor="secondary" transition={['fade']}>
-          <img src={confettiMockupSrc} style={{ width: '100%' }} />
+        <Slide
+          bgColor="secondary"
+          transition={['fade']}
+        >
+          <img
+            src={confettiMockupSrc}
+            style={{ width: '100%' }}
+          />
         </Slide>
 
-        <Slide bgColor="secondary" transition={['fade']}>
-          <img src={khanConfettiSrc} style={{ width: '100%' }} />
+        <Slide
+          bgColor="secondary"
+          transition={['fade']}
+        >
+          <img
+            src={khanConfettiSrc}
+            style={{ width: '100%' }}
+          />
         </Slide>
 
         <Slide
@@ -282,7 +365,66 @@ export default class Presentation extends React.Component {
           <ConfettiArchitecture />
         </Slide>
 
-        <CanvasCodeSlide />
+        <CodeSlide
+          bgColor="secondary"
+          lang="flow"
+          code={require('./code/Canvas.example')}
+          ranges={[
+            { loc: [0], title: '<Canvas />' },
+            { loc: [3, 9] },
+            {
+              loc: [6, 8],
+              note:
+                'A render prop, but for Canvas',
+            },
+            { loc: [10, 18] },
+            { loc: [19, 22] },
+            { loc: [23, 36] },
+            { loc: [37, 54] },
+          ]}
+        />
+
+        <Slide>
+          <ComponentPlayground
+            code={require('./code/CanvasDemo.example')}
+            theme="external"
+            scope={{ Canvas }}
+          />
+        </Slide>
+
+        <CodeSlide
+          bgColor="secondary"
+          lang="flow"
+          code={require('./code/Confetti.example')}
+          ranges={[
+            {
+              loc: [0],
+              title: '<Confetti />',
+            },
+            { loc: [2, 7] },
+            { loc: [7, 8] },
+            { loc: [9, 13] },
+            { loc: [14, 20] },
+            { loc: [21, 23] },
+            { loc: [29, 30] },
+            { loc: [31, 32] },
+            { loc: [32, 36] },
+            { loc: [37, 38] },
+            { loc: [39, 40] },
+            { loc: [41, 45] },
+            { loc: [46, 59] },
+            { loc: [60, 65] },
+            { loc: [67, 83] },
+          ]}
+        />
+
+        <Slide>
+          <ComponentPlayground
+            code={require('./code/ConfettiDemo.example')}
+            theme="external"
+            scope={{ Confetti, createZigZag }}
+          />
+        </Slide>
       </Deck>
     );
   }
