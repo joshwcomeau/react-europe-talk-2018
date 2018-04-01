@@ -33,6 +33,7 @@ import khanConfettiSrc from './assets/khan-confetti.gif';
 import tobiasStatePromptSrc from './assets/tobias-state-prompt.gif';
 import tobiasActionPromptSrc from './assets/tobias-action-prompt.gif';
 import newSendAnimatedSrc from './assets/new-send-animated.mp4';
+import newCloseAnimatedSrc from './assets/new-close-animated.mp4';
 
 import FullscreenImage from './components/FullscreenImage';
 import Video from './components/Video';
@@ -73,6 +74,7 @@ preloader({
   tobiasStatePromptSrc,
   tobiasActionPromptSrc,
   newSendAnimatedSrc,
+  newCloseAnimatedSrc,
 });
 
 const theme = createTheme(
@@ -451,6 +453,16 @@ export default class Presentation extends React.Component {
           blue circle factory GIF?
         </Slide>
 
+        <Slide>
+          TODO: Performance. Talk about how at this scale, you have 16ms per
+          frame, and that's really only 10ms of JS-time. React re-rendering
+          takes x ms, an cloning an object takes 0.5ms, which is actually
+          significant at this scale.
+          <br />
+          Although do mention that even at this scale, `map` is fine instead of
+          a `for` loop, inline functions are still fine, etc.
+        </Slide>
+
         <Slide bgColor="teal">
           <SectionStart num={2} title="Email Client" />
         </Slide>
@@ -485,6 +497,47 @@ export default class Presentation extends React.Component {
 
         <Slide bgColor="#000000">
           <video controls src={newSendAnimatedSrc} width={920} />
+          <Caption>
+            Source:{' '}
+            <a href="http://tobiasahlin.com/blog/meaningful-motion-w-action-driven-animation/">
+              tobiasahlin.com
+            </a>
+          </Caption>
+        </Slide>
+
+        <Slide bgColor="#000000">
+          <video controls src={newCloseAnimatedSrc} width={920} />
+          <Caption>
+            Source:{' '}
+            <a href="http://tobiasahlin.com/blog/meaningful-motion-w-action-driven-animation/">
+              tobiasahlin.com
+            </a>
+          </Caption>
+        </Slide>
+
+        <Slide>
+          <Heading textFont="secondary" size={4}>
+            Meaningful Motion with<br />Action-Driven Animation
+          </Heading>
+          <br />
+          <br />
+          <Text>
+            <a
+              style={{ color: COLORS.blue[500] }}
+              href="http://tobiasahlin.com/blog/meaningful-motion-w-action-driven-animation/"
+            >
+              http://tobiasahlin.com/blog
+            </a>
+          </Text>
+          <br />
+          <br />
+        </Slide>
+
+        <Slide textSize={120}>
+          🤔
+          <br />
+          <br />
+          ✨🔥🎉
         </Slide>
       </Deck>
     );

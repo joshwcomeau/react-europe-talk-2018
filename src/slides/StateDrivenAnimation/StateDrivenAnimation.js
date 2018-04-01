@@ -4,7 +4,7 @@ import { Heading, List, ListItem, Text } from 'spectacle';
 const StateDrivenAnimation = () => {
   return (
     <Fragment>
-      <Heading size={3} textColor="red">
+      <Heading size={2} textFont="secondary" textColor="red">
         State-driven Animations
       </Heading>
       <br />

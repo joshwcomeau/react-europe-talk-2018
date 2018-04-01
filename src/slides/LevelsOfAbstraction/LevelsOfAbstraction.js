@@ -5,7 +5,12 @@ import styled from 'styled-components';
 const LevelsOfAbstraction = () => {
   return (
     <Fragment>
-      <Heading textColor="purple" size={2} style={{ marginTop: -100 }}>
+      <Heading
+        textFont="secondary"
+        textColor="purple"
+        size={2}
+        style={{ marginTop: -100 }}
+      >
         Levels of Abstraction
       </Heading>
       <br />
