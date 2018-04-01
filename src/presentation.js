@@ -39,12 +39,13 @@ import ConfettiManager from './components/ConfettiManager';
 import Canvas from './components/Canvas';
 import Confetti from './components/Confetti';
 import Particles from './components/Confetti/Particles';
+import { createZigZag } from './components/Confetti/confetti-shapes.js';
 
 import Title from './slides/Title';
 import WhoAmI from './slides/WhoAmI';
 import WishTheInternet from './slides/WishTheInternet';
 import ConfettiArchitecture from './slides/ConfettiArchitecture';
-import { createZigZag } from './components/Confetti/confetti-shapes.js';
+import LevelsOfAbstraction from './slides/LevelsOfAbstraction';
 
 require('normalize.css');
 require('highlight.js/styles/arta.css');
@@ -435,6 +436,16 @@ export default class Presentation extends React.Component {
             theme="external"
             scope={{ Particles, Confetti }}
           />
+        </Slide>
+
+        <Slide
+          notes={`
+            The composition model, and how it extends far beyond animation.
+
+            Mention <ExerciseConfetti> as the next level up the ladder
+          `}
+        >
+          <LevelsOfAbstraction />
         </Slide>
       </Deck>
     );

@@ -2044,7 +2044,7 @@ d3-scale@^1.0.0:
     d3-time "1"
     d3-time-format "2"
 
-d3-shape@^1.0.0:
+d3-shape@^1.0.0, d3-shape@^1.2.0:
   version "1.2.0"
   resolved "https://registry.yarnpkg.com/d3-shape/-/d3-shape-1.2.0.tgz#45d01538f064bafd05ea3d6d2cb748fd8c41f777"
   dependencies:
@@ -2063,6 +2063,10 @@ d3-time@1:
 d3-timer@^1.0.0:
   version "1.0.7"
   resolved "https://registry.yarnpkg.com/d3-timer/-/d3-timer-1.0.7.tgz#df9650ca587f6c96607ff4e60cc38229e8dd8531"
+
+d3-voronoi@^1.1.2:
+  version "1.1.2"
+  resolved "https://registry.yarnpkg.com/d3-voronoi/-/d3-voronoi-1.1.2.tgz#1687667e8f13a2d158c80c1480c5a29cb0d8973c"
 
 d@1:
   version "1.0.0"
@@ -7407,6 +7411,14 @@ verror@1.10.0:
     core-util-is "1.0.2"
     extsprintf "^1.2.0"
 
+victory-chart@^25.2.0:
+  version "25.2.1"
+  resolved "https://registry.yarnpkg.com/victory-chart/-/victory-chart-25.2.1.tgz#dbaef5300e3659be07e7e99fdaec6a954eb0e800"
+  dependencies:
+    d3-voronoi "^1.1.2"
+    lodash "^4.17.5"
+    victory-core "^21.1.0"
+
 victory-core@^15.2.0:
   version "15.2.0"
   resolved "https://registry.yarnpkg.com/victory-core/-/victory-core-15.2.0.tgz#09ee258113abc9fe6ce663c2b588c4be067b2948"
@@ -7417,6 +7429,33 @@ victory-core@^15.2.0:
     d3-shape "^1.0.0"
     d3-timer "^1.0.0"
     lodash "^4.17.4"
+
+victory-core@^21.1.0, victory-core@^21.1.1:
+  version "21.1.1"
+  resolved "https://registry.yarnpkg.com/victory-core/-/victory-core-21.1.1.tgz#fe8c9b4f4e8bf98eb6f76d68290215b7a3139e16"
+  dependencies:
+    d3-ease "^1.0.0"
+    d3-interpolate "^1.1.1"
+    d3-scale "^1.0.0"
+    d3-shape "^1.2.0"
+    d3-timer "^1.0.0"
+    lodash "^4.17.5"
+
+victory-pie@^14.0.2:
+  version "14.0.2"
+  resolved "https://registry.yarnpkg.com/victory-pie/-/victory-pie-14.0.2.tgz#fc284febf9c505b5de852e34891492d607145c39"
+  dependencies:
+    d3-shape "^1.0.0"
+    lodash "^4.17.5"
+    victory-core "^21.1.0"
+
+victory@^0.25.7:
+  version "0.25.7"
+  resolved "https://registry.yarnpkg.com/victory/-/victory-0.25.7.tgz#7de7532ba5514f9703da880ffa06c998d86a98fb"
+  dependencies:
+    victory-chart "^25.2.0"
+    victory-core "^21.1.1"
+    victory-pie "^14.0.2"
 
 vlq@^0.2.2:
   version "0.2.3"
