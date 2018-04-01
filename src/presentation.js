@@ -38,6 +38,7 @@ import CssTransitionDemo from './components/CssTransitionDemo';
 import ConfettiManager from './components/ConfettiManager';
 import Canvas from './components/Canvas';
 import Confetti from './components/Confetti';
+import Particles from './components/Confetti/Particles';
 
 import Title from './slides/Title';
 import WhoAmI from './slides/WhoAmI';
@@ -109,9 +110,7 @@ export default class Presentation extends React.Component {
             I started using the internet in the 90s, and at that time, the internet looked like this.<br /><br />
           `}
         >
-          <FullscreenImage
-            src={jesseSkiingSrc}
-          />
+          <FullscreenImage src={jesseSkiingSrc} />
         </Slide>
 
         <Slide
@@ -122,9 +121,7 @@ export default class Presentation extends React.Component {
             Web developers had one tool, and one tool only, for animation...
           `}
         >
-          <FullscreenImage
-            src={askJeevesSrc}
-          />
+          <FullscreenImage src={askJeevesSrc} />
         </Slide>
 
         <Slide
@@ -135,9 +132,7 @@ export default class Presentation extends React.Component {
             The cool thing about this golden era of the web is that nobody knew what they were doing.
           `}
         >
-          <FullscreenImage
-            src={cameronsWorldSrc}
-          />
+          <FullscreenImage src={cameronsWorldSrc} />
         </Slide>
 
         <Slide
@@ -146,9 +141,7 @@ export default class Presentation extends React.Component {
             This is actually McDonald's website, circa early 1997.
           `}
         >
-          <FullscreenImage
-            src={mcdonaldsSrc}
-          />
+          <FullscreenImage src={mcdonaldsSrc} />
         </Slide>
 
         <Slide
@@ -160,9 +153,7 @@ export default class Presentation extends React.Component {
           Web technologies were essentially nonexistent at this time. Javascript was less than a year old, CSS wouldn't show up for another year. We built documents, and embedded animated GIFs for flavor.
           `}
         >
-          <FullscreenImage
-            src={mcdonaldsZoomSrc}
-          />
+          <FullscreenImage src={mcdonaldsZoomSrc} />
         </Slide>
 
         <Slide
@@ -175,9 +166,7 @@ export default class Presentation extends React.Component {
             And yet, this website is bland. It's exactly what it needs to be, and nothing more. I miss the whimsical charm of their old site.
           `}
         >
-          <FullscreenImage
-            src={mcdonaldsNowSrc}
-          />
+          <FullscreenImage src={mcdonaldsNowSrc} />
         </Slide>
 
         <Slide
@@ -187,9 +176,7 @@ export default class Presentation extends React.Component {
             "An unexpected flourish that sparks joy". It's not stuff that is critical to the usability of your product, but it's something that makes your users smile, something that makes your product a little more enjoyable to use.<br /><br />
           `}
         >
-          <FullscreenImage
-            src={whimsyDefinitionSrc}
-          />
+          <FullscreenImage src={whimsyDefinitionSrc} />
         </Slide>
 
         <Slide
@@ -206,11 +193,7 @@ export default class Presentation extends React.Component {
             - It has huge potential to delight<br />
           `}
         >
-          <Heading
-            size={2}
-            textFont="secondary"
-            textColor="purple"
-          >
+          <Heading size={2} textFont="secondary" textColor="purple">
             With this <br />
             <span
               style={{
@@ -243,11 +226,7 @@ export default class Presentation extends React.Component {
             - It has huge potential to delight<br />
           `}
         >
-          <Heading
-            size={3}
-            textFont="secondary"
-            textColor="pink"
-          >
+          <Heading size={3} textFont="secondary" textColor="pink">
             Let's focus on<br />
             <span
               style={{
@@ -273,33 +252,20 @@ export default class Presentation extends React.Component {
             Timepage, a calendar app from Moleskine
           `}
         >
-          <FullscreenImage
-            src={moleskineBallsSrc}
-          />
+          <FullscreenImage src={moleskineBallsSrc} />
         </Slide>
 
         <Slide>
-          <FullscreenImage
-            portrait
-            src={flipbookSrc}
-          />
+          <FullscreenImage portrait src={flipbookSrc} />
         </Slide>
 
         <Slide>
-          <FullscreenImage
-            portrait
-            src={facebookCongratsSrc}
-          />
+          <FullscreenImage portrait src={facebookCongratsSrc} />
         </Slide>
 
         <Slide>
-          <Heading
-            textFont="secondary"
-            size={2}
-            textColor="blue"
-          >
-            Let's explore some of these
-            techniques, in React!
+          <Heading textFont="secondary" size={2} textColor="blue">
+            Let's explore some of these techniques, in React!
           </Heading>
         </Slide>
 
@@ -314,11 +280,7 @@ export default class Presentation extends React.Component {
           >
             Example 1
           </Heading>
-          <Heading
-            size={1}
-            textColor="primary"
-            textFont="secondary"
-          >
+          <Heading size={1} textColor="primary" textFont="secondary">
             Confetti
           </Heading>
           <br />
@@ -326,24 +288,12 @@ export default class Presentation extends React.Component {
           <br />
         </Slide>
 
-        <Slide
-          bgColor="secondary"
-          transition={['fade']}
-        >
-          <img
-            src={confettiMockupSrc}
-            style={{ width: '100%' }}
-          />
+        <Slide bgColor="secondary" transition={['fade']}>
+          <img src={confettiMockupSrc} style={{ width: '100%' }} />
         </Slide>
 
-        <Slide
-          bgColor="secondary"
-          transition={['fade']}
-        >
-          <img
-            src={khanConfettiSrc}
-            style={{ width: '100%' }}
-          />
+        <Slide bgColor="secondary" transition={['fade']}>
+          <img src={khanConfettiSrc} style={{ width: '100%' }} />
         </Slide>
 
         <Slide
@@ -374,8 +324,7 @@ export default class Presentation extends React.Component {
             { loc: [3, 9] },
             {
               loc: [6, 8],
-              note:
-                'A render prop, but for Canvas',
+              note: 'A render prop, but for Canvas',
             },
             { loc: [10, 18] },
             { loc: [19, 22] },
@@ -418,11 +367,73 @@ export default class Presentation extends React.Component {
           ]}
         />
 
-        <Slide>
+        <Slide
+          notes={`
+            - Canvas renders a single frame. This is useful to separate the animation and physics calculations from the canvas rendering stuff.
+          `}
+        >
           <ComponentPlayground
             code={require('./code/ConfettiDemo.example')}
             theme="external"
             scope={{ Confetti, createZigZag }}
+          />
+        </Slide>
+
+        <CodeSlide
+          bgColor="secondary"
+          lang="flow"
+          code={require('./code/Particles.example')}
+          ranges={[
+            {
+              loc: [0],
+              title: '<Particles />',
+            },
+            { loc: [18, 19] },
+            { loc: [20, 24] },
+            { loc: [25, 29] },
+            { loc: [30, 33] },
+            { loc: [33, 34] },
+            { loc: [34, 35] },
+            { loc: [35, 36] },
+            { loc: [36, 38] },
+            { loc: [38, 40] },
+            { loc: [40, 42] },
+            { loc: [42, 43] },
+            { loc: [43, 46] },
+
+            { loc: [48, 52] },
+            { loc: [52, 64] },
+            { loc: [65, 69] },
+
+            { loc: [70, 81] },
+
+            { loc: [82, 83] },
+            { loc: [83, 86] },
+            { loc: [86, 90] },
+            { loc: [91, 106] },
+            { loc: [107, 124] },
+            { loc: [126, 135] },
+
+            { loc: [70, 81] },
+
+            { loc: [137, 147] },
+
+            { loc: [148, 149] },
+            { loc: [151, 154] },
+            { loc: [157, 209] }, // TODO: Refine
+            { loc: [210, 224] },
+          ]}
+        />
+
+        <Slide
+          notes={`
+            - Canvas renders a single frame. This is useful to separate the animation and physics calculations from the canvas rendering stuff.
+          `}
+        >
+          <ComponentPlayground
+            code={require('./code/ParticlesDemo.example')}
+            theme="external"
+            scope={{ Particles, Confetti }}
           />
         </Slide>
       </Deck>

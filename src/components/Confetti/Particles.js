@@ -1,17 +1,8 @@
 // @flow
 import React, { PureComponent } from 'react';
 
-import {
-  random,
-  sample,
-  range,
-  getDiameter,
-} from './Confetti.helpers';
-import {
-  createCircle,
-  createTriangle,
-  createZigZag,
-} from './confetti-shapes.js';
+import { random, sample, range, getDiameter } from './Confetti.helpers';
+import { defaultShapes } from './confetti-shapes.js';
 
 import type { Particle, Shape } from './types';
 
@@ -26,8 +17,6 @@ type ChildFnProps = {
   ...State,
   generateParticles: () => void,
 };
-
-window.times = [];
 
 type Props = {
   // The width of the HTML canvas. No default value provided.
@@ -77,36 +66,20 @@ type Props = {
 
   // This component simply creates and updates the Particles.
   // The children are responsible for figuring out what to do with them.
-  children: (
-    props: ChildFnProps
-  ) => React$Node,
+  children: (props: ChildFnProps) => React$Node,
 };
 
-class Particles extends PureComponent<
-  Props,
-  State
-> {
+class Particles extends PureComponent<Props, State> {
   static defaultProps = {
-    shapes: [
-      createZigZag({ fill: '#ca337c' }), // Pink
-      createZigZag({ fill: '#01d1c1' }), // Turquoise
-      createZigZag({ fill: '#f4d345' }), // Yellow
-      createCircle({ fill: '#63d9ea' }), // Blue
-      createCircle({ fill: '#ed5fa6' }), // Pink
-      createCircle({ fill: '#aa87ff' }), // Purple
-      createCircle({ fill: '#26edd5' }), // Turquoise
-      createTriangle({ fill: '#ed5fa6' }), // Pink
-      createTriangle({ fill: '#aa87ff' }), // Purple
-      createTriangle({ fill: '#26edd5' }), // Turquoise
-    ],
+    shapes: defaultShapes,
     numParticles: 100,
-    gravity: 1600,
-    spin: 20,
-    twist: 0,
+    gravity: 1000,
+    spin: 10,
+    twist: 5,
     minSpeed: 225,
-    maxSpeed: 675,
-    minScale: 0.4,
-    maxScale: 1.0,
+    maxSpeed: 575,
+    minScale: 1,
+    maxScale: 1.5,
     emitDuration: 1000,
   };
 
@@ -116,35 +89,23 @@ class Particles extends PureComponent<
   };
 
   generateParticles = () => {
-    const newParticles = range(
-      this.props.numParticles
-    ).map(i => {
+    const newParticles = range(this.props.numParticles).map(i => {
       // Particles can be spread over a duration.
       // Each particle should be "born" at a random time during the emit
       // duration (if this value is 0, they'll all share the same birthdate).
-      const birth =
-        Date.now() +
-        random(0, this.props.emitDuration);
+      const birth = Date.now() + random(0, this.props.emitDuration);
 
       // Scale and Speed are specified in ranges. Select a value for this
       // particle from within the range.
-      const speed = random(
-        this.props.minSpeed,
-        this.props.maxSpeed
-      );
-      const scale = random(
-        this.props.minScale,
-        this.props.maxScale
-      );
+      const speed = random(this.props.minSpeed, this.props.maxSpeed);
+      const scale = random(this.props.minScale, this.props.maxScale);
 
       // Values for `spin` and `twist` are specified through props, but the
       // values given represent the maximum absolute values possible.
       // If `spin` is 30, that means each particle will select a random
       // `spinForce` between -30 and 30.
-      const spinForce =
-        this.props.spin * random(-1, 1);
-      const twistForce =
-        this.props.twist * random(-1, 1);
+      const spinForce = this.props.spin * random(-1, 1);
+      const twistForce = this.props.twist * random(-1, 1);
       // `currentSpin` and `currentTwist` are trackers for the current values
       // as the animation progresses. Start them at `0`.
       // NOTE: this does not mean that each particle will start with the same
@@ -177,14 +138,12 @@ class Particles extends PureComponent<
       // Larger numbers means the particle deviates further from its initial
       // `x` coordinate.
       const trajectoryVariance = random(-1, 1);
-      const trajectory =
-        -Math.PI / 2 + trajectoryVariance;
+      const trajectory = -Math.PI / 2 + trajectoryVariance;
 
       // `vx` and `vy` represent the velocity across both axes, and will be
       // used to compute how much a particle should move in a given frame.
       const vx = Math.cos(trajectory) * speed;
-      const vy =
-        Math.sin(trajectory) * speed * -1;
+      const vy = Math.sin(trajectory) * speed * -1;
       //
       // ~~~ END TRIGONOMETRY STUFF ~~~
 
@@ -212,10 +171,7 @@ class Particles extends PureComponent<
     }
 
     this.setState({
-      particles: [
-        ...this.state.particles,
-        ...newParticles,
-      ],
+      particles: [...this.state.particles, ...newParticles],
       status: 'running',
     });
   };
@@ -240,17 +196,14 @@ class Particles extends PureComponent<
 
     return this.state.particles
       .map(particle => {
-        const age =
-          (now - particle.birth) / 1000;
+        const age = (now - particle.birth) / 1000;
 
         // Skip a particle if it hasn't been born yet.
         if (age < 0) {
           return particle;
         }
 
-        const x =
-          particle.initialPosition.x +
-          particle.vx * age;
+        const x = particle.initialPosition.x + particle.vx * age;
         const y =
           particle.initialPosition.y +
           particle.vy * age +
@@ -262,9 +215,7 @@ class Particles extends PureComponent<
         );
 
         const isOffScreen =
-          x + diameter < 0 ||
-          x - diameter > width ||
-          y - diameter > height;
+          x + diameter < 0 || x - diameter > width || y - diameter > height;
 
         if (isOffScreen) {
           return;
@@ -274,15 +225,9 @@ class Particles extends PureComponent<
         // Mutating this.state directly here.
         // This is a faux-pas, but it's important for performance.
         particle.currentPosition = { x, y };
-        particle.currentSpin =
-          particle.angle +
-          particle.spinForce * age;
-
+        particle.currentSpin = particle.angle + particle.spinForce * age;
         particle.currentTwist = particle.twistForce
-          ? Math.cos(
-              particle.angle +
-                particle.twistForce * age
-            )
+          ? Math.cos(particle.angle + particle.twistForce * age)
           : 1;
 
         return particle;
@@ -300,8 +245,7 @@ class Particles extends PureComponent<
       particles,
 
       // Actions
-      generateParticles: this
-        .generateParticles,
+      generateParticles: this.generateParticles,
     });
   }
 }

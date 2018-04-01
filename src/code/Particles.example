@@ -1,0 +1,227 @@
+// @flow
+import React, { PureComponent } from 'react';
+
+import {
+  random,
+  sample,
+  range,
+  getDiameter,
+} from './Confetti.helpers';
+import {
+  defaultShapes,
+} from './confetti-shapes.js';
+
+import type {
+  Particle,
+  Shape,
+} from './types';
+
+type Status = 'idle' | 'running';
+
+type State = {
+  status: Status,
+  particles: Array<Particle>,
+};
+
+type ChildFnProps = {
+  ...State,
+  generateParticles: () => void,
+};
+
+type Props = {
+  width: number,
+  height: number,
+  shapes: Array<Shape>,
+  numParticles: number,
+  emitDuration: number,
+  spin: number,
+  twist: number,
+  minSpeed: number,
+  maxSpeed: number,
+  minScale: number,
+  maxScale: number,
+  gravity: number,
+  children: (
+    props: ChildFnProps
+  ) => React$Node,
+};
+
+class Particles extends PureComponent<
+  Props,
+  State
+> {
+  static defaultProps = {
+    shapes: defaultShapes,
+    numParticles: 100,
+    gravity: 1600,
+    spin: 20,
+    twist: 0,
+    minSpeed: 225,
+    maxSpeed: 675,
+    minScale: 0.4,
+    maxScale: 1.0,
+    emitDuration: 1000,
+  };
+
+  state = {
+    particles: [],
+    status: 'idle',
+  };
+
+  componentDidUpdate(
+    prevProps: Props, 
+    prevState: State
+  ) {
+    if (
+      prevState.status === 'idle' && 
+      this.state.status === 'running'
+    ) {
+      this.tick();
+    }
+  }
+
+  generateParticles = () => {
+    const newParticles = range(
+      this.props.numParticles
+    ).map(i => {
+      // ✂️ Snip ✂️
+      // Initialize all of the variables
+      // like scale, speed, and amount of
+      // spin/twist.
+
+      // ~~~ TRIGONOMETRY STUFF ~~~
+      const angle = random(0, 2 * Math.PI);
+
+      const trajectoryVariance = random(
+        -1,
+        1
+      );
+      const trajectory =
+        -Math.PI / 2 + trajectoryVariance;
+
+      const vx =
+        Math.cos(trajectory) * speed;
+      const vy =
+        Math.sin(trajectory) * speed * -1;
+      // ~~~ END TRIGONOMETRY STUFF ~~~
+
+      return {
+        birth,
+        initialPosition,
+        currentPosition: initialPosition,
+        spinForce,
+        twistForce,
+        currentSpin,
+        currentTwist,
+        angle,
+        scale,
+        vx,
+        vy,
+        front,
+        back,
+        width: front.naturalWidth,
+        height: front.naturalHeight,
+      };
+    });
+
+    const allParticles = [
+      ...this.state.particles,
+      newParticles,
+    ];
+
+    this.setState({
+      particles: allParticles,
+      status: 'running',
+    });
+  };
+
+  tick = () => {
+    window.requestAnimationFrame(() => {
+      const particles = this.calculateNextPositionForParticles();
+
+      this.setState(
+        { particles },
+        this.tick
+      );
+    });
+  };
+
+  calculateNextPositionForParticles = () => {
+    const { height, width } = this.props;
+    
+    if (this.state.status === 'idle') {
+      return;
+    }
+    
+    const now = Date.now();
+    return this.state.particles
+      .map(particle => {
+        const age =
+          (now - particle.birth) / 1000;
+
+        // Skip a particle if it hasn't been born yet.
+        if (age < 0) {
+          return particle;
+        }
+
+        const x =
+          particle.initialPosition.x +
+          particle.vx * age;
+        const y =
+          particle.initialPosition.y +
+          particle.vy * age +
+          this.props.gravity * age * age / 2;
+
+        const diameter = getDiameter(
+          particle.width * particle.scale,
+          particle.height * particle.scale
+        );
+
+        const isOffScreen =
+          x + diameter < 0 ||
+          x - diameter > width ||
+          y - diameter > height;
+
+        if (isOffScreen) {
+          return;
+        }
+
+        // WARNING WARNING WARNING
+        // Mutating this.state directly here.
+        // This is a faux-pas, but it's important for performance.
+        particle.currentPosition = {
+          x,
+          y,
+        };
+        particle.currentSpin =
+          particle.angle +
+          particle.spinForce * age;
+        particle.currentTwist = particle.twistForce
+          ? Math.cos(
+              particle.angle +
+                particle.twistForce * age
+            )
+          : 1;
+
+        return particle;
+      })
+      .filter(particle => !!particle);
+  };
+
+  render() {
+    const { children } = this.props;
+    const { status, particles } = this.state;
+
+    return children({
+      // State
+      status,
+      particles,
+
+      // Actions
+      generateParticles: 
+        this.generateParticles,
+    });
+  }
+}
+
+export default Particles;

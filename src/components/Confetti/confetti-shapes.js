@@ -155,3 +155,16 @@ export const createCircle = createShape('circle');
 export const createTriangle = createShape('triangle');
 export const createRectangle = createShape('rectangle');
 export const createZigZag = createShape('zigZag');
+
+export const defaultShapes = [
+  createZigZag({ fill: '#ca337c' }), // Pink
+  createZigZag({ fill: '#01d1c1' }), // Turquoise
+  createZigZag({ fill: '#f4d345' }), // Yellow
+  createCircle({ fill: '#63d9ea' }), // Blue
+  createCircle({ fill: '#ed5fa6' }), // Pink
+  createCircle({ fill: '#aa87ff' }), // Purple
+  createCircle({ fill: '#26edd5' }), // Turquoise
+  createTriangle({ fill: '#ed5fa6' }), // Pink
+  createTriangle({ fill: '#aa87ff' }), // Purple
+  createTriangle({ fill: '#26edd5' }), // Turquoise
+];

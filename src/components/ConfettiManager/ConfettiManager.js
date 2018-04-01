@@ -35,9 +35,14 @@ class ConfettiManager extends Component {
           spin={spin}
           twist={twist}
         >
-          {({ particles, status, generateParticles }) => (
-            <ConfettiContainer onClick={generateParticles}>
-              <Confetti particles={particles} width={920} height={620} />
+          {({ particles, generateParticles }) => (
+            <ConfettiContainer>
+              <Confetti
+                onClick={generateParticles}
+                particles={particles}
+                width={920}
+                height={620}
+              />
             </ConfettiContainer>
           )}
         </Particles>
