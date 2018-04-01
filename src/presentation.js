@@ -30,6 +30,9 @@ import flipbookSrc from './assets/flipbook.gif';
 import facebookCongratsSrc from './assets/facebook-congrats.gif';
 import confettiMockupSrc from './assets/confetti-mockup.png';
 import khanConfettiSrc from './assets/khan-confetti.gif';
+import tobiasStatePromptSrc from './assets/tobias-state-prompt.gif';
+import tobiasActionPromptSrc from './assets/tobias-action-prompt.gif';
+import newSendAnimatedSrc from './assets/new-send-animated.mp4';
 
 import FullscreenImage from './components/FullscreenImage';
 import Video from './components/Video';
@@ -40,12 +43,16 @@ import Canvas from './components/Canvas';
 import Confetti from './components/Confetti';
 import Particles from './components/Confetti/Particles';
 import { createZigZag } from './components/Confetti/confetti-shapes.js';
+import Caption from './components/Caption';
 
 import Title from './slides/Title';
+import SectionStart from './slides/SectionStart';
 import WhoAmI from './slides/WhoAmI';
 import WishTheInternet from './slides/WishTheInternet';
 import ConfettiArchitecture from './slides/ConfettiArchitecture';
 import LevelsOfAbstraction from './slides/LevelsOfAbstraction';
+import StateDrivenAnimation from './slides/StateDrivenAnimation';
+import ActionDrivenAnimation from './slides/ActionDrivenAnimation';
 
 require('normalize.css');
 require('highlight.js/styles/arta.css');
@@ -63,6 +70,9 @@ preloader({
   facebookCongratsSrc,
   confettiMockupSrc,
   khanConfettiSrc,
+  tobiasStatePromptSrc,
+  tobiasActionPromptSrc,
+  newSendAnimatedSrc,
 });
 
 const theme = createTheme(
@@ -271,22 +281,7 @@ export default class Presentation extends React.Component {
         </Slide>
 
         <Slide bgColor="teal">
-          <Heading
-            size={6}
-            textColor="primary"
-            style={{
-              opacity: 0.7,
-              fontWeight: 500,
-            }}
-          >
-            Example 1
-          </Heading>
-          <Heading size={1} textColor="primary" textFont="secondary">
-            Confetti
-          </Heading>
-          <br />
-          <br />
-          <br />
+          <SectionStart num={1} title="Confetti" />
         </Slide>
 
         <Slide bgColor="secondary" transition={['fade']}>
@@ -428,7 +423,6 @@ export default class Presentation extends React.Component {
 
         <Slide
           notes={`
-            - Canvas renders a single frame. This is useful to separate the animation and physics calculations from the canvas rendering stuff.
           `}
         >
           <ComponentPlayground
@@ -438,6 +432,8 @@ export default class Presentation extends React.Component {
           />
         </Slide>
 
+        <Slide>TODO: Confetti shapes maybe?</Slide>
+
         <Slide
           notes={`
             The composition model, and how it extends far beyond animation.
@@ -446,6 +442,49 @@ export default class Presentation extends React.Component {
           `}
         >
           <LevelsOfAbstraction />
+        </Slide>
+
+        <Slide>TODO: Graph here maybe?</Slide>
+
+        <Slide>
+          TODO: Something about not overengineering, using Dan A's tweet or the
+          blue circle factory GIF?
+        </Slide>
+
+        <Slide bgColor="teal">
+          <SectionStart num={2} title="Email Client" />
+        </Slide>
+
+        <Slide bgColor="#292e3a">
+          <FullscreenImage src={tobiasStatePromptSrc} />
+          <Caption>
+            Source:{' '}
+            <a href="http://tobiasahlin.com/blog/meaningful-motion-w-action-driven-animation/">
+              tobiasahlin.com
+            </a>
+          </Caption>
+        </Slide>
+
+        <Slide>
+          <StateDrivenAnimation />
+        </Slide>
+
+        <Slide bgColor="#292e3a">
+          <FullscreenImage src={tobiasActionPromptSrc} />
+          <Caption>
+            Source:{' '}
+            <a href="http://tobiasahlin.com/blog/meaningful-motion-w-action-driven-animation/">
+              tobiasahlin.com
+            </a>
+          </Caption>
+        </Slide>
+
+        <Slide>
+          <ActionDrivenAnimation />
+        </Slide>
+
+        <Slide bgColor="#000000">
+          <video controls src={newSendAnimatedSrc} width={920} />
         </Slide>
       </Deck>
     );
