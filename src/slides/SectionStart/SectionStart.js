@@ -1,7 +1,7 @@
 import React, { Fragment } from 'react';
 import { Heading } from 'spectacle';
 
-const SectionStart = ({ num, title }) => (
+const SectionStart = ({ subtitle, title }) => (
   <Fragment>
     <Heading
       size={6}
@@ -11,7 +11,7 @@ const SectionStart = ({ num, title }) => (
         fontWeight: 500,
       }}
     >
-      Example {num}
+      {subtitle}
     </Heading>
     <Heading size={1} textColor="primary" textFont="secondary">
       {title}

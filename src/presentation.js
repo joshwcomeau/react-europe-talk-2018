@@ -45,6 +45,7 @@ import Confetti from './components/Confetti';
 import Particles from './components/Confetti/Particles';
 import { createZigZag } from './components/Confetti/confetti-shapes.js';
 import Caption from './components/Caption';
+import FoldConcept from './components/FoldConcept';
 
 import Title from './slides/Title';
 import SectionStart from './slides/SectionStart';
@@ -283,7 +284,7 @@ export default class Presentation extends React.Component {
         </Slide>
 
         <Slide bgColor="teal">
-          <SectionStart num={1} title="Confetti" />
+          <SectionStart subtitle="Example 1" title="Confetti" />
         </Slide>
 
         <Slide bgColor="secondary" transition={['fade']}>
@@ -464,7 +465,7 @@ export default class Presentation extends React.Component {
         </Slide>
 
         <Slide bgColor="teal">
-          <SectionStart num={2} title="Email Client" />
+          <SectionStart subtitle="Example 2" title="Email Client" />
         </Slide>
 
         <Slide bgColor="#292e3a">
@@ -538,6 +539,18 @@ export default class Presentation extends React.Component {
           <br />
           <br />
           ✨🔥🎉
+        </Slide>
+
+        <Slide>TODO: Recording of my thing</Slide>
+
+        <Slide>TODO: architecture slide</Slide>
+
+        <Slide bgColor="deepPurple" textColor="primary">
+          <SectionStart subtitle="Element 1" title="Folding the DOM" />
+        </Slide>
+
+        <Slide>
+          <FoldConcept />
         </Slide>
       </Deck>
     );
