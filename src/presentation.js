@@ -34,6 +34,11 @@ import tobiasStatePromptSrc from './assets/tobias-state-prompt.gif';
 import tobiasActionPromptSrc from './assets/tobias-action-prompt.gif';
 import newSendAnimatedSrc from './assets/new-send-animated.mp4';
 import newCloseAnimatedSrc from './assets/new-close-animated.mp4';
+import tooMuchAnimationSrc from './assets/too-much-animation-rachel-nabors.jpeg';
+import whimsicalOverallSrc from './assets/whimsical-overall.mp4';
+import whimsicalFoldSlowmoSrc from './assets/whimsical-fold-slowmo.mp4';
+import childTransporterSrc from './assets/child-transporter.mp4';
+import houdiniSrc from './assets/houdini.mp4';
 
 import FullscreenImage from './components/FullscreenImage';
 import Video from './components/Video';
@@ -45,6 +50,7 @@ import Confetti from './components/Confetti';
 import Particles from './components/Confetti/Particles';
 import { createZigZag } from './components/Confetti/confetti-shapes.js';
 import Caption from './components/Caption';
+import WibblyWobblyCircle from './components/WibblyWobblyCircle';
 
 import Title from './slides/Title';
 import SectionStart from './slides/SectionStart';
@@ -523,7 +529,9 @@ export default class Presentation extends React.Component {
           <br />
           <Text>
             <a
-              style={{ color: COLORS.blue[500] }}
+              style={{
+                color: COLORS.blue[500],
+              }}
               href="http://tobiasahlin.com/blog/meaningful-motion-w-action-driven-animation/"
             >
               http://tobiasahlin.com/blog
@@ -538,6 +546,146 @@ export default class Presentation extends React.Component {
           <br />
           <br />
           ✨🔥🎉
+        </Slide>
+
+        <Slide bgColor="secondary">
+          <FullscreenImage src={tooMuchAnimationSrc} />
+          <Caption>Source: Rachel Nabors, rachelnabors.com</Caption>
+        </Slide>
+
+        <Slide>
+          <Heading textFont="secondary" textColor="green" size={2}>
+            Write self-disabling animations
+          </Heading>
+
+          <br />
+          <br />
+
+          <Text>Whimsy is supposed to be unexpected.</Text>
+        </Slide>
+
+        <Slide>
+          <Heading textFont="secondary" textColor="teal" size={2}>
+            Let users opt-out
+          </Heading>
+
+          <br />
+          <br />
+          <Text>More on this in a bit...</Text>
+        </Slide>
+
+        <Slide>TODO: Title slide for ChildTransporter</Slide>
+
+        <Slide bgColor="#000000">
+          <video controls loop src={childTransporterSrc} width={920} />
+        </Slide>
+
+        <CodeSlide
+          bgColor="secondary"
+          lang="jsx"
+          code={require('./code/NodeProvider.example')}
+          ranges={[
+            {
+              loc: [0],
+              title: '<NodeProvider />',
+            },
+            // createContext
+            { loc: [2, 5] },
+
+            { loc: [6, 7] },
+
+            // State
+            { loc: [7, 10] },
+            { loc: [10, 11] },
+            { loc: [11, 14] },
+            { loc: [15, 18] },
+            { loc: [19, 29] },
+            { loc: [26, 27] },
+            // render
+            { loc: [32, 41] },
+            // exports
+            { loc: [43, 47] },
+          ]}
+        />
+
+        <CodeSlide
+          bgColor="secondary"
+          lang="jsx"
+          code={require('./code/NodeProviderConsumption.example')}
+          ranges={[
+            {
+              loc: [0],
+              title: 'Consumption',
+            },
+            // App
+            { loc: [0, 9] },
+            { loc: [3, 6] },
+
+            // InboxHeading
+            { loc: [10, 21] },
+            { loc: [11, 13] },
+            { loc: [13, 16] },
+
+            // SomewhereElse
+            { loc: [20, 29] },
+          ]}
+        />
+
+        <Slide>TODO: ChildTraveller code</Slide>
+
+        <Slide>Conclusion</Slide>
+
+        <Slide
+          notes={`
+            I remember years ago, someone told me that the most interesting
+            problems to work on were the ones that no one's solved yet.
+
+            And I remember thinking "Almost everything's already been solved,
+            and the stuff that hasn't is super hard and I'll never be good
+            enough to solve them"
+
+            There's so much really cool stuff we can build.
+          `}
+        >
+          <Heading textFont="secondary" textColor="purple" size={4}>
+            There's
+          </Heading>
+          <Heading textFont="secondary" textColor="pink" size={1}>
+            SO MUCH
+          </Heading>
+          <Heading textFont="secondary" textColor="purple" size={4}>
+            unexplored territory
+          </Heading>
+        </Slide>
+
+        <Slide>
+          <WibblyWobblyCircle color={COLORS.pink[500]} />
+          <WibblyWobblyCircle color={COLORS.purple[500]} />
+        </Slide>
+
+        <Slide>
+          <Heading textFont="secondary" textColor="purple" size={4}>
+            And the future is
+          </Heading>
+          <Heading textFont="secondary" textColor="pink" size={1}>
+            SO EXCITING
+          </Heading>
+        </Slide>
+
+        <Slide bgColor="secondary">
+          <Heading textColor="primary" size={2} style={{ marginTop: -150 }}>
+            CSS Paint
+          </Heading>
+          <br />
+          <video autoPlay loop src={houdiniSrc} />
+        </Slide>
+
+        <Slide bgColor="secondary">
+          <Heading textColor="primary" size={2} style={{ marginTop: -150 }}>
+            WebRender
+          </Heading>
+          <br />
+          <video autoPlay loop src={houdiniSrc} />
         </Slide>
       </Deck>
     );

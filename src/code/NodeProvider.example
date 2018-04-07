@@ -1,0 +1,47 @@
+import React, { Component } from 'react';
+
+const NodeContext = React.createContext(
+  'node'
+);
+
+class NodeProvider extends Component {
+  state = {
+    nodes: {},
+    boundingBoxes: {},
+    refCapturer: id => node => {
+      if (!node) {
+        return;
+      }
+
+      if (this.state.nodes[id]) {
+        return;
+      }
+
+      this.setState({
+        nodes: {
+          ...this.state.nodes,
+          [id]: node,
+        },
+        boundingBoxes: {
+          ...this.state.boundingBoxes,
+          [id]: node.getBoundingClientRect(),
+        },
+      });
+    },
+  };
+
+  render() {
+    return (
+      <NodeContext.Provider
+        value={this.state}
+      >
+        {this.props.children}
+      </NodeContext.Provider>
+    );
+  }
+}
+
+export const NodeConsumer =
+  NodeContext.Consumer;
+
+export default NodeProvider;
