@@ -88,6 +88,18 @@ class Particles extends PureComponent<Props, State> {
     status: 'idle',
   };
 
+  animationFrameId: number;
+
+  componentDidUpdate(prevProps: Props, prevState: State) {
+    if (prevState.status === 'idle' && this.state.status === 'running') {
+      this.tick();
+    }
+  }
+
+  componentWillUnmount() {
+    window.cancelAnimationFrame(this.animationFrameId);
+  }
+
   generateParticles = () => {
     const newParticles = range(this.props.numParticles).map(i => {
       // Particles can be spread over a duration.
@@ -166,10 +178,6 @@ class Particles extends PureComponent<Props, State> {
       };
     });
 
-    if (this.state.status === 'idle') {
-      this.tick();
-    }
-
     this.setState({
       particles: [...this.state.particles, ...newParticles],
       status: 'running',
@@ -177,7 +185,12 @@ class Particles extends PureComponent<Props, State> {
   };
 
   tick = () => {
-    window.requestAnimationFrame(() => {
+    if (this.state.particles.length === 0) {
+      this.setState({ status: 'idle' });
+      return;
+    }
+
+    this.animationFrameId = window.requestAnimationFrame(() => {
       const particles = this.calculateNextPositionForParticles();
 
       this.setState({ particles }, this.tick);
@@ -187,12 +200,6 @@ class Particles extends PureComponent<Props, State> {
   calculateNextPositionForParticles = () => {
     const now = Date.now();
     const { height, width } = this.props;
-
-    if (this.state.status === 'idle') {
-      return;
-    }
-
-    let start = performance.now();
 
     return this.state.particles
       .map(particle => {
@@ -218,7 +225,7 @@ class Particles extends PureComponent<Props, State> {
           x + diameter < 0 || x - diameter > width || y - diameter > height;
 
         if (isOffScreen) {
-          return;
+          return null;
         }
 
         // WARNING WARNING WARNING
