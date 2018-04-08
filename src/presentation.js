@@ -319,7 +319,27 @@ export default class Presentation extends React.Component {
           <ConfettiManager />
         </Slide>
 
-        <Slide>
+        <Slide
+          notes={`
+            Our <Particles> component is our state container. It handles
+            managing the data about each confetti piece, including its position
+            in the canvas and how that changes frame-by-frame, AKA animation.
+
+            One thing about working with Canvas is you realize that there is no
+            animation in the typical sense of the word. you aren't telling
+            anything to move, you're just constantly redrawing stuff at a
+            slightly different position.
+
+            The <Confetti /> component will receive an array of particles, and
+            draw them. It's the glue layer. It takes data and paints that data
+            to the screen.
+
+            The <Canvas /> component is a generic primitive that abstracts away
+            some of the quirks, and also exposes a nice drawing API.
+
+            Let's start from the bottom up.
+          `}
+        >
           <ConfettiArchitecture />
         </Slide>
 
@@ -616,7 +636,7 @@ export default class Presentation extends React.Component {
 
         <Slide
           notes={`
-            A joke isn't funny the 70th time you hear it, but that doesn't mean 
+            A joke isn't funny the 70th time you hear it, but that doesn't mean
             we should abolish jokes entirely!
           `}
         >
