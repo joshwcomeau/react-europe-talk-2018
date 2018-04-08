@@ -1,0 +1,23 @@
+class SomeParentComponent extends Component {
+  state = {
+    sent: false,
+  }
+
+  sendLetter = () => {
+    this.setState({ sent: true });
+  }
+
+  render() {
+    return (
+      <Foldable
+        isFolded={this.state.sent}
+        front={
+          <Letter 
+            handleSend={this.sendLetter} 
+          />
+        }
+        back={<Envelope />}
+      />;
+    )
+  }
+}

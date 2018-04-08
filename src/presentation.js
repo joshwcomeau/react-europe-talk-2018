@@ -11,6 +11,7 @@ import {
   Slide,
   Text,
 } from 'spectacle';
+import styled from 'styled-components';
 import createTheme from 'spectacle/lib/themes/default';
 import preloader from 'spectacle/lib/utils/preloader';
 import CodeSlide from 'spectacle-code-slide';
@@ -46,6 +47,7 @@ import Particles from './components/Confetti/Particles';
 import { createZigZag } from './components/Confetti/confetti-shapes.js';
 import Caption from './components/Caption';
 import FoldConcept from './components/FoldConcept';
+import Foldable from './components/Foldable';
 
 import Title from './slides/Title';
 import SectionStart from './slides/SectionStart';
@@ -524,7 +526,9 @@ export default class Presentation extends React.Component {
           <br />
           <Text>
             <a
-              style={{ color: COLORS.blue[500] }}
+              style={{
+                color: COLORS.blue[500],
+              }}
               href="http://tobiasahlin.com/blog/meaningful-motion-w-action-driven-animation/"
             >
               http://tobiasahlin.com/blog
@@ -551,6 +555,96 @@ export default class Presentation extends React.Component {
 
         <Slide>
           <FoldConcept />
+        </Slide>
+
+        <Slide>
+          <Heading size={1} textColor="pink" textFont="secondary">
+            This is just CSS!
+          </Heading>
+          <Heading size={4} textColor="deepPurple" textFont="secondary">
+            (But the code is kinda gross.)
+          </Heading>
+          <br />
+          <br />
+          <Text>
+            The beauty of React is we can bake this logic into a reusable
+            component, and <strong>make anything foldable</strong>!
+          </Text>
+        </Slide>
+
+        <CodeSlide
+          bgColor="secondary"
+          lang="flow"
+          code={require('./code/Foldable.example')}
+          ranges={[
+            {
+              loc: [0],
+              title: '<Foldable />',
+            },
+            // Props, defaultProps, instance vars
+            { loc: [9, 16] },
+            { loc: [17, 21] },
+            { loc: [22, 24] },
+
+            // `componentDidUpdate`
+            { loc: [25, 41] },
+            // `componentWillUnmount`
+            { loc: [42, 50] },
+
+            // `renderOriginal`
+            { loc: [51, 67] },
+
+            // `renderFoldedCopy`
+            { loc: [68, 70] },
+            { loc: [71, 77] },
+            { loc: [78, 83] },
+            { loc: [84, 93] },
+            // `TopFold`
+            { loc: [93, 110] },
+            { loc: [93, 100] },
+            { loc: [100, 101] },
+            { loc: [101, 107] },
+            { loc: [108, 109] },
+            // `MiddleFold` and `BottomFold`
+            { loc: [111, 124] },
+            { loc: [125, 145] },
+
+            // `render`
+            { loc: [149, 158] },
+
+            // CSS highlights
+            { loc: [160, 172] }, // keyframes 1
+            { loc: [219, 220] }, // transform-style
+            { loc: [240, 249] }, // FoldContents
+            { loc: [250, 261] }, // TopFoldBack
+          ]}
+        />
+
+        <CodeSlide
+          bgColor="secondary"
+          lang="jsx"
+          code={require('./code/FoldableDemo.example')}
+          ranges={[
+            {
+              loc: [0],
+              title: 'Consumer',
+            },
+            { loc: [0, 4] },
+            { loc: [5, 8] },
+            { loc: [9, 22] },
+          ]}
+        />
+
+        <Slide>
+          <Heading size={1} textColor="pink" textFont="secondary">
+            Write Once,<br />Fold Anywhere!
+          </Heading>
+          <br />
+          <br />
+          <Text>
+            It can be tricky to figure out how to do imperative DOM stuff with
+            React, but it's worth the trouble.
+          </Text>
         </Slide>
       </Deck>
     );
