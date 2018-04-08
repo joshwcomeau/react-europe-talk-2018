@@ -30,11 +30,17 @@ import moleskineBallsSrc from './assets/moleskine-balls.gif';
 import flipbookSrc from './assets/flipbook.gif';
 import facebookCongratsSrc from './assets/facebook-congrats.gif';
 import confettiMockupSrc from './assets/confetti-mockup.png';
-import khanConfettiSrc from './assets/khan-confetti.gif';
+import khanConfettiSrc from './assets/confetti.mp4';
 import tobiasStatePromptSrc from './assets/tobias-state-prompt.gif';
 import tobiasActionPromptSrc from './assets/tobias-action-prompt.gif';
 import newSendAnimatedSrc from './assets/new-send-animated.mp4';
 import newCloseAnimatedSrc from './assets/new-close-animated.mp4';
+import tooMuchAnimationSrc from './assets/too-much-animation-rachel-nabors.jpeg';
+import whimsicalOverallSrc from './assets/whimsical-overall.mp4';
+import whimsicalReplySrc from './assets/whimsical-reply.mp4';
+import whimsicalFoldSlowmoSrc from './assets/whimsical-fold-slowmo.mp4';
+import childTransporterSrc from './assets/child-transporter.mp4';
+import houdiniSrc from './assets/houdini.mp4';
 
 import FullscreenImage from './components/FullscreenImage';
 import Video from './components/Video';
@@ -48,6 +54,7 @@ import { createZigZag } from './components/Confetti/confetti-shapes.js';
 import Caption from './components/Caption';
 import FoldConcept from './components/FoldConcept';
 import Foldable from './components/Foldable';
+import WibblyWobblyCircle from './components/WibblyWobblyCircle';
 
 import Title from './slides/Title';
 import SectionStart from './slides/SectionStart';
@@ -294,7 +301,7 @@ export default class Presentation extends React.Component {
         </Slide>
 
         <Slide bgColor="secondary" transition={['fade']}>
-          <img src={khanConfettiSrc} style={{ width: '100%' }} />
+          <video controls src={khanConfettiSrc} style={{ width: '100%' }} />
         </Slide>
 
         <Slide
@@ -545,9 +552,99 @@ export default class Presentation extends React.Component {
           ✨🔥🎉
         </Slide>
 
-        <Slide>TODO: Recording of my thing</Slide>
+        <Slide bgColor="#000000">
+          <video controls src={whimsicalOverallSrc} width={920} />
+        </Slide>
 
-        <Slide>TODO: architecture slide</Slide>
+        <Slide>
+          <Heading textFont="secondary" size={2} textColor="green">
+            Action-driven
+          </Heading>
+
+          <br />
+          <br />
+          <Text>
+            Each user action (opening, clearing, sending) has its own meaningful
+            animation.
+          </Text>
+        </Slide>
+
+        <Slide>
+          <Heading textFont="secondary" size={2} textColor="teal">
+            Informative
+          </Heading>
+
+          <br />
+          <br />
+          <video
+            controls
+            src={whimsicalReplySrc}
+            width="90%"
+            style={{ margin: 'auto' }}
+          />
+        </Slide>
+
+        <Slide bgColor="secondary">
+          <Heading textFont="secondary" textColor="lime">
+            Whimsical
+          </Heading>
+          <br />
+          <br />
+          <Text>Skeuomorphic animation can be delightful.</Text>
+        </Slide>
+
+        <Slide
+          bgColor="secondary"
+          notes={`
+            When I started showing this animation to people, often the first bit of feedback I got was that it would get old fast, and that it'd
+            become this annoying waste of time that you just need to sit through.
+
+            And that's a totally fair bit of feedback, but it's also easy to address.
+          `}
+        >
+          <Heading
+            size={4}
+            textColor="primary"
+            textFont="secondary"
+            style={{ marginTop: -100, marginBottom: 50 }}
+          >
+            I know what you're thinking...
+          </Heading>
+          <FullscreenImage src={tooMuchAnimationSrc} />
+          <Caption>Source: Rachel Nabors, rachelnabors.com</Caption>
+        </Slide>
+
+        <Slide
+          notes={`
+            A joke isn't funny the 70th time you hear it, but that doesn't mean 
+            we should abolish jokes entirely!
+          `}
+        >
+          <Heading textFont="secondary" textColor="green" size={2}>
+            Write self-disabling animations
+          </Heading>
+
+          <br />
+          <br />
+
+          <Text>Whimsy is supposed to be unexpected.</Text>
+        </Slide>
+
+        <Slide
+          notes={`
+            Another thing we can do is to ensure that users who don't want to see animations don't need to see them!
+
+            We'll cover this more later on, but for now, let's look at how I built this stuff.
+          `}
+        >
+          <Heading textFont="secondary" textColor="teal" size={2}>
+            Let users opt-out
+          </Heading>
+
+          <br />
+          <br />
+          <Text>More on this in a bit...</Text>
+        </Slide>
 
         <Slide bgColor="deepPurple" textColor="primary">
           <SectionStart subtitle="Element 1" title="Folding the DOM" />
@@ -645,6 +742,122 @@ export default class Presentation extends React.Component {
             It can be tricky to figure out how to do imperative DOM stuff with
             React, but it's worth the trouble.
           </Text>
+        </Slide>
+
+        <Slide bgColor="deepPurple" textColor="primary">
+          <SectionStart subtitle="Element 2" title="Transporting Children" />
+        </Slide>
+
+        <Slide bgColor="#000000">
+          <video autoPlay loop src={childTransporterSrc} width={920} />
+        </Slide>
+
+        <CodeSlide
+          bgColor="secondary"
+          lang="jsx"
+          code={require('./code/NodeProvider.example')}
+          ranges={[
+            {
+              loc: [0],
+              title: '<NodeProvider />',
+            },
+            // createContext
+            { loc: [2, 5] },
+
+            { loc: [6, 7] },
+
+            // State
+            { loc: [7, 10] },
+            { loc: [10, 11] },
+            { loc: [11, 14] },
+            { loc: [15, 18] },
+            { loc: [19, 29] },
+            { loc: [26, 27] },
+            // render
+            { loc: [32, 41] },
+            // exports
+            { loc: [43, 47] },
+          ]}
+        />
+
+        <CodeSlide
+          bgColor="secondary"
+          lang="jsx"
+          code={require('./code/NodeProviderConsumption.example')}
+          ranges={[
+            {
+              loc: [0],
+              title: 'Consumption',
+            },
+            // App
+            { loc: [0, 9] },
+            { loc: [3, 6] },
+
+            // InboxHeading
+            { loc: [10, 21] },
+            { loc: [11, 13] },
+            { loc: [13, 16] },
+
+            // SomewhereElse
+            { loc: [20, 29] },
+          ]}
+        />
+
+        <Slide>TODO: ChildTraveller code</Slide>
+
+        <Slide>Conclusion</Slide>
+
+        <Slide
+          notes={`
+            I remember years ago, someone told me that the most interesting
+            problems to work on were the ones that no one's solved yet.
+
+            And I remember thinking "Almost everything's already been solved,
+            and the stuff that hasn't is super hard and I'll never be good
+            enough to solve them"
+
+            There's so much really cool stuff we can build.
+          `}
+        >
+          <Heading textFont="secondary" textColor="purple" size={4}>
+            There's
+          </Heading>
+          <Heading textFont="secondary" textColor="pink" size={1}>
+            SO MUCH
+          </Heading>
+          <Heading textFont="secondary" textColor="purple" size={4}>
+            unexplored territory
+          </Heading>
+        </Slide>
+
+        <Slide>
+          <WibblyWobblyCircle color={COLORS.pink[500]} />
+          <WibblyWobblyCircle color={COLORS.purple[500]} />
+        </Slide>
+
+        <Slide>
+          <Heading textFont="secondary" textColor="purple" size={4}>
+            And the future is
+          </Heading>
+          <Heading textFont="secondary" textColor="pink" size={1}>
+            SO EXCITING
+          </Heading>
+        </Slide>
+
+        <Slide bgColor="secondary">
+          <Heading textColor="primary" size={2} style={{ marginTop: -150 }}>
+            CSS Paint
+          </Heading>
+          <br />
+          <video autoPlay loop src={houdiniSrc} />
+        </Slide>
+
+        <Slide bgColor="secondary">
+          <Heading textColor="primary" size={2} style={{ marginTop: -150 }}>
+            WebRender
+          </Heading>
+          <br />
+          <video autoPlay loop src={houdiniSrc} />
         </Slide>
       </Deck>
     );

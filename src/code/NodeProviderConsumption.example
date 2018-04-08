@@ -1,0 +1,29 @@
+class App extends Component {
+  render() {
+    return (
+      <NodeProvider>
+        <InboxHeading />
+      </NodeProvider>
+    );
+  }
+}
+
+const InboxHeading = () => (
+  <NodeConsumer>
+    {({ refCapturer }) => (
+      <h4 ref={refCapturer('inboxHeading')}>
+        Inbox
+      </h4>
+    )}
+  </NodeConsumer>
+);
+
+const SomewhereElse = () => (
+  <NodeConsumer>
+    {({ nodes }) => {
+      // At any point in the tree, you can
+      // access any captured node refs,
+      // eg. `nodes.inboxHeading`.
+    }}
+  </NodeConsumer>
+);
