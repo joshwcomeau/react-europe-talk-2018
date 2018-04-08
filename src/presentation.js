@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import {
   BlockQuote,
   Cite,
+  CodePane,
   ComponentPlayground,
   Deck,
   Heading,
@@ -41,6 +42,8 @@ import whimsicalReplySrc from './assets/whimsical-reply.mp4';
 import whimsicalFoldSlowmoSrc from './assets/whimsical-fold-slowmo.mp4';
 import childTransporterSrc from './assets/child-transporter.mp4';
 import houdiniSrc from './assets/houdini.mp4';
+import webRenderSrc from './assets/webrender.mp4';
+import caniusePrefersReducedMotionSrc from './assets/caniuse-prefers-reduced-motion.png';
 
 import FullscreenImage from './components/FullscreenImage';
 import Video from './components/Video';
@@ -55,6 +58,7 @@ import Caption from './components/Caption';
 import FoldConcept from './components/FoldConcept';
 import Foldable from './components/Foldable';
 import WibblyWobblyCircle from './components/WibblyWobblyCircle';
+import Underlined from './components/Underlined';
 
 import Title from './slides/Title';
 import SectionStart from './slides/SectionStart';
@@ -589,7 +593,13 @@ export default class Presentation extends React.Component {
           </Text>
         </Slide>
 
-        <Slide>
+        <Slide
+          notes={`
+            Pause to talk about how the thing opens FROM the button, so you can always tell the difference between composing and replying.
+
+            How many times has it happened where you save a draft email, or a facebook post or whatever, and then you have no idea where to find that saved content? This pattern prevents that by literally bringing your eye to the tab that holds your drafts.
+          `}
+        >
           <Heading textFont="secondary" size={2} textColor="teal">
             Informative
           </Heading>
@@ -865,19 +875,113 @@ export default class Presentation extends React.Component {
         </Slide>
 
         <Slide bgColor="secondary">
-          <Heading textColor="primary" size={2} style={{ marginTop: -150 }}>
+          <Heading
+            textFont="secondary"
+            textColor="primary"
+            size={2}
+            style={{ marginTop: -150 }}
+          >
             CSS Paint
           </Heading>
           <br />
-          <video autoPlay loop src={houdiniSrc} />
+          <video autoPlay loop src={houdiniSrc} style={{ height: 400 }} />
         </Slide>
 
         <Slide bgColor="secondary">
-          <Heading textColor="primary" size={2} style={{ marginTop: -150 }}>
+          <Heading
+            textFont="secondary"
+            textColor="primary"
+            size={2}
+            style={{ marginTop: -150 }}
+          >
             WebRender
           </Heading>
           <br />
-          <video autoPlay loop src={houdiniSrc} />
+          <video
+            autoPlay
+            loop
+            src={webRenderSrc}
+            style={{ width: '75%', margin: 'auto' }}
+          />
+        </Slide>
+
+        <Slide bgColor="secondary">
+          <Heading textColor="pink" size={1} textFont="secondary">
+            But!!
+          </Heading>
+          <br />
+          <br />
+          <Text textColor="primary">
+            This stuff is{' '}
+            <Underlined style={{ color: COLORS.lime[500] }}>
+              less important
+            </Underlined>{' '}
+            than{' '}
+            <Underlined style={{ color: COLORS.yellow[500] }}>
+              Accessibility
+            </Underlined>.
+          </Text>
+          <br />
+          <br />
+          <Text textColor="primary">
+            Before we should try and make our sites delightful, we should strive
+            for them to be usable.
+          </Text>
+        </Slide>
+
+        <Slide bgColor="secondary">
+          <Heading textColor="primary" size={4}>
+            If nothing else, we should make sure that our whimsical touches
+            aren't harmful for folks with vestibular disorders.
+          </Heading>
+        </Slide>
+
+        <Slide bgColor="secondary">
+          <Heading textFont="inconsolata" textColor="primary" size={3}>
+            prefers-reduced-motion
+          </Heading>
+
+          <br />
+          <br />
+
+          <CodePane
+            lang="css"
+            source={`
+@media (prefers-reduced-motion) {
+  /* reduce animation */
+}
+`}
+            theme="external"
+            style={{ fontSize: 32 }}
+          />
+        </Slide>
+
+        <Slide transition={[null]} bgColor="secondary">
+          <Heading textFont="inconsolata" textColor="primary" size={3}>
+            prefers-reduced-motion
+          </Heading>
+
+          <br />
+          <br />
+
+          <CodePane
+            lang="js"
+            source={`
+const prefersReducedMotion = window
+  .matchMedia('(prefers-reduced-motion)')
+  .matches;
+
+if (prefersReducedMotion) {
+  /* reduce animation */
+}
+`}
+            theme="external"
+            style={{ fontSize: 32 }}
+          />
+        </Slide>
+
+        <Slide bgColor="#f2e8d6">
+          <FullscreenImage src={caniusePrefersReducedMotionSrc} />
         </Slide>
       </Deck>
     );
