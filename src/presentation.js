@@ -574,10 +574,6 @@ export default class Presentation extends React.Component {
           />
         </Slide>
 
-        <Slide>
-          TODO: Confetti shapes maybe?
-        </Slide>
-
         <Slide
           notes={`
             The composition model, and how it extends far beyond animation.
