@@ -60,11 +60,11 @@ class Particles extends PureComponent {
       // like scale, speed, and amount of
       // spin/twist.
 
-      // const angle = /* snip */
-      // const trajectoryVariance = /* snip */
-      // const trajectory = /* snip */
-      // const vx = /* snip */
-      // const vy = /* snip */
+      const angle = /* snip */
+      const trajectoryVariance = /* snip */
+      const trajectory = /* snip */
+      const vx = /* snip */
+      const vy = /* snip */
 
       particles.push({
         birth,
@@ -100,7 +100,7 @@ class Particles extends PureComponent {
       return;
     }
 
-    const particles = 
+    const particles =
       this.getUpdatedParticles();
 
     this.rafId = window.requestAnimationFrame(
@@ -122,6 +122,11 @@ class Particles extends PureComponent {
         // Calculate the next values for all
         // particle properties.
 
+        const isOffscreen = /* snip */
+        if (isOffscreen) {
+          return null;
+        }
+
         return particle;
       })
       .filter(particle => !!particle);
@@ -130,14 +135,14 @@ class Particles extends PureComponent {
   render() {
     const { children } = this.props;
     const { particles } = this.state;
-    const { generateParticles } = this;
 
     return children({
       // State
       particles,
 
       // Actions
-      generateParticles,
+      generateParticles:
+        this.generateParticles,
     });
   }
 }

@@ -524,7 +524,7 @@ export default class Presentation extends React.Component {
             { loc: [35, 38] },
 
             // render
-            { loc: [125, 138] },
+            { loc: [134, 147] },
 
             // generateParticles
             { loc: [52, 53] },
@@ -538,31 +538,28 @@ export default class Presentation extends React.Component {
             // cDU
             { loc: [39, 47] },
 
+            // tick
+            { loc: [97, 98] },
+            { loc: [98, 101] },
+            { loc: [102, 104] },
+            { loc: [105, 113] },
+            { loc: [109, 110] },
+            { loc: [97, 98] },
 
-            { loc: [42, 43] },
-            { loc: [43, 46] },
+            // getUpdatedParticles
+            { loc: [115, 116] },
+            { loc: [118, 120] },
+            { loc: [120, 123] },
+            { loc: [124, 128] },
+            { loc: [129, 130] },
+            { loc: [131, 132] },
 
-            { loc: [48, 52] },
-            { loc: [52, 64] },
-            { loc: [65, 69] },
+            // cWU
+            { loc: [48, 51] },
 
-            { loc: [70, 81] },
+            // render
+            { loc: [134, 147] },
 
-            { loc: [82, 83] },
-            { loc: [83, 86] },
-            { loc: [86, 90] },
-            { loc: [91, 106] },
-            { loc: [107, 124] },
-            { loc: [126, 135] },
-
-            { loc: [70, 81] },
-
-            { loc: [137, 147] },
-
-            { loc: [148, 149] },
-            { loc: [151, 154] },
-            { loc: [157, 209] }, // TODO: Refine
-            { loc: [210, 224] },
           ]}
         />
 
