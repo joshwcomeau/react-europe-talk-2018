@@ -35,13 +35,12 @@ class Particles extends PureComponent {
 
   state = {
     particles: [],
-    status: 'idle',
   };
 
   componentDidUpdate(prevProps, prevState) {
     if (
-      prevState.status === 'idle' &&
-      this.state.status === 'running'
+      prevState.particles.length === 0 &&
+      this.state.particles.length > 0
     ) {
       this.tick();
     }
@@ -52,9 +51,10 @@ class Particles extends PureComponent {
   }
 
   generateParticles = () => {
-    const newParticles = range(
-      this.props.numParticles
-    ).map(i => {
+    let i = 0;
+    let particles = [];
+
+    while (i < this.props.numParticles) {
       // ✂️ Snip ✂️
       // Initialize all of the variables
       // like scale, speed, and amount of
@@ -66,7 +66,7 @@ class Particles extends PureComponent {
       // const vx = /* snip */
       // const vy = /* snip */
 
-      return {
+      particles.push({
         birth,
         initialPosition,
         currentPosition: initialPosition,
@@ -82,11 +82,12 @@ class Particles extends PureComponent {
         back,
         width: front.naturalWidth,
         height: front.naturalHeight,
-      };
-    });
+      });
+
+      i++;
+    }
 
     this.setState({
-      status: 'running',
       particles: [
         ...this.state.particles,
         newParticles,
@@ -96,11 +97,11 @@ class Particles extends PureComponent {
 
   tick = () => {
     if (this.state.particles.length === 0) {
-      this.setState({ status: 'idle' });
       return;
     }
 
-    const particles = this.getNextParticles();
+    const particles = 
+      this.getUpdatedParticles();
 
     this.rafId = window.requestAnimationFrame(
       () => {
@@ -112,7 +113,7 @@ class Particles extends PureComponent {
     );
   };
 
-  getNextParticles = () => {
+  getUpdatedParticles = () => {
     const { height, width } = this.props;
 
     return this.state.particles
@@ -128,12 +129,11 @@ class Particles extends PureComponent {
 
   render() {
     const { children } = this.props;
-    const { status, particles } = this.state;
+    const { particles } = this.state;
     const { generateParticles } = this;
 
     return children({
       // State
-      status,
       particles,
 
       // Actions

@@ -14,10 +14,7 @@ import type {
   Shape,
 } from './types';
 
-type Status = 'idle' | 'running';
-
 type State = {
-  status: Status,
   particles: Array<Particle>,
 };
 
@@ -98,7 +95,6 @@ class Particles extends PureComponent<
 
   state = {
     particles: [],
-    status: 'idle',
   };
 
   animationFrameId: number;
@@ -108,8 +104,8 @@ class Particles extends PureComponent<
     prevState: State
   ) {
     if (
-      prevState.status === 'idle' &&
-      this.state.status === 'running'
+      prevState.particles.length === 0 &&
+      this.state.particles.length > 0
     ) {
       this.tick();
     }
@@ -221,13 +217,11 @@ class Particles extends PureComponent<
         ...this.state.particles,
         ...newParticles,
       ],
-      status: 'running',
     });
   };
 
   tick = () => {
     if (this.state.particles.length === 0) {
-      this.setState({ status: 'idle' });
       return;
     }
 
@@ -300,11 +294,10 @@ class Particles extends PureComponent<
 
   render() {
     const { children } = this.props;
-    const { status, particles } = this.state;
+    const { particles } = this.state;
 
     return children({
       // State
-      status,
       particles,
 
       // Actions

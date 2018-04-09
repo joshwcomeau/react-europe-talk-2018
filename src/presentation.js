@@ -521,12 +521,24 @@ export default class Presentation extends React.Component {
             { loc: [22, 34] },
 
             // State
-            { loc: [35, 39] },
+            { loc: [35, 38] },
 
             // render
-            { loc: [128, 142] },
+            { loc: [125, 138] },
 
-            { loc: [40, 42] },
+            // generateParticles
+            { loc: [52, 53] },
+            { loc: [53, 57] },
+            { loc: [57, 61] },
+            { loc: [62, 67], note: `✨ Trigonometry ✨` },
+            { loc: [68, 84] },
+            { loc: [86, 87] },
+            { loc: [89, 95] },
+
+            // cDU
+            { loc: [39, 47] },
+
+
             { loc: [42, 43] },
             { loc: [43, 46] },
 
