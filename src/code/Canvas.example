@@ -1,14 +1,13 @@
-// @flow
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 
-type Props = {
-  width: number,
-  height: number,
-  draw: 
-    (ctx: CanvasRenderingContext2D) => void,
-};
+class Canvas extends Component {
+  static propTypes = {
+    width: PropTypes.number.isRequired,
+    height: PropTypes.number.isRequired,
+    draw: PropTypes.func.isRequired,
+  }
 
-class Canvas extends Component<Props> {
   componentDidMount() {
     this.ctx = this.canvas.getContext('2d');
 
@@ -36,19 +35,12 @@ class Canvas extends Component<Props> {
   };
 
   render() {
-    const {
-      width,
-      height,
-      draw,
-      ...delegatedProps,
-    } = this.props;
+    const {draw, ...delegated} = this.props;
 
     return (
       <canvas
         ref={node => (this.canvas = node)}
-        width={width}
-        height={height}
-        {...delegatedProps}
+        {...delegated}
       />
     );
   }

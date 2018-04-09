@@ -1,26 +1,19 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 
-import {
-  random,
-  sample,
-  getDiameter,
-} from './Confetti.helpers';
 import Canvas from '../Canvas';
 
-import type {
-  Particle,
-  Shape,
-} from './types.js';
+class Confetti extends Component {
+  static propTypes = {
+    width: PropTypes.number.isRequired,
+    height: PropTypes.number.isRequired,
+    particles: PropTypes.arrayOf(
+      PropTypes.object
+    ).isRequired,
+    onClick: PropTypes.func,
+  };
 
-export type Props = {
-  width: number,
-  height: number,
-  particles: Array<Particle>,
-  onClick?: () => void,
-};
-
-class Confetti extends Component<Props> {
-  draw = (ctx: CanvasRenderingContext2D) => {
+  draw = ctx => {
     const {
       width,
       height,
@@ -30,33 +23,11 @@ class Confetti extends Component<Props> {
     ctx.clearRect(0, 0, width, height);
 
     particles.forEach(particle => {
-      ctx.translate(
-        particle.currentPosition.x,
-        particle.currentPosition.y
-      );
+      ctx.translate(/* snip */);
+      ctx.rotate(/* snip */);
+      ctx.scale(/* snip */);
 
-      ctx.rotate(particle.currentSpin);
-
-      ctx.scale(particle.currentTwist, 1);
-
-      const imageElem =
-        particle.currentTwist >= 0
-          ? particle.front
-          : particle.back;
-
-      ctx.drawImage(
-        imageElem,
-        imageElem.naturalWidth *
-          particle.scale *
-          -0.5,
-        imageElem.naturalHeight *
-          particle.scale *
-          -0.5,
-        imageElem.naturalWidth *
-          particle.scale,
-        imageElem.naturalHeight *
-          particle.scale
-      );
+      ctx.drawImage(/* snip */);
 
       // Undo all of our transformations, so
       // that our context is restored.

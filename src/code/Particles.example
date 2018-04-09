@@ -1,58 +1,29 @@
 // @flow
 import React, { PureComponent } from 'react';
 
-import {
-  random,
-  sample,
-  range,
-  getDiameter,
-} from './Confetti.helpers';
-import {
-  defaultShapes,
-} from './confetti-shapes.js';
+import { defaultShapes } from './confetti-shapes.js';
 
-import type {
-  Particle,
-  Shape,
-} from './types';
+class Particles extends PureComponent {
+  static propTypes = {
+    width: PropTypes.number.isRequired,
+    height: PropTypes.number.isRequired,
+    shapes: PropTypes.array,
+    numParticles: PropTypes.number,
+    emitDuration: PropTypes.number,
+    gravity: PropTypes.number,
+    spin: PropTypes.number,
+    twist: PropTypes.number,
+    minSpeed: PropTypes.number,
+    maxSpeed: PropTypes.number,
+    minScale: PropTypes.number,
+    maxScale: PropTypes.number,
+    children: PropTypes.func.isRequired,
+  };
 
-type Status = 'idle' | 'running';
-
-type State = {
-  status: Status,
-  particles: Array<Particle>,
-};
-
-type ChildFnProps = {
-  ...State,
-  generateParticles: () => void,
-};
-
-type Props = {
-  width: number,
-  height: number,
-  shapes: Array<Shape>,
-  numParticles: number,
-  emitDuration: number,
-  spin: number,
-  twist: number,
-  minSpeed: number,
-  maxSpeed: number,
-  minScale: number,
-  maxScale: number,
-  gravity: number,
-  children: (
-    props: ChildFnProps
-  ) => React$Node,
-};
-
-class Particles extends PureComponent<
-  Props,
-  State
-> {
   static defaultProps = {
     shapes: defaultShapes,
     numParticles: 100,
+    emitDuration: 1000,
     gravity: 1600,
     spin: 20,
     twist: 0,
@@ -60,7 +31,6 @@ class Particles extends PureComponent<
     maxSpeed: 675,
     minScale: 0.4,
     maxScale: 1.0,
-    emitDuration: 1000,
   };
 
   state = {
@@ -68,16 +38,17 @@ class Particles extends PureComponent<
     status: 'idle',
   };
 
-  componentDidUpdate(
-    prevProps: Props, 
-    prevState: State
-  ) {
+  componentDidUpdate(prevProps, prevState) {
     if (
-      prevState.status === 'idle' && 
+      prevState.status === 'idle' &&
       this.state.status === 'running'
     ) {
       this.tick();
     }
+  }
+
+  componentWillUnmount() {
+    window.cancelAnimationFrame(this.rafId);
   }
 
   generateParticles = () => {
@@ -89,21 +60,11 @@ class Particles extends PureComponent<
       // like scale, speed, and amount of
       // spin/twist.
 
-      // ~~~ TRIGONOMETRY STUFF ~~~
-      const angle = random(0, 2 * Math.PI);
-
-      const trajectoryVariance = random(
-        -1,
-        1
-      );
-      const trajectory =
-        -Math.PI / 2 + trajectoryVariance;
-
-      const vx =
-        Math.cos(trajectory) * speed;
-      const vy =
-        Math.sin(trajectory) * speed * -1;
-      // ~~~ END TRIGONOMETRY STUFF ~~~
+      // const angle = /* snip */
+      // const trajectoryVariance = /* snip */
+      // const trajectory = /* snip */
+      // const vx = /* snip */
+      // const vy = /* snip */
 
       return {
         birth,
@@ -124,84 +85,41 @@ class Particles extends PureComponent<
       };
     });
 
-    const allParticles = [
-      ...this.state.particles,
-      newParticles,
-    ];
-
     this.setState({
-      particles: allParticles,
       status: 'running',
+      particles: [
+        ...this.state.particles,
+        newParticles,
+      ],
     });
   };
 
   tick = () => {
-    window.requestAnimationFrame(() => {
-      const particles = this.calculateNextPositionForParticles();
-
-      this.setState(
-        { particles },
-        this.tick
-      );
-    });
-  };
-
-  calculateNextPositionForParticles = () => {
-    const { height, width } = this.props;
-    
-    if (this.state.status === 'idle') {
+    if (this.state.particles.length === 0) {
+      this.setState({ status: 'idle' });
       return;
     }
-    
-    const now = Date.now();
+
+    const particles = this.getNextParticles();
+
+    this.rafId = window.requestAnimationFrame(
+      () => {
+        this.setState(
+          { particles },
+          this.tick
+        );
+      }
+    );
+  };
+
+  getNextParticles = () => {
+    const { height, width } = this.props;
+
     return this.state.particles
       .map(particle => {
-        const age =
-          (now - particle.birth) / 1000;
-
-        // Skip a particle if it hasn't been born yet.
-        if (age < 0) {
-          return particle;
-        }
-
-        const x =
-          particle.initialPosition.x +
-          particle.vx * age;
-        const y =
-          particle.initialPosition.y +
-          particle.vy * age +
-          this.props.gravity * age * age / 2;
-
-        const diameter = getDiameter(
-          particle.width * particle.scale,
-          particle.height * particle.scale
-        );
-
-        const isOffScreen =
-          x + diameter < 0 ||
-          x - diameter > width ||
-          y - diameter > height;
-
-        if (isOffScreen) {
-          return;
-        }
-
-        // WARNING WARNING WARNING
-        // Mutating this.state directly here.
-        // This is a faux-pas, but it's important for performance.
-        particle.currentPosition = {
-          x,
-          y,
-        };
-        particle.currentSpin =
-          particle.angle +
-          particle.spinForce * age;
-        particle.currentTwist = particle.twistForce
-          ? Math.cos(
-              particle.angle +
-                particle.twistForce * age
-            )
-          : 1;
+        // ✂️ Snip ✂️
+        // Calculate the next values for all
+        // particle properties.
 
         return particle;
       })
@@ -211,6 +129,7 @@ class Particles extends PureComponent<
   render() {
     const { children } = this.props;
     const { status, particles } = this.state;
+    const { generateParticles } = this;
 
     return children({
       // State
@@ -218,8 +137,7 @@ class Particles extends PureComponent<
       particles,
 
       // Actions
-      generateParticles: 
-        this.generateParticles,
+      generateParticles,
     });
   }
 }
