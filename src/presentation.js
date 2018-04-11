@@ -129,7 +129,7 @@ export default class Presentation extends React.Component {
   render() {
     return (
       <Deck
-        transition={['slide']}
+        transition={['fade']}
         transitionDuration={500}
         progress={null}
         theme={theme}
