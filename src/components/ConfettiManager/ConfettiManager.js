@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import styled from 'styled-components';
 
-import Particles from '../Confetti/Particles';
 import Confetti from '../Confetti';
 import Slider from '../Slider';
 
@@ -23,29 +22,22 @@ class ConfettiManager extends Component {
     return (
       <Wrapper>
         {/* TODO: Use WindowDimensions to get width/height */}
-        <Particles
-          width={920}
-          height={620}
-          numParticles={numParticles}
-          gravity={gravity}
-          minSpeed={speed}
-          maxSpeed={speed * 3}
-          minScale={scale}
-          maxScale={scale * 2}
-          spin={spin}
-          twist={twist}
-        >
-          {({ particles, generateParticles }) => (
-            <ConfettiContainer>
-              <Confetti
-                onClick={generateParticles}
-                particles={particles}
-                width={920}
-                height={620}
-              />
-            </ConfettiContainer>
-          )}
-        </Particles>
+        <ConfettiContainer>
+          <Confetti
+            ref={node => (this.canvas = node)}
+            width={920}
+            height={620}
+            numParticles={numParticles}
+            gravity={gravity}
+            minSpeed={speed}
+            maxSpeed={speed * 3}
+            minScale={scale}
+            maxScale={scale * 2}
+            spin={spin}
+            twist={twist}
+            onClick={() => this.canvas.generateParticles()}
+          />
+        </ConfettiContainer>
 
         <Controls>
           <Slider
