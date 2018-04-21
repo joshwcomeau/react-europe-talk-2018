@@ -7,32 +7,118 @@ class Confetti extends Component {
   static propTypes = {
     width: PropTypes.number.isRequired,
     height: PropTypes.number.isRequired,
-    particles: PropTypes.arrayOf(
-      PropTypes.object
-    ).isRequired,
-    onClick: PropTypes.func,
+
+    shapes: PropTypes.array,
+    numParticles: PropTypes.number,
+    emitDuration: PropTypes.number,
+    gravity: PropTypes.number,
+    spin: PropTypes.number,
+    twist: PropTypes.number,
+    minSpeed: PropTypes.number,
+    maxSpeed: PropTypes.number,
+    minScale: PropTypes.number,
+    maxScale: PropTypes.number,
+    onComplete: PropTypes.func,
+
+    makeItRainOn: PropTypes.oneOf([
+      'click',
+      'mount', // Not implemented
+    ]),
+  };
+
+  static defaultProps = {
+    // ✂️ Sensible defaults ✂️
+  };
+
+  state = {
+    particles: [],
+  };
+
+  componentDidUpdate(
+    prevProps: Props,
+    prevState: State
+  ) {
+    if (
+      prevState.particles.length === 0 &&
+      this.state.particles.length > 0
+    ) {
+      this.tick();
+    }
+  }
+
+  componentWillUnmount() {
+    window.cancelAnimationFrame(this.rafId);
+  }
+
+  generateParticles = () => {
+    let i = 0;
+    let newParticles = [];
+
+    while (i < this.props.numParticles) {
+      // ✂️ Particle initialization ✂️
+      // Includes generating random values
+      // for size, speed, spin, twist, etc.
+      // Features ~trigonometry~
+
+      newParticles.push(newParticle);
+
+      i++;
+    }
+
+    this.setState({
+      particles: [
+        ...this.state.particles,
+        ...newParticles,
+      ],
+    });
+  };
+
+  tick = () => {
+    if (this.state.particles.length === 0) {
+      return;
+    }
+
+    this.rafId = window.requestAnimationFrame(
+      () => {
+        const particles = this.calculateNextPositionForParticles();
+
+        this.setState(
+          { particles },
+          this.tick
+        );
+      }
+    );
+  };
+
+  calculateNextPositionForParticles = () => {
+    const now = Date.now();
+
+    return this.state.particles
+      .map(particle => {
+        // ✂️ Particle calculations ✂️
+
+        if (particleNotOnScreen) {
+          return null;
+        } else {
+          return updatedParticle;
+        }
+      })
+      .filter(particle => !!particle);
   };
 
   draw = ctx => {
-    const {
-      width,
-      height,
-      particles,
-    } = this.props;
+    const { particles } = this.state;
 
     ctx.clearRect(0, 0, width, height);
 
     particles.forEach(particle => {
-      ctx.translate(/* snip */);
-      ctx.rotate(/* snip */);
-      ctx.scale(/* snip */);
+      ctx.translate(/* ✂️ */);
+      ctx.rotate(/* ✂️ */);
+      ctx.scale(/* ✂️ */);
 
-      ctx.drawImage(/* snip */);
+      ctx.drawImage(/* ✂️ */);
 
-      // Undo all of our transformations, so
-      // that our context is restored.
-      const r = window.devicePixelRatio || 1;
-      ctx.setTransform(r, 0, 0, r, 0, 0);
+      ctx.setTransform(1, 0, 0, 1, 0, 0);
     });
   };
 
@@ -40,15 +126,22 @@ class Confetti extends Component {
     const {
       width,
       height,
-      onClick,
+      makeItRainOn,
     } = this.props;
+
+    if (prefersReducedMotion()) {
+      return null;
+    }
 
     return (
       <Canvas
         width={width}
         height={height}
-        onClick={onClick}
         draw={this.draw}
+        onClick={
+          makeItRainOn === 'click' &&
+          this.generateParticles
+        }
       />
     );
   }

@@ -1,7 +1,12 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 
-import { random, sample, range, getDiameter } from './Confetti.helpers';
+import {
+  random,
+  sample,
+  range,
+  getDiameter,
+} from './Confetti.helpers';
 import {
   createCircle,
   createTriangle,
@@ -10,9 +15,13 @@ import {
 
 import Canvas from '../Canvas';
 
-import type { Particle, Shape } from './types.js';
+import type {
+  Particle,
+  Shape,
+} from './types.js';
 
-const PIXEL_RATIO = window.devicePixelRatio || 1;
+const PIXEL_RATIO =
+  window.devicePixelRatio || 1;
 
 export type Props = {
   width: number,
@@ -32,6 +41,13 @@ class Confetti extends Component {
     // (each item provided has an equal chance of being selected as a
     // particle)
     shapes: PropTypes.array,
+
+    // When do we want to invoke "generateParticles"?
+    // NOTE: a better implementation would take an array, and support `mount`
+    // and `hover`. Doing it the simplest way for the demo, but a more fleshed-
+    // out implementation would be:
+    // PropTypes.arrayOf(PropTypes.oneOf(['click', 'mount', 'hover']))
+    makeItRainOn: PropTypes.oneOf(['click']),
 
     // The number of particles to generate, spread over the
     // `emitDuration` length.
@@ -96,34 +112,54 @@ class Confetti extends Component {
     particles: [],
   };
 
-  componentDidUpdate(prevProps: Props, prevState: State) {
-    if (prevState.particles.length === 0 && this.state.particles.length > 0) {
+  componentDidUpdate(
+    prevProps: Props,
+    prevState: State
+  ) {
+    if (
+      prevState.particles.length === 0 &&
+      this.state.particles.length > 0
+    ) {
       this.tick();
     }
   }
 
   componentWillUnmount() {
-    window.cancelAnimationFrame(this.animationFrameId);
+    window.cancelAnimationFrame(
+      this.animationFrameId
+    );
   }
 
   generateParticles = () => {
-    const newParticles = range(this.props.numParticles).map(i => {
+    const newParticles = range(
+      this.props.numParticles
+    ).map(i => {
       // Particles can be spread over a duration.
       // Each particle should be "born" at a random time during the emit
       // duration (if this value is 0, they'll all share the same birthdate).
-      const birth = Date.now() + random(0, this.props.emitDuration);
+      const birth =
+        Date.now() +
+        random(0, this.props.emitDuration);
 
       // Scale and Speed are specified in ranges. Select a value for this
       // particle from within the range.
-      const speed = random(this.props.minSpeed, this.props.maxSpeed);
-      const scale = random(this.props.minScale, this.props.maxScale);
+      const speed = random(
+        this.props.minSpeed,
+        this.props.maxSpeed
+      );
+      const scale = random(
+        this.props.minScale,
+        this.props.maxScale
+      );
 
       // Values for `spin` and `twist` are specified through props, but the
       // values given represent the maximum absolute values possible.
       // If `spin` is 30, that means each particle will select a random
       // `spinForce` between -30 and 30.
-      const spinForce = this.props.spin * random(-1, 1);
-      const twistForce = this.props.twist * random(-1, 1);
+      const spinForce =
+        this.props.spin * random(-1, 1);
+      const twistForce =
+        this.props.twist * random(-1, 1);
       // `currentSpin` and `currentTwist` are trackers for the current values
       // as the animation progresses. Start them at `0`.
       // NOTE: this does not mean that each particle will start with the same
@@ -155,13 +191,18 @@ class Confetti extends Component {
       // `trajectory` represents the angle of the particle's movement.
       // Larger numbers means the particle deviates further from its initial
       // `x` coordinate.
-      const trajectoryVariance = random(-1, 1);
-      const trajectory = -Math.PI / 2 + trajectoryVariance;
+      const trajectoryVariance = random(
+        -1,
+        1
+      );
+      const trajectory =
+        -Math.PI / 2 + trajectoryVariance;
 
       // `vx` and `vy` represent the velocity across both axes, and will be
       // used to compute how much a particle should move in a given frame.
       const vx = Math.cos(trajectory) * speed;
-      const vy = Math.sin(trajectory) * speed * -1;
+      const vy =
+        Math.sin(trajectory) * speed * -1;
       //
       // ~~~ END TRIGONOMETRY STUFF ~~~
 
@@ -185,7 +226,10 @@ class Confetti extends Component {
     });
 
     this.setState({
-      particles: [...this.state.particles, ...newParticles],
+      particles: [
+        ...this.state.particles,
+        ...newParticles,
+      ],
     });
   };
 
@@ -194,11 +238,16 @@ class Confetti extends Component {
       return;
     }
 
-    this.animationFrameId = window.requestAnimationFrame(() => {
-      const particles = this.calculateNextPositionForParticles();
+    this.animationFrameId = window.requestAnimationFrame(
+      () => {
+        const particles = this.calculateNextPositionForParticles();
 
-      this.setState({ particles }, this.tick);
-    });
+        this.setState(
+          { particles },
+          this.tick
+        );
+      }
+    );
   };
 
   calculateNextPositionForParticles = () => {
@@ -207,14 +256,17 @@ class Confetti extends Component {
 
     return this.state.particles
       .map(particle => {
-        const age = (now - particle.birth) / 1000;
+        const age =
+          (now - particle.birth) / 1000;
 
         // Skip a particle if it hasn't been born yet.
         if (age < 0) {
           return particle;
         }
 
-        const x = particle.initialPosition.x + particle.vx * age;
+        const x =
+          particle.initialPosition.x +
+          particle.vx * age;
         const y =
           particle.initialPosition.y +
           particle.vy * age +
@@ -226,7 +278,9 @@ class Confetti extends Component {
         );
 
         const isOffScreen =
-          x + diameter < 0 || x - diameter > width || y - diameter > height;
+          x + diameter < 0 ||
+          x - diameter > width ||
+          y - diameter > height;
 
         if (isOffScreen) {
           return null;
@@ -236,9 +290,14 @@ class Confetti extends Component {
         // Mutating this.state directly here.
         // This is a faux-pas, but it's important for performance.
         particle.currentPosition = { x, y };
-        particle.currentSpin = particle.angle + particle.spinForce * age;
+        particle.currentSpin =
+          particle.angle +
+          particle.spinForce * age;
         particle.currentTwist = particle.twistForce
-          ? Math.cos(particle.angle + particle.twistForce * age)
+          ? Math.cos(
+              particle.angle +
+                particle.twistForce * age
+            )
           : 1;
 
         return particle;
@@ -254,7 +313,10 @@ class Confetti extends Component {
 
     particles.forEach(particle => {
       // Apply its new position, in terms of cartesian coordinates.
-      ctx.translate(particle.currentPosition.x, particle.currentPosition.y);
+      ctx.translate(
+        particle.currentPosition.x,
+        particle.currentPosition.y
+      );
 
       // Apply its new Z-axis (2D) rotation (how much spin is currently
       // applied?)
@@ -263,7 +325,9 @@ class Confetti extends Component {
       // Apply its new X-axis (3D rotation), and figure out whether it's
       // "backwards" right now.
       const imageElem =
-        particle.currentTwist >= 0 ? particle.front : particle.back;
+        particle.currentTwist >= 0
+          ? particle.front
+          : particle.back;
 
       ctx.scale(particle.currentTwist, 1);
 
@@ -271,29 +335,58 @@ class Confetti extends Component {
       // position so that it's in the right place.
       ctx.drawImage(
         imageElem,
-        imageElem.naturalWidth * particle.scale * -0.5,
-        imageElem.naturalHeight * particle.scale * -0.5,
-        imageElem.naturalWidth * particle.scale,
-        imageElem.naturalHeight * particle.scale
+        imageElem.naturalWidth *
+          particle.scale *
+          -0.5,
+        imageElem.naturalHeight *
+          particle.scale *
+          -0.5,
+        imageElem.naturalWidth *
+          particle.scale,
+        imageElem.naturalHeight *
+          particle.scale
       );
 
       // Undo all of our transformations, so that our context is restored.
-      const ratio = window.devicePixelRatio || 1;
+      const ratio =
+        window.devicePixelRatio || 1;
 
-      ctx.setTransform(ratio, 0, 0, ratio, 0, 0);
+      ctx.setTransform(
+        ratio,
+        0,
+        0,
+        ratio,
+        0,
+        0
+      );
     });
   };
 
   render() {
-    const { width, height, onClick } = this.props;
+    const {
+      width,
+      height,
+      onClick,
+      makeItRainOn,
+    } = this.props;
 
     return (
       <Canvas
         width={width}
         height={height}
         draw={this.draw}
-        ref={(node: HTMLCanvasElement) => (this.canvas = node)}
-        onClick={onClick}
+        ref={(node: HTMLCanvasElement) =>
+          (this.canvas = node)
+        }
+        onClick={ev => {
+          if (makeItRainOn === 'click') {
+            this.generateParticles();
+          }
+
+          if (typeof onClick === 'function') {
+            onClick(ev);
+          }
+        }}
       />
     );
   }

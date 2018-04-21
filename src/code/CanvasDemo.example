@@ -4,8 +4,20 @@ const CanvasDemo = () => (
     height={200}
     style={{ outline: '1px solid' }}
     draw={ctx => {
+      ctx.clearRect(
+        0,  // left
+        0,  // top
+        200, // width
+        200  // height
+      );
+
       ctx.fillStyle = 'hotpink';
-      ctx.fillRect(50, 50, 100, 100);
+      ctx.fillRect(
+        50,  // left
+        50,  // top
+        100, // width
+        100  // height
+      );
     }}
   />
 );

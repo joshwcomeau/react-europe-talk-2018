@@ -14,10 +14,18 @@ class ConfettiManager extends Component {
     twist: 0,
   };
 
-  updateVal = key => value => this.setState({ [key]: value });
+  updateVal = key => value =>
+    this.setState({ [key]: value });
 
   render() {
-    const { numParticles, gravity, speed, scale, spin, twist } = this.state;
+    const {
+      numParticles,
+      gravity,
+      speed,
+      scale,
+      spin,
+      twist,
+    } = this.state;
 
     return (
       <Wrapper>
@@ -27,6 +35,8 @@ class ConfettiManager extends Component {
             ref={node => (this.canvas = node)}
             width={920}
             height={620}
+            makeItRainOn="click"
+            emitDuration={1000}
             numParticles={numParticles}
             gravity={gravity}
             minSpeed={speed}
@@ -35,7 +45,6 @@ class ConfettiManager extends Component {
             maxScale={scale * 2}
             spin={spin}
             twist={twist}
-            onClick={() => this.canvas.generateParticles()}
           />
         </ConfettiContainer>
 
@@ -46,7 +55,9 @@ class ConfettiManager extends Component {
             min={0}
             max={4000}
             value={gravity}
-            onChange={this.updateVal('gravity')}
+            onChange={this.updateVal(
+              'gravity'
+            )}
           />
           <Slider
             width={200}
@@ -87,7 +98,9 @@ class ConfettiManager extends Component {
             min={10}
             max={200}
             value={numParticles}
-            onChange={this.updateVal('numParticles')}
+            onChange={this.updateVal(
+              'numParticles'
+            )}
           />
         </Controls>
       </Wrapper>

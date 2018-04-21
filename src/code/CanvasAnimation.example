@@ -1,27 +1,40 @@
+const initialState = { x: 0, y: 0 };
+
 class Animation extends Component {
   constructor(props) {
     super(props);
 
-    this.state = {
-      x: 0,
-      y: 0,
-    };
+    this.state = initialState;
+
+    this.startAnimation = this.startAnimation.bind(this);
+    this.tick = this.tick.bind(this);
   }
 
-  componentDidMount() {
-    this.tick();
+  componentWillUnmount() {
+    this.stopAnimation();
+  }
+
+  stopAnimation() {
+    window.cancelAnimationFrame(this.animationId);
+  }
+
+  startAnimation() {
+    this.stopAnimation();
+
+    this.setState(initialState, this.tick);
   }
 
   tick() {
-    window.requestAnimationFrame(() => {
-      this.setState(
-        state => ({
-          x: state.x + 1,
-          y: state.y + 1,
-        }),
-        this.tick
-      );
-    });
+    this.animationId =
+      window.requestAnimationFrame(() => {
+        this.setState(
+          state => ({
+            x: state.x + 1,
+            y: state.y + 1,
+          }),
+          this.tick
+        );
+      });
   }
 
   render() {
@@ -32,6 +45,7 @@ class Animation extends Component {
         width={200}
         height={200}
         style={{ outline: '1px solid' }}
+        onClick={this.startAnimation}
         draw={ctx => {
           ctx.clearRect(0, 0, 200, 200);
           ctx.fillStyle = 'hotpink';
