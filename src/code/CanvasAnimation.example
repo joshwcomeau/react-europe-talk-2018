@@ -48,6 +48,7 @@ class Animation extends Component {
         onClick={this.startAnimation}
         draw={ctx => {
           ctx.clearRect(0, 0, 200, 200);
+
           ctx.fillStyle = 'hotpink';
           ctx.fillRect(x, y, 50, 50);
         }}

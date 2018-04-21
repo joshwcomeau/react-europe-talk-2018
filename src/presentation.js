@@ -326,11 +326,16 @@ export default class Presentation extends React.Component {
             Timepage, a calendar app from Moleskine
           `}
         >
-          <FullscreenImage src={moleskineBallsSrc} />
+          <FullscreenImage
+            src={moleskineBallsSrc}
+          />
         </Slide>
 
         <Slide>
-          <FullscreenImage portrait src={flipbookSrc} />
+          <FullscreenImage
+            portrait
+            src={flipbookSrc}
+          />
         </Slide>
 
         <Slide>
@@ -923,7 +928,7 @@ export default class Presentation extends React.Component {
           ranges={[
             {
               loc: [0],
-              title: 'Consumption',
+              title: 'Usage',
             },
             // App
             { loc: [0, 9] },
@@ -936,6 +941,26 @@ export default class Presentation extends React.Component {
 
             // SomewhereElse
             { loc: [20, 29] },
+          ]}
+        />
+
+        <CodeSlide
+          bgColor="secondary"
+          lang="jsx"
+          code={require('./code/ChildTransporterConsumption.example')}
+          ranges={[
+            {
+              loc: [0],
+              title: 'ChildTransporter Usage',
+            },
+            { loc: [0, 1] },
+            { loc: [1, 4] },
+
+            { loc: [5, 6] },
+
+            { loc: [7, 8] },
+            { loc: [8, 14] },
+            { loc: [14, 19] },
           ]}
         />
 
