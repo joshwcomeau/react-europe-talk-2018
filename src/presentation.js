@@ -72,6 +72,7 @@ import ConfettiArchitecture from './slides/ConfettiArchitecture';
 import LevelsOfAbstraction from './slides/LevelsOfAbstraction';
 import StateDrivenAnimation from './slides/StateDrivenAnimation';
 import ActionDrivenAnimation from './slides/ActionDrivenAnimation';
+import Circles from './slides/Circles';
 
 require('normalize.css');
 require('highlight.js/styles/arta.css');
@@ -485,12 +486,6 @@ export default class Presentation extends React.Component {
         />
 
         <Slide>TODO: SVG vs Canvas?</Slide>
-
-        <Slide>
-          TODO: Something about not
-          overengineering, using Dan A's tweet
-          or the blue circle factory GIF?
-        </Slide>
 
         <Slide>
           TODO: Performance. Talk about how at
@@ -986,12 +981,7 @@ export default class Presentation extends React.Component {
         </Slide>
 
         <Slide>
-          <WibblyWobblyCircle
-            color={COLORS.pink[500]}
-          />
-          <WibblyWobblyCircle
-            color={COLORS.purple[500]}
-          />
+          <Circles />
         </Slide>
 
         <Slide>
