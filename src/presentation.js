@@ -12,7 +12,9 @@ import {
   Slide,
   Text,
 } from 'spectacle';
-import styled, { injectGlobal } from 'styled-components';
+import styled, {
+  injectGlobal,
+} from 'styled-components';
 import createTheme from 'spectacle/lib/themes/default';
 import preloader from 'spectacle/lib/utils/preloader';
 import CodeSlide from 'spectacle-code-slide';
@@ -151,7 +153,9 @@ export default class Presentation extends React.Component {
             I started using the internet in the 90s, and at that time, the internet looked like this.<br /><br />
           `}
         >
-          <FullscreenImage src={jesseSkiingSrc} />
+          <FullscreenImage
+            src={jesseSkiingSrc}
+          />
         </Slide>
 
         <Slide
@@ -162,7 +166,9 @@ export default class Presentation extends React.Component {
             Web developers had one tool, and one tool only, for animation...
           `}
         >
-          <FullscreenImage src={askJeevesSrc} />
+          <FullscreenImage
+            src={askJeevesSrc}
+          />
         </Slide>
 
         <Slide
@@ -173,7 +179,9 @@ export default class Presentation extends React.Component {
             The cool thing about this golden era of the web is that nobody knew what they were doing.
           `}
         >
-          <FullscreenImage src={cameronsWorldSrc} />
+          <FullscreenImage
+            src={cameronsWorldSrc}
+          />
         </Slide>
 
         <Slide
@@ -182,7 +190,9 @@ export default class Presentation extends React.Component {
             This is actually McDonald's website, circa early 1997.
           `}
         >
-          <FullscreenImage src={mcdonaldsSrc} />
+          <FullscreenImage
+            src={mcdonaldsSrc}
+          />
         </Slide>
 
         <Slide
@@ -194,7 +204,9 @@ export default class Presentation extends React.Component {
           Web technologies were essentially nonexistent at this time. Javascript was less than a year old, CSS wouldn't show up for another year. We built documents, and embedded animated GIFs for flavor.
           `}
         >
-          <FullscreenImage src={mcdonaldsZoomSrc} />
+          <FullscreenImage
+            src={mcdonaldsZoomSrc}
+          />
         </Slide>
 
         <Slide
@@ -207,7 +219,9 @@ export default class Presentation extends React.Component {
             And yet, this website is bland. It's exactly what it needs to be, and nothing more. I miss the whimsical charm of their old site.
           `}
         >
-          <FullscreenImage src={mcdonaldsNowSrc} />
+          <FullscreenImage
+            src={mcdonaldsNowSrc}
+          />
         </Slide>
 
         <Slide
@@ -217,7 +231,9 @@ export default class Presentation extends React.Component {
             "An unexpected flourish that sparks joy". It's not stuff that is critical to the usability of your product, but it's something that makes your users smile, something that makes your product a little more enjoyable to use.<br /><br />
           `}
         >
-          <FullscreenImage src={whimsyDefinitionSrc} />
+          <FullscreenImage
+            src={whimsyDefinitionSrc}
+          />
         </Slide>
 
         <Slide
@@ -234,7 +250,11 @@ export default class Presentation extends React.Component {
             - It has huge potential to delight<br />
           `}
         >
-          <Heading size={2} textFont="secondary" textColor="purple">
+          <Heading
+            size={2}
+            textFont="secondary"
+            textColor="purple"
+          >
             With this <br />
             <span
               style={{
@@ -267,7 +287,11 @@ export default class Presentation extends React.Component {
             - It has huge potential to delight<br />
           `}
         >
-          <Heading size={3} textFont="secondary" textColor="pink">
+          <Heading
+            size={3}
+            textFont="secondary"
+            textColor="pink"
+          >
             Let's focus on<br />
             <span
               style={{
@@ -293,29 +317,48 @@ export default class Presentation extends React.Component {
             Timepage, a calendar app from Moleskine
           `}
         >
-          <FullscreenImage src={moleskineBallsSrc} />
+          <FullscreenImage
+            src={moleskineBallsSrc}
+          />
         </Slide>
 
         <Slide>
-          <FullscreenImage portrait src={flipbookSrc} />
+          <FullscreenImage
+            portrait
+            src={flipbookSrc}
+          />
         </Slide>
 
         <Slide>
-          <FullscreenImage portrait src={facebookCongratsSrc} />
+          <FullscreenImage
+            portrait
+            src={facebookCongratsSrc}
+          />
         </Slide>
 
         <Slide className="slideWithoutScale">
-          <Heading textFont="secondary" size={2} textColor="blue">
-            Let's look at how to do some of this stuff in React.
+          <Heading
+            textFont="secondary"
+            size={2}
+            textColor="blue"
+          >
+            Let's look at how to do some of
+            this stuff in React.
           </Heading>
         </Slide>
 
         <Slide bgColor="teal">
-          <SectionStart subtitle="Example 1" title="Confetti" />
+          <SectionStart
+            subtitle="Example 1"
+            title="Confetti"
+          />
         </Slide>
 
         <Slide bgColor="secondary">
-          <img src={confettiMockupSrc} style={{ width: '100%' }} />
+          <img
+            src={confettiMockupSrc}
+            style={{ width: '100%' }}
+          />
         </Slide>
 
         <Slide bgColor="secondary">
@@ -330,7 +373,7 @@ export default class Presentation extends React.Component {
         <Slide
           notes={`
             Rather than go through the confetti implementation line-by-line,
-            let's look at a few of the more generalized techniques that make 
+            let's look at a few of the more generalized techniques that make
             this sort of thing possible.
 
             For those who are really keen on confetti, the full source with
@@ -343,14 +386,24 @@ export default class Presentation extends React.Component {
 
           <List>
             <ListItem>
-              <span style={{ fontFamily: 'inconsolata, monospaced' }}>
+              <span
+                style={{
+                  fontFamily:
+                    'inconsolata, monospaced',
+                }}
+              >
                 {'<Canvas />'}
               </span>{' '}
               primitive
             </ListItem>
-            <ListItem>Canvas animation</ListItem>
+            <ListItem>
+              Canvas animation
+            </ListItem>
             <ListItem>Game loops</ListItem>
-            <ListItem>Architecture, separation of concerns</ListItem>
+            <ListItem>
+              Architecture, separation of
+              concerns
+            </ListItem>
           </List>
         </Slide>
 
@@ -378,7 +431,8 @@ export default class Presentation extends React.Component {
             { loc: [3, 9] },
             {
               loc: [7, 8],
-              note: 'A render prop, but for Canvas',
+              note:
+                'A render prop, but for Canvas',
             },
             { loc: [36, 46] },
             { loc: [10, 17] },
@@ -485,7 +539,10 @@ export default class Presentation extends React.Component {
             { loc: [52, 53] },
             { loc: [53, 57] },
             { loc: [57, 61] },
-            { loc: [62, 67], note: `✨ Trigonometry ✨` },
+            {
+              loc: [62, 67],
+              note: `✨ Trigonometry ✨`,
+            },
             { loc: [68, 84] },
             { loc: [86, 87] },
             { loc: [89, 95] },
@@ -541,18 +598,24 @@ export default class Presentation extends React.Component {
         <Slide>TODO: Graph here maybe?</Slide>
 
         <Slide>
-          TODO: Something about not overengineering, using Dan A's tweet or the
-          blue circle factory GIF?
+          TODO: Something about not
+          overengineering, using Dan A's tweet
+          or the blue circle factory GIF?
         </Slide>
 
         <Slide>
-          TODO: Performance. Talk about how at this scale, you have 16ms per
-          frame, and that's really only 10ms of JS-time. React re-rendering
-          takes x ms, an cloning an object takes 0.5ms, which is actually
-          significant at this scale.
+          TODO: Performance. Talk about how at
+          this scale, you have 16ms per frame,
+          and that's really only 10ms of
+          JS-time. React re-rendering takes x
+          ms, an cloning an object takes
+          0.5ms, which is actually significant
+          at this scale.
           <br />
-          Although do mention that even at this scale, `map` is fine instead of
-          a `for` loop, inline functions are still fine, etc.
+          Although do mention that even at
+          this scale, `map` is fine instead of
+          a `for` loop, inline functions are
+          still fine, etc.
         </Slide>
 
         <Slide
@@ -564,11 +627,16 @@ export default class Presentation extends React.Component {
             everyday usecase.
           `}
         >
-          <SectionStart subtitle="Example 2" title="Email Client" />
+          <SectionStart
+            subtitle="Example 2"
+            title="Email Client"
+          />
         </Slide>
 
         <Slide bgColor="#292e3a">
-          <FullscreenImage src={tobiasStatePromptSrc} />
+          <FullscreenImage
+            src={tobiasStatePromptSrc}
+          />
           <Caption>
             Source:{' '}
             <a href="http://tobiasahlin.com/blog/meaningful-motion-w-action-driven-animation/">
@@ -582,7 +650,9 @@ export default class Presentation extends React.Component {
         </Slide>
 
         <Slide bgColor="#292e3a">
-          <FullscreenImage src={tobiasActionPromptSrc} />
+          <FullscreenImage
+            src={tobiasActionPromptSrc}
+          />
           <Caption>
             Source:{' '}
             <a href="http://tobiasahlin.com/blog/meaningful-motion-w-action-driven-animation/">
@@ -596,7 +666,11 @@ export default class Presentation extends React.Component {
         </Slide>
 
         <Slide bgColor="#000000">
-          <video controls src={newSendAnimatedSrc} width={920} />
+          <video
+            controls
+            src={newSendAnimatedSrc}
+            width={920}
+          />
           <Caption>
             Source:{' '}
             <a href="http://tobiasahlin.com/blog/meaningful-motion-w-action-driven-animation/">
@@ -606,7 +680,11 @@ export default class Presentation extends React.Component {
         </Slide>
 
         <Slide bgColor="#000000">
-          <video controls src={newCloseAnimatedSrc} width={920} />
+          <video
+            controls
+            src={newCloseAnimatedSrc}
+            width={920}
+          />
           <Caption>
             Source:{' '}
             <a href="http://tobiasahlin.com/blog/meaningful-motion-w-action-driven-animation/">
@@ -616,8 +694,12 @@ export default class Presentation extends React.Component {
         </Slide>
 
         <Slide>
-          <Heading textFont="secondary" size={4}>
-            Meaningful Motion with<br />Action-Driven Animation
+          <Heading
+            textFont="secondary"
+            size={4}
+          >
+            Meaningful Motion with<br />Action-Driven
+            Animation
           </Heading>
           <br />
           <br />
@@ -643,19 +725,28 @@ export default class Presentation extends React.Component {
         </Slide>
 
         <Slide bgColor="#000000">
-          <video controls src={whimsicalOverallSrc} width={920} />
+          <video
+            controls
+            src={whimsicalOverallSrc}
+            width={920}
+          />
         </Slide>
 
         <Slide>
-          <Heading textFont="secondary" size={2} textColor="green">
+          <Heading
+            textFont="secondary"
+            size={2}
+            textColor="green"
+          >
             Action-driven
           </Heading>
 
           <br />
           <br />
           <Text>
-            Each user action (opening, clearing, sending) has its own meaningful
-            animation.
+            Each user action (opening,
+            clearing, sending) has its own
+            meaningful animation.
           </Text>
         </Slide>
 
@@ -666,7 +757,11 @@ export default class Presentation extends React.Component {
             How many times has it happened where you save a draft email, or a facebook post or whatever, and then you have no idea where to find that saved content? This pattern prevents that by literally bringing your eye to the tab that holds your drafts.
           `}
         >
-          <Heading textFont="secondary" size={2} textColor="teal">
+          <Heading
+            textFont="secondary"
+            size={2}
+            textColor="teal"
+          >
             Informative
           </Heading>
 
@@ -681,12 +776,18 @@ export default class Presentation extends React.Component {
         </Slide>
 
         <Slide bgColor="secondary">
-          <Heading textFont="secondary" textColor="lime">
+          <Heading
+            textFont="secondary"
+            textColor="lime"
+          >
             Whimsical
           </Heading>
           <br />
           <br />
-          <Text>Skeuomorphic animation can be delightful.</Text>
+          <Text>
+            Skeuomorphic animation can be
+            delightful.
+          </Text>
         </Slide>
 
         <Slide
@@ -709,8 +810,13 @@ export default class Presentation extends React.Component {
           >
             I know what you're thinking...
           </Heading>
-          <FullscreenImage src={tooMuchAnimationSrc} />
-          <Caption>Source: Rachel Nabors, rachelnabors.com</Caption>
+          <FullscreenImage
+            src={tooMuchAnimationSrc}
+          />
+          <Caption>
+            Source: Rachel Nabors,
+            rachelnabors.com
+          </Caption>
         </Slide>
 
         <Slide
@@ -719,14 +825,21 @@ export default class Presentation extends React.Component {
             we should abolish jokes entirely!
           `}
         >
-          <Heading textFont="secondary" textColor="green" size={2}>
+          <Heading
+            textFont="secondary"
+            textColor="green"
+            size={2}
+          >
             Write self-disabling animations
           </Heading>
 
           <br />
           <br />
 
-          <Text>Whimsy is supposed to be unexpected.</Text>
+          <Text>
+            Whimsy is supposed to be
+            unexpected.
+          </Text>
         </Slide>
 
         <Slide
@@ -736,17 +849,29 @@ export default class Presentation extends React.Component {
             We'll cover this more later on, but for now, let's look at how I built this stuff.
           `}
         >
-          <Heading textFont="secondary" textColor="teal" size={2}>
+          <Heading
+            textFont="secondary"
+            textColor="teal"
+            size={2}
+          >
             Let users opt-out
           </Heading>
 
           <br />
           <br />
-          <Text>More on this in a bit...</Text>
+          <Text>
+            More on this in a bit...
+          </Text>
         </Slide>
 
-        <Slide bgColor="deepPurple" textColor="primary">
-          <SectionStart subtitle="Element 1" title="Folding the DOM" />
+        <Slide
+          bgColor="deepPurple"
+          textColor="primary"
+        >
+          <SectionStart
+            subtitle="Element 1"
+            title="Folding the DOM"
+          />
         </Slide>
 
         <Slide>
@@ -754,17 +879,29 @@ export default class Presentation extends React.Component {
         </Slide>
 
         <Slide>
-          <Heading size={1} textColor="pink" textFont="secondary">
+          <Heading
+            size={1}
+            textColor="pink"
+            textFont="secondary"
+          >
             This is just CSS!
           </Heading>
-          <Heading size={4} textColor="deepPurple" textFont="secondary">
+          <Heading
+            size={4}
+            textColor="deepPurple"
+            textFont="secondary"
+          >
             (But the code is kinda gross.)
           </Heading>
           <br />
           <br />
           <Text>
-            The beauty of React is we can bake this logic into a reusable
-            component, and <strong>make anything foldable</strong>!
+            The beauty of React is we can bake
+            this logic into a reusable
+            component, and{' '}
+            <strong>
+              make anything foldable
+            </strong>!
           </Text>
         </Slide>
 
@@ -832,23 +969,39 @@ export default class Presentation extends React.Component {
         />
 
         <Slide>
-          <Heading size={1} textColor="pink" textFont="secondary">
+          <Heading
+            size={1}
+            textColor="pink"
+            textFont="secondary"
+          >
             Write Once,<br />Fold Anywhere!
           </Heading>
           <br />
           <br />
           <Text>
-            It can be tricky to figure out how to do imperative DOM stuff with
+            It can be tricky to figure out how
+            to do imperative DOM stuff with
             React, but it's worth the trouble.
           </Text>
         </Slide>
 
-        <Slide bgColor="deepPurple" textColor="primary">
-          <SectionStart subtitle="Element 2" title="Transporting Children" />
+        <Slide
+          bgColor="deepPurple"
+          textColor="primary"
+        >
+          <SectionStart
+            subtitle="Element 2"
+            title="Transporting Children"
+          />
         </Slide>
 
         <Slide bgColor="#000000">
-          <video autoPlay loop src={childTransporterSrc} width={920} />
+          <video
+            autoPlay
+            loop
+            src={childTransporterSrc}
+            width={920}
+          />
         </Slide>
 
         <CodeSlide
@@ -886,7 +1039,7 @@ export default class Presentation extends React.Component {
           ranges={[
             {
               loc: [0],
-              title: 'Consumption',
+              title: 'Usage',
             },
             // App
             { loc: [0, 9] },
@@ -902,7 +1055,29 @@ export default class Presentation extends React.Component {
           ]}
         />
 
-        <Slide>TODO: ChildTraveller code</Slide>
+        <CodeSlide
+          bgColor="secondary"
+          lang="jsx"
+          code={require('./code/ChildTransporterConsumption.example')}
+          ranges={[
+            {
+              loc: [0],
+              title: 'ChildTransporter Usage',
+            },
+            { loc: [0, 1] },
+            { loc: [1, 4] },
+
+            { loc: [5, 6] },
+
+            { loc: [7, 8] },
+            { loc: [8, 14] },
+            { loc: [14, 19] },
+          ]}
+        />
+
+        <Slide>
+          TODO: ChildTraveller code
+        </Slide>
 
         <Slide>Conclusion</Slide>
 
@@ -918,27 +1093,51 @@ export default class Presentation extends React.Component {
             There's so much really cool stuff we can build.
           `}
         >
-          <Heading textFont="secondary" textColor="purple" size={4}>
+          <Heading
+            textFont="secondary"
+            textColor="purple"
+            size={4}
+          >
             There's
           </Heading>
-          <Heading textFont="secondary" textColor="pink" size={1}>
+          <Heading
+            textFont="secondary"
+            textColor="pink"
+            size={1}
+          >
             SO MUCH
           </Heading>
-          <Heading textFont="secondary" textColor="purple" size={4}>
+          <Heading
+            textFont="secondary"
+            textColor="purple"
+            size={4}
+          >
             unexplored territory
           </Heading>
         </Slide>
 
         <Slide>
-          <WibblyWobblyCircle color={COLORS.pink[500]} />
-          <WibblyWobblyCircle color={COLORS.purple[500]} />
+          <WibblyWobblyCircle
+            color={COLORS.pink[500]}
+          />
+          <WibblyWobblyCircle
+            color={COLORS.purple[500]}
+          />
         </Slide>
 
         <Slide>
-          <Heading textFont="secondary" textColor="purple" size={4}>
+          <Heading
+            textFont="secondary"
+            textColor="purple"
+            size={4}
+          >
             And the future is
           </Heading>
-          <Heading textFont="secondary" textColor="pink" size={1}>
+          <Heading
+            textFont="secondary"
+            textColor="pink"
+            size={1}
+          >
             SO EXCITING
           </Heading>
         </Slide>
@@ -953,7 +1152,12 @@ export default class Presentation extends React.Component {
             CSS Paint
           </Heading>
           <br />
-          <video autoPlay loop src={houdiniSrc} style={{ height: 400 }} />
+          <video
+            autoPlay
+            loop
+            src={houdiniSrc}
+            style={{ height: 400 }}
+          />
         </Slide>
 
         <Slide bgColor="secondary">
@@ -978,7 +1182,11 @@ export default class Presentation extends React.Component {
         </Slide>
 
         <Slide bgColor="secondary">
-          <Heading textColor="pink" size={1} textFont="secondary">
+          <Heading
+            textColor="pink"
+            size={1}
+            textFont="secondary"
+          >
             But!!
           </Heading>
           <br />
@@ -1004,20 +1212,30 @@ export default class Presentation extends React.Component {
           <br />
           <br />
           <Text textColor="primary">
-            Before we should try and make our sites delightful, we should strive
+            Before we should try and make our
+            sites delightful, we should strive
             for them to be usable.
           </Text>
         </Slide>
 
         <Slide bgColor="secondary">
-          <Heading textColor="primary" size={4}>
-            If nothing else, we should make sure that our whimsical touches
-            aren't harmful for folks with vestibular disorders.
+          <Heading
+            textColor="primary"
+            size={4}
+          >
+            If nothing else, we should make
+            sure that our whimsical touches
+            aren't harmful for folks with
+            vestibular disorders.
           </Heading>
         </Slide>
 
         <Slide bgColor="secondary">
-          <Heading textFont="inconsolata" textColor="primary" size={3}>
+          <Heading
+            textFont="inconsolata"
+            textColor="primary"
+            size={3}
+          >
             prefers-reduced-motion
           </Heading>
 
@@ -1036,8 +1254,15 @@ export default class Presentation extends React.Component {
           />
         </Slide>
 
-        <Slide transition={[null]} bgColor="secondary">
-          <Heading textFont="inconsolata" textColor="primary" size={3}>
+        <Slide
+          transition={[null]}
+          bgColor="secondary"
+        >
+          <Heading
+            textFont="inconsolata"
+            textColor="primary"
+            size={3}
+          >
             prefers-reduced-motion
           </Heading>
 
@@ -1061,7 +1286,11 @@ if (prefersReducedMotion) {
         </Slide>
 
         <Slide bgColor="#f2e8d6">
-          <FullscreenImage src={caniusePrefersReducedMotionSrc} />
+          <FullscreenImage
+            src={
+              caniusePrefersReducedMotionSrc
+            }
+          />
         </Slide>
 
         <Slide bgColor="secondary">
@@ -1075,8 +1304,12 @@ if (prefersReducedMotion) {
           <br />
           <br />
           <br />
-          <Text textColor="primary">Slides and code available at</Text>
-          <Heading textColor="blue">@joshwcomeau</Heading>
+          <Text textColor="primary">
+            Slides and code available at
+          </Text>
+          <Heading textColor="blue">
+            @joshwcomeau
+          </Heading>
         </Slide>
       </Deck>
     );

@@ -1,0 +1,24 @@
+class ComposeEmailModal extends Component {
+  state = {
+    status: 'closed',
+  };
+
+  // Modal control stuff
+
+  render() {
+    return (
+      <NodeConsumer>
+        {({
+          composeButton,
+          outboxHeading,
+        }) => (
+          <ChildTransporter
+            status={this.state.status}
+            fromNode={composeButton}
+            toNode={outboxHeading}
+          />
+        )}
+      </NodeConsumer>
+    );
+  }
+}

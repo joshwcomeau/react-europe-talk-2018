@@ -1,12 +1,8 @@
 class Animation extends Component {
-  constructor(props) {
-    super(props);
-
-    this.state = {
-      x: 0,
-      y: 0,
-    };
-  }
+  state = {
+    x: 0,
+    y: 0,
+  };
 
   componentDidMount() {
     this.tick();
@@ -31,9 +27,9 @@ class Animation extends Component {
       <Canvas
         width={200}
         height={200}
-        style={{ outline: '1px solid' }}
         draw={ctx => {
           ctx.clearRect(0, 0, 200, 200);
+
           ctx.fillStyle = 'hotpink';
           ctx.fillRect(x, y, 50, 50);
         }}
