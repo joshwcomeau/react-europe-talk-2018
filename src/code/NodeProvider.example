@@ -7,24 +7,11 @@ const NodeContext = React.createContext(
 class NodeProvider extends Component {
   state = {
     nodes: {},
-    boundingBoxes: {},
     refCapturer: id => node => {
-      if (!node) {
-        return;
-      }
-
-      if (this.state.nodes[id]) {
-        return;
-      }
-
       this.setState({
         nodes: {
           ...this.state.nodes,
           [id]: node,
-        },
-        boundingBoxes: {
-          ...this.state.boundingBoxes,
-          [id]: node.getBoundingClientRect(),
         },
       });
     },

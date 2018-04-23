@@ -12,9 +12,7 @@ import {
   Slide,
   Text,
 } from 'spectacle';
-import styled, {
-  injectGlobal,
-} from 'styled-components';
+import styled, { injectGlobal } from 'styled-components';
 import createTheme from 'spectacle/lib/themes/default';
 import preloader from 'spectacle/lib/utils/preloader';
 import CodeSlide from 'spectacle-code-slide';
@@ -44,10 +42,13 @@ import whimsicalOverallSrc from './assets/whimsical-overall.mp4';
 import whimsicalReplySrc from './assets/whimsical-reply.mp4';
 import whimsicalFoldSlowmoSrc from './assets/whimsical-fold-slowmo.mp4';
 import childTransporterSrc from './assets/child-transporter.mp4';
-import houdiniSrc from './assets/houdini.mp4';
+import houdiniSrc from './assets/houdini-ripple.mp4';
 import webRenderSrc from './assets/webrender.mp4';
 import caniusePrefersReducedMotionSrc from './assets/caniuse-prefers-reduced-motion.png';
 import magicSchoolBusSrc from './assets/magic-school-bus.gif';
+import emailRetractSrc from './assets/email-retract.gif';
+import emailSaveSrc from './assets/email-save.gif';
+import emailSendSrc from './assets/email-send.gif';
 
 import FullscreenImage from './components/FullscreenImage';
 import Video from './components/Video';
@@ -63,6 +64,7 @@ import FoldConcept from './components/FoldConcept';
 import Foldable from './components/Foldable';
 import WibblyWobblyCircle from './components/WibblyWobblyCircle';
 import Underlined from './components/Underlined';
+import Spacer from './components/Spacer';
 
 import Title from './slides/Title';
 import SectionStart from './slides/SectionStart';
@@ -154,9 +156,7 @@ export default class Presentation extends React.Component {
             I started using the internet in the 90s, and at that time, the internet looked like this.<br /><br />
           `}
         >
-          <FullscreenImage
-            src={jesseSkiingSrc}
-          />
+          <FullscreenImage src={jesseSkiingSrc} />
         </Slide>
 
         <Slide
@@ -168,9 +168,7 @@ export default class Presentation extends React.Component {
             Web developers had one tool, and one tool only, for animation...
           `}
         >
-          <FullscreenImage
-            src={askJeevesSrc}
-          />
+          <FullscreenImage src={askJeevesSrc} />
         </Slide>
 
         <Slide
@@ -182,9 +180,7 @@ export default class Presentation extends React.Component {
             The cool thing about this golden era of the web is that nobody knew what they were doing.
           `}
         >
-          <FullscreenImage
-            src={cameronsWorldSrc}
-          />
+          <FullscreenImage src={cameronsWorldSrc} />
         </Slide>
 
         <Slide
@@ -194,9 +190,7 @@ export default class Presentation extends React.Component {
             This is actually McDonald's website, circa early 1997.
           `}
         >
-          <FullscreenImage
-            src={mcdonaldsSrc}
-          />
+          <FullscreenImage src={mcdonaldsSrc} />
         </Slide>
 
         <Slide
@@ -208,9 +202,7 @@ export default class Presentation extends React.Component {
           Web technologies were essentially nonexistent at this time. Javascript was less than a year old, CSS wouldn't show up for another year. We built documents, and embedded animated GIFs for flavor.
           `}
         >
-          <FullscreenImage
-            src={mcdonaldsZoomSrc}
-          />
+          <FullscreenImage src={mcdonaldsZoomSrc} />
         </Slide>
 
         <Slide
@@ -224,9 +216,7 @@ export default class Presentation extends React.Component {
             And yet, this website is bland. It's exactly what it needs to be, and nothing more. I miss the whimsical charm of their old site.
           `}
         >
-          <FullscreenImage
-            src={mcdonaldsNowSrc}
-          />
+          <FullscreenImage src={mcdonaldsNowSrc} />
         </Slide>
 
         <Slide
@@ -236,9 +226,7 @@ export default class Presentation extends React.Component {
             "An unexpected flourish that sparks joy". It's not stuff that is critical to the usability of your product, but it's something that makes your users smile, something that makes your product a little more enjoyable to use.<br /><br />
           `}
         >
-          <FullscreenImage
-            src={whimsyDefinitionSrc}
-          />
+          <FullscreenImage src={whimsyDefinitionSrc} />
         </Slide>
 
         <Slide
@@ -255,11 +243,7 @@ export default class Presentation extends React.Component {
             - It has huge potential to delight<br />
           `}
         >
-          <Heading
-            size={2}
-            textFont="secondary"
-            textColor="purple"
-          >
+          <Heading size={2} textFont="secondary" textColor="purple">
             With this <br />
             <span
               style={{
@@ -276,10 +260,7 @@ export default class Presentation extends React.Component {
           <Video videoId={261999187} />
         </Slide>
 
-        <Slide
-          bgColor="secondary"
-          transition={['none']}
-        >
+        <Slide bgColor="secondary" transition={['none']}>
           <Video videoId={261999178} />
         </Slide>
 
@@ -296,11 +277,7 @@ export default class Presentation extends React.Component {
             - It has huge potential to delight<br />
           `}
         >
-          <Heading
-            size={3}
-            textFont="secondary"
-            textColor="pink"
-          >
+          <Heading size={3} textFont="secondary" textColor="pink">
             Let's focus on<br />
             <span
               style={{
@@ -320,46 +297,15 @@ export default class Presentation extends React.Component {
           </Heading>
         </Slide>
 
-        {/* {<Slide
-          bgColor="secondary"
-          notes={`
-            Timepage, a calendar app from Moleskine
-          `}
-        >
-          <FullscreenImage
-            src={moleskineBallsSrc}
-          />
-        </Slide>
-
-        <Slide>
-          <FullscreenImage
-            portrait
-            src={flipbookSrc}
-          />
-        </Slide>
-
-        <Slide>
-          <FullscreenImage portrait src={facebookCongratsSrc} />
-        </Slide>} */}
-
         <Slide bgColor="teal">
-          <SectionStart
-            subtitle="Example 1"
-            title="Confetti"
-          />
+          <SectionStart subtitle="Example 1" title="Confetti" />
         </Slide>
 
         <Slide bgColor="secondary">
-          <img
-            src={confettiMockupSrc}
-            style={{ width: '100%' }}
-          />
+          <img src={confettiMockupSrc} style={{ width: '100%' }} />
         </Slide>
 
-        <Slide
-          bgColor="secondary"
-          transition={['none']}
-        >
+        <Slide bgColor="secondary" transition={['none']}>
           <video
             autoPlay
             loop
@@ -392,16 +338,14 @@ export default class Presentation extends React.Component {
             { loc: [3, 9] },
             {
               loc: [7, 8],
-              note:
-                'A render prop, but for Canvas',
+              note: 'A render prop, but for Canvas',
             },
             { loc: [36, 46] },
             { loc: [10, 17] },
             { loc: [18, 21] },
             {
               loc: [22, 35],
-              note:
-                'Scaling for HiDPI (retina) displays',
+              note: 'Scaling for HiDPI (retina) displays',
             },
             { loc: [36, 46] },
           ]}
@@ -462,8 +406,7 @@ export default class Presentation extends React.Component {
             { loc: [67, 73] },
             {
               loc: [67, 73],
-              note:
-                'How does our animation loop start?',
+              note: 'How does our animation loop start?',
             },
 
             // cDU
@@ -493,105 +436,111 @@ export default class Presentation extends React.Component {
         <Slide>TODO: SVG vs Canvas?</Slide>
 
         <Slide>
-          TODO: Performance. Talk about how at
-          this scale, you have 16ms per frame,
-          and that's really only 10ms of
-          JS-time. React re-rendering takes x
-          ms, an cloning an object takes
-          0.5ms, which is actually significant
-          at this scale.
+          TODO: Performance. Talk about how at this scale, you have 16ms per
+          frame, and that's really only 10ms of JS-time. React re-rendering
+          takes x ms, an cloning an object takes 0.5ms, which is actually
+          significant at this scale.
           <br />
-          Although do mention that even at
-          this scale, `map` is fine instead of
-          a `for` loop, inline functions are
-          still fine, etc.
+          Although do mention that even at this scale, `map` is fine instead of
+          a `for` loop, inline functions are still fine, etc.
         </Slide>
+
+        <Slide
+          bgColor="secondary"
+          notes={`
+            This may seem very niche, or not relevant to the work y'all do.
+            I think you'd be surprised how handy it can be, though.
+          `}
+        >
+          <Heading textColor="purple" textFont="secondary" size={3}>
+            I work at <br />
+            <span
+              style={{
+                fontWeight: 100,
+                fontFamily: 'monospace',
+                color: COLORS.pink[500],
+              }}
+            >
+              [serious company]
+            </span>,
+            <br />
+            we wouldn't add confetti to our app!
+          </Heading>
+        </Slide>
+
+        <Slide
+          notes={`
+            Facebook, for example, has an easter egg that pops confetti. I
+            think I've seen it on Medium as well, when they do their
+            end-of-year summaries.
+
+            But yeah, I take the point that not every app needs whimsical
+            Canvas animations.
+          `}
+        >
+          <FullscreenImage portrait src={facebookCongratsSrc} />
+        </Slide>
+
+        {/*
+
+
+
+          PART II
+
+
+
+        */}
 
         <Slide
           bgColor="teal"
           notes={`
-            Confetti is a fun example, but it may seem like a novelty usecase.
-            While I do believe it's more widely applicable than you might think
-            - facebook uses it, after all - I admit that confetti is not an
-            everyday usecase.
+            Let's look at something far more conventional: an email client.
+
+            Whimsy isn't all bubblegum and rainbows, sometimes it's about
+            helpful, meaningful interactions that make our users smile.
           `}
         >
-          <SectionStart
-            subtitle="Example 2"
-            title="Email Client"
-          />
-        </Slide>
-
-        <Slide bgColor="#292e3a">
-          <FullscreenImage
-            src={tobiasStatePromptSrc}
-          />
-          <Caption>
-            Source:{' '}
-            <a href="http://tobiasahlin.com/blog/meaningful-motion-w-action-driven-animation/">
-              tobiasahlin.com
-            </a>
-          </Caption>
-        </Slide>
-
-        <Slide>
-          <StateDrivenAnimation />
-        </Slide>
-
-        <Slide bgColor="#292e3a">
-          <FullscreenImage
-            src={tobiasActionPromptSrc}
-          />
-          <Caption>
-            Source:{' '}
-            <a href="http://tobiasahlin.com/blog/meaningful-motion-w-action-driven-animation/">
-              tobiasahlin.com
-            </a>
-          </Caption>
-        </Slide>
-
-        <Slide>
-          <ActionDrivenAnimation />
+          <SectionStart subtitle="Example 2" title="Email Client" />
         </Slide>
 
         <Slide bgColor="#000000">
-          <video
-            controls
-            src={newSendAnimatedSrc}
-            width={920}
-          />
-          <Caption>
-            Source:{' '}
-            <a href="http://tobiasahlin.com/blog/meaningful-motion-w-action-driven-animation/">
-              tobiasahlin.com
-            </a>
-          </Caption>
+          <video controls src={whimsicalOverallSrc} width={920} />
         </Slide>
 
-        <Slide bgColor="#000000">
-          <video
-            controls
-            src={newCloseAnimatedSrc}
-            width={920}
-          />
-          <Caption>
-            Source:{' '}
-            <a href="http://tobiasahlin.com/blog/meaningful-motion-w-action-driven-animation/">
-              tobiasahlin.com
-            </a>
-          </Caption>
-        </Slide>
+        <Slide
+          notes={`
+            There's a lot going on in this demo, so let's break it down into
+            a few pieces.
 
-        <Slide>
-          <Heading
-            textFont="secondary"
-            size={4}
-          >
-            Meaningful Motion with<br />Action-Driven
-            Animation
+            First, I'd like to focus on the fact that these animations are
+            action-driven, not state-driven.
+
+            In React, we typically animate based on our application's state,
+            like whether or not a modal is open. In this case, though, I'm
+            animating in response to the user's action. Cancelling a modal
+            is different from saving a draft, which is different from sending
+            an email.
+          `}
+        >
+          <Heading textFont="secondary" size={4}>
+            Meaningful & action-driven:
           </Heading>
-          <br />
-          <br />
+          <Spacer size={40} />
+          TODO: GIF
+        </Slide>
+
+        <Slide
+          bgColor="secondary"
+          notes={`
+            I'm only scratching the surface of this subject, but I'd encourage
+            y'all to check out this blog post if the distinction between state-
+            driven and action-driven animations is interesting.
+          `}
+        >
+          <Heading textFont="secondary" textColor="green" size={5}>
+            “Meaningful Motion with<br />Action-Driven Animation”
+          </Heading>
+          <Spacer size={50} />
           <Text>
             <a
               style={{
@@ -606,77 +555,38 @@ export default class Presentation extends React.Component {
           <br />
         </Slide>
 
-        <Slide textSize={120}>
-          🤔
-          <br />
-          <br />
-          ✨🔥🎉
-        </Slide>
+        <Slide
+          notes={`
+            Next up, there's the idea that nodes on our page can function as
+            spawn points, as well as receivers, for our modals.
 
-        <Slide bgColor="#000000">
-          <video
-            controls
-            src={whimsicalOverallSrc}
-            width={920}
-          />
-        </Slide>
-
-        <Slide>
-          <Heading
-            textFont="secondary"
-            size={2}
-            textColor="green"
-          >
-            Action-driven
+            In addition to being a whimsical touch, I feel like this is really
+            useful. it's happened to me where I'll save a draft in some app,
+            and then I have no idea where to find the draft I saved. Some apps
+            rely on those convoluted tooltip walkthroughs for this, you know,
+            those things everyone bails out of ASAP? Why not use animations to
+            show the user how our app is laid out?
+          `}
+        >
+          <Heading textFont="secondary" size={4}>
+            Transporting between nodes
           </Heading>
-
-          <br />
-          <br />
-          <Text>
-            Each user action (opening,
-            clearing, sending) has its own
-            meaningful animation.
-          </Text>
+          <Spacer size={40} />
+          TODO: GIF
         </Slide>
 
         <Slide
           notes={`
-            Pause to talk about how the thing opens FROM the button, so you can always tell the difference between composing and replying.
-
-            How many times has it happened where you save a draft email, or a facebook post or whatever, and then you have no idea where to find that saved content? This pattern prevents that by literally bringing your eye to the tab that holds your drafts.
+            Finally, there's this cute folding animation. This is my favorite
+            part of it, because it's a throwback to the days of snail mail, and
+            who doesn't like receiving a letter?
           `}
         >
-          <Heading
-            textFont="secondary"
-            size={2}
-            textColor="teal"
-          >
-            Informative
+          <Heading textFont="secondary" size={4}>
+            Folding animation
           </Heading>
-
-          <br />
-          <br />
-          <video
-            controls
-            src={whimsicalReplySrc}
-            width="90%"
-            style={{ margin: 'auto' }}
-          />
-        </Slide>
-
-        <Slide bgColor="secondary">
-          <Heading
-            textFont="secondary"
-            textColor="lime"
-          >
-            Whimsical
-          </Heading>
-          <br />
-          <br />
-          <Text>
-            Skeuomorphic animation can be
-            delightful.
-          </Text>
+          <Spacer size={40} />
+          TODO: GIF
         </Slide>
 
         <Slide
@@ -699,102 +609,81 @@ export default class Presentation extends React.Component {
           >
             I know what you're thinking...
           </Heading>
-          <FullscreenImage
-            src={tooMuchAnimationSrc}
-          />
-          <Caption>
-            Source: Rachel Nabors,
-            rachelnabors.com
-          </Caption>
+          <FullscreenImage src={tooMuchAnimationSrc} />
+          <Caption>Source: Rachel Nabors, rachelnabors.com</Caption>
         </Slide>
 
         <Slide
+          bgColor="secondary"
           notes={`
             A joke isn't funny the 70th time you hear it, but that doesn't mean
             we should abolish jokes entirely!
+
+            You can also just add a user setting to disable animations, which
+            is not only helpful for straight-to-business curmudgeons, but also
+            folks with vestibular disorders. More on this in a bit.
           `}
         >
-          <Heading
-            textFont="secondary"
-            textColor="green"
-            size={2}
-          >
+          <Heading textFont="secondary" textColor="green" size={3}>
             Write self-disabling animations
           </Heading>
 
           <br />
           <br />
 
-          <Text>
-            Whimsy is supposed to be
-            unexpected.
+          <Text textColor="primary">
+            Whimsy is supposed to be{' '}
+            <em style={{ color: COLORS.yellow[500] }}>unexpected</em>.
           </Text>
         </Slide>
 
-        <Slide
-          notes={`
-            Another thing we can do is to ensure that users who don't want to see animations don't need to see them!
-
-            We'll cover this more later on, but for now, let's look at how I built this stuff.
-          `}
-        >
-          <Heading
-            textFont="secondary"
-            textColor="teal"
-            size={2}
-          >
-            Let users opt-out
-          </Heading>
-
-          <br />
-          <br />
-          <Text>
-            More on this in a bit...
-          </Text>
-        </Slide>
-
-        <Slide
-          bgColor="deepPurple"
-          textColor="primary"
-        >
-          <SectionStart
-            subtitle="Element 1"
-            title="Folding the DOM"
-          />
+        <Slide bgColor="deepPurple" textColor="primary">
+          <SectionStart subtitle="Element 1" title="Folding the DOM" />
         </Slide>
 
         <Slide>
           <FoldConcept />
         </Slide>
 
-        <Slide>
-          <Heading
-            size={1}
-            textColor="pink"
-            textFont="secondary"
-          >
-            This is just CSS!
-          </Heading>
-          <Heading
-            size={4}
-            textColor="deepPurple"
-            textFont="secondary"
-          >
-            (But the code is kinda gross.)
-          </Heading>
-          <br />
-          <br />
-          <Text>
-            The beauty of React is we can bake
-            this logic into a reusable
-            component, and{' '}
-            <strong>
-              make anything foldable
-            </strong>!
-          </Text>
-        </Slide>
-
         <CodeSlide
+          bgColor="secondary"
+          lang="flow"
+          code={require('./code/FoldableConcise.example')}
+          ranges={[
+            {
+              loc: [0],
+              title: '<Foldable />',
+              note: '✂️ Abridged Version ✂️',
+            },
+            { loc: [0, 7] },
+            { loc: [8, 11] },
+
+            { loc: [96, 105] },
+
+            { loc: [12, 13] },
+            { loc: [24, 25] },
+            { loc: [14, 27] },
+            { loc: [15, 18] },
+            { loc: [18, 22] },
+
+            { loc: [29, 30] },
+            { loc: [32, 38] },
+            { loc: [40, 48] },
+            { loc: [48, 62] },
+            { loc: [48, 52] },
+            { loc: [52, 53] },
+            { loc: [53, 59] },
+            { loc: [56, 57] },
+            { loc: [62, 76] },
+            { loc: [77, 92] },
+
+            { loc: [96, 105] },
+
+            { loc: [108, 222] },
+          ]}
+        />
+
+        {/* <CodeSlide
           bgColor="secondary"
           lang="flow"
           code={require('./code/Foldable.example')}
@@ -840,7 +729,25 @@ export default class Presentation extends React.Component {
             { loc: [240, 249] }, // FoldContents
             { loc: [250, 261] }, // TopFoldBack
           ]}
-        />
+        /> */}
+
+        <Slide
+          notes={`
+            For imperative effects like this, it can be a bit tricky to figure
+            out how to do
+          `}
+        >
+          <Heading size={2} textColor="pink" textFont="secondary">
+            React is Awesome
+          </Heading>
+          <br />
+          <br />
+          <Text>
+            This effect is accomplished by CSS, but it's messy.<br />
+            With React, we can abstract this into a <Foldable /> component with
+            a beautiful API.
+          </Text>
+        </Slide>
 
         <CodeSlide
           bgColor="secondary"
@@ -857,40 +764,12 @@ export default class Presentation extends React.Component {
           ]}
         />
 
-        <Slide>
-          <Heading
-            size={1}
-            textColor="pink"
-            textFont="secondary"
-          >
-            Write Once,<br />Fold Anywhere!
-          </Heading>
-          <br />
-          <br />
-          <Text>
-            It can be tricky to figure out how
-            to do imperative DOM stuff with
-            React, but it's worth the trouble.
-          </Text>
-        </Slide>
-
-        <Slide
-          bgColor="deepPurple"
-          textColor="primary"
-        >
-          <SectionStart
-            subtitle="Element 2"
-            title="Transporting Children"
-          />
+        <Slide bgColor="deepPurple" textColor="primary">
+          <SectionStart subtitle="Element 2" title="Transporting Children" />
         </Slide>
 
         <Slide bgColor="#000000">
-          <video
-            autoPlay
-            loop
-            src={childTransporterSrc}
-            width={920}
-          />
+          <video autoPlay loop src={childTransporterSrc} width={920} />
         </Slide>
 
         <CodeSlide
@@ -908,20 +787,18 @@ export default class Presentation extends React.Component {
             { loc: [6, 7] },
 
             // State
-            { loc: [7, 10] },
-            { loc: [10, 11] },
-            { loc: [11, 14] },
-            { loc: [15, 18] },
-            { loc: [19, 29] },
-            { loc: [26, 27] },
+            { loc: [7, 9] },
+            { loc: [9, 17] },
+
             // render
-            { loc: [32, 41] },
+            { loc: [19, 28] },
             // exports
-            { loc: [43, 47] },
+            { loc: [30, 34] },
           ]}
         />
 
         <CodeSlide
+          transition={['none']}
           bgColor="secondary"
           lang="jsx"
           code={require('./code/NodeProviderConsumption.example')}
@@ -935,7 +812,7 @@ export default class Presentation extends React.Component {
             { loc: [3, 6] },
 
             // InboxHeading
-            { loc: [10, 21] },
+            { loc: [10, 19] },
             { loc: [11, 13] },
             { loc: [13, 16] },
 
@@ -943,6 +820,47 @@ export default class Presentation extends React.Component {
             { loc: [20, 29] },
           ]}
         />
+
+        {/* <CodeSlide
+          bgColor="secondary"
+          lang="jsx"
+          code={require('./code/ChildTransporter.example')}
+          ranges={[
+            {
+              loc: [0],
+              title: '<ChildTransporter />',
+              note: '✂️ Abridged Version ✂️',
+            },
+            { loc: [0, 11] },
+            { loc: [2, 3] },
+            { loc: [3, 5] },
+            { loc: [5, 10] },
+
+            { loc: [13, 14] },
+            { loc: [14, 25] },
+
+            { loc: [26, 33] },
+            { loc: [34, 35] },
+            { loc: [37, 40] },
+            { loc: [42, 44] },
+            { loc: [45, 51] },
+
+            { loc: [53, 54] },
+            { loc: [53, 63] },
+
+            { loc: [64, 81] },
+
+            { loc: [82, 83] },
+            { loc: [83, 101] },
+            { loc: [102, 105] },
+
+            { loc: [106, 107] },
+            { loc: [110, 127] },
+            { loc: [128, 132] },
+            { loc: [134, 145] },
+            { loc: [145, 146] },
+          ]}
+        /> */}
 
         <CodeSlide
           bgColor="secondary"
@@ -965,10 +883,23 @@ export default class Presentation extends React.Component {
         />
 
         <Slide>
-          TODO: ChildTraveller code
+          TODO: image showing the ChildTransporter terms overlaid on a
+          screenshot of whimsical mail
         </Slide>
 
-        <Slide>Conclusion</Slide>
+        {/*
+
+
+
+        CONCLUSION
+
+
+
+        */}
+
+        <Slide bgColor="teal">
+          <SectionStart title="Conclusion" />
+        </Slide>
 
         <Slide
           notes={`
@@ -982,25 +913,13 @@ export default class Presentation extends React.Component {
             There's so much really cool stuff we can build.
           `}
         >
-          <Heading
-            textFont="secondary"
-            textColor="purple"
-            size={4}
-          >
+          <Heading textFont="secondary" textColor="purple" size={4}>
             There's
           </Heading>
-          <Heading
-            textFont="secondary"
-            textColor="pink"
-            size={1}
-          >
+          <Heading textFont="secondary" textColor="pink" size={1}>
             SO MUCH
           </Heading>
-          <Heading
-            textFont="secondary"
-            textColor="purple"
-            size={4}
-          >
+          <Heading textFont="secondary" textColor="purple" size={4}>
             unexplored territory
           </Heading>
         </Slide>
@@ -1010,38 +929,25 @@ export default class Presentation extends React.Component {
         </Slide>
 
         <Slide>
-          <Heading
-            textFont="secondary"
-            textColor="purple"
-            size={4}
-          >
+          <Heading textFont="secondary" textColor="purple" size={4}>
             And the future is
           </Heading>
-          <Heading
-            textFont="secondary"
-            textColor="pink"
-            size={1}
-          >
+          <Heading textFont="secondary" textColor="pink" size={1}>
             SO EXCITING
           </Heading>
         </Slide>
 
-        <Slide bgColor="secondary">
+        <Slide>
           <Heading
             textFont="secondary"
-            textColor="primary"
+            textColor="purple"
             size={2}
             style={{ marginTop: -150 }}
           >
             CSS Paint
           </Heading>
           <br />
-          <video
-            autoPlay
-            loop
-            src={houdiniSrc}
-            style={{ height: 400 }}
-          />
+          <video autoPlay loop src={houdiniSrc} style={{ height: 400 }} />
         </Slide>
 
         <Slide bgColor="secondary">
@@ -1066,11 +972,7 @@ export default class Presentation extends React.Component {
         </Slide>
 
         <Slide bgColor="secondary">
-          <Heading
-            textColor="pink"
-            size={1}
-            textFont="secondary"
-          >
+          <Heading textColor="pink" size={1} textFont="secondary">
             But!!
           </Heading>
           <br />
@@ -1096,30 +998,20 @@ export default class Presentation extends React.Component {
           <br />
           <br />
           <Text textColor="primary">
-            Before we should try and make our
-            sites delightful, we should strive
+            Before we should try and make our sites delightful, we should strive
             for them to be usable.
           </Text>
         </Slide>
 
         <Slide bgColor="secondary">
-          <Heading
-            textColor="primary"
-            size={4}
-          >
-            If nothing else, we should make
-            sure that our whimsical touches
-            aren't harmful for folks with
-            vestibular disorders.
+          <Heading textColor="primary" size={4}>
+            If nothing else, we should make sure that our whimsical touches
+            aren't harmful for folks with vestibular disorders.
           </Heading>
         </Slide>
 
         <Slide bgColor="secondary">
-          <Heading
-            textFont="inconsolata"
-            textColor="primary"
-            size={3}
-          >
+          <Heading textFont="inconsolata" textColor="primary" size={3}>
             prefers-reduced-motion
           </Heading>
 
@@ -1138,15 +1030,8 @@ export default class Presentation extends React.Component {
           />
         </Slide>
 
-        <Slide
-          transition={[null]}
-          bgColor="secondary"
-        >
-          <Heading
-            textFont="inconsolata"
-            textColor="primary"
-            size={3}
-          >
+        <Slide transition={[null]} bgColor="secondary">
+          <Heading textFont="inconsolata" textColor="primary" size={3}>
             prefers-reduced-motion
           </Heading>
 
@@ -1170,11 +1055,38 @@ if (prefersReducedMotion) {
         </Slide>
 
         <Slide bgColor="#f2e8d6">
-          <FullscreenImage
-            src={
-              caniusePrefersReducedMotionSrc
-            }
-          />
+          <FullscreenImage src={caniusePrefersReducedMotionSrc} />
+        </Slide>
+
+        <Slide
+          bgColor="secondary"
+          notes={`
+            Even if you don't need confetti, though, I'd encourage you to
+            imagine what you could use that <Canvas /> component for.
+
+            A common thing we developers like to tell designers is that
+            something is "non-trivial". Right? I've used this. This is about
+            expanding our toolkit, so that if we have an idea for something,
+            or we get a design for something tricky, we have more tools in our
+            toolbox to tackle it.
+          `}
+        >
+          <Heading textColor="yellow" textFont="secondary">
+            The Takeaway
+          </Heading>
+          <Spacer size={80} />
+
+          <Heading textColor="pink" size={5}>
+            <span style={{ color: 'white' }}>Whimsical experiences</span> lead
+            to better user experiences.
+          </Heading>
+
+          <Spacer size={40} />
+
+          <Heading textColor="pink" size={5}>
+            By <span style={{ color: 'white' }}>expanding our toolbox</span>, we
+            can build a wider variety of experiences .
+          </Heading>
         </Slide>
 
         <Slide bgColor="secondary">
@@ -1188,12 +1100,8 @@ if (prefersReducedMotion) {
           <br />
           <br />
           <br />
-          <Text textColor="primary">
-            Slides and code available at
-          </Text>
-          <Heading textColor="blue">
-            @joshwcomeau
-          </Heading>
+          <Text textColor="primary">Slides and code available at</Text>
+          <Heading textColor="blue">@joshwcomeau</Heading>
         </Slide>
       </Deck>
     );

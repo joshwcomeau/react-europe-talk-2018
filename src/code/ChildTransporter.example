@@ -1,21 +1,17 @@
-import React, { Component } from 'react';
-import PropTypes from 'prop-types';
-import { Motion, spring } from 'react-motion';
-
 class ChildTransporter extends Component {
   static propTypes = {
     children: PropTypes.node,
     from: PropTypes.object,
     to: PropTypes.object,
     status: PropTypes.oneOf([
-      'closed',
       'open',
+      'closed',
       'retracted',
     ]),
   };
 
   state = {
-    status: this.props.status,
+    inTransit: boolean,
     position: {
       top: null,
       left: null,
@@ -51,203 +47,40 @@ class ChildTransporter extends Component {
       {
         position: initialPositionState,
       },
-      this.playAnimation
+      this.startAnimation
     );
   }
 
   getInitialPositionState(status) {
-    const {
-      fromRect,
-      toRect,
-      childRect,
-    } = this;
-
-    if (!fromRect || !toRect || !childRect) {
-      throw new Error(
-        'Tried to get position without necessary rects!'
-      );
-    }
-
-    const relativeRect =
-      status === 'closed' ? toRect : fromRect;
-
-    const quadrant = this.getQuadrant(
-      relativeRect
-    );
-
-    const childPosition = this.getChildPosition(
-      quadrant,
-      relativeRect,
-      status
-    );
-
-    const {
-      translateX,
-      translateY,
-    } = this.getTranslate(
-      status,
-      childPosition
-    );
+    const childPosition = /* ✂️ */;
+    const translate =
+      this.getTranslate(/* ✂️ */);
 
     return {
       ...childPosition,
-      translateX,
-      translateY,
-      scaleX: this.state.position.scaleX,
-      scaleY: this.state.position.scaleY,
+      ...translate
     };
   }
 
-  playAnimation = () => {
-    const { status } = this.props;
-
-    let nextStatus;
-    if (status === 'open') {
-      nextStatus = 'opening';
-    } else if (status === 'closed') {
-      nextStatus = 'closing';
-    } else if (status === 'retracted') {
-      nextStatus = 'retracting';
-    } else {
-      throw new Error(
-        '`playAnimation` called at an invalid moment in time'
-      );
-    }
+  startAnimation = () => {
+    const scale =
+      this.props.status === 'opening'
+        ? 1
+        : 0;
 
     this.setState({
-      status: nextStatus,
+      inTransit: true,
       position: {
         ...this.state.position,
         translateX: 0,
         translateY: 0,
-        scaleX:
-          nextStatus === 'opening' ? 1 : 0,
-        scaleY:
-          nextStatus === 'opening' ? 1 : 0,
+        scaleX: scale,
+        scaleY: scale,
       },
     });
   };
 
-  finishPlaying = () => {
-    const { status } = this.state;
-
-    let restingStatus;
-    if (status === 'opening') {
-      restingStatus = 'open';
-    } else if (status === 'closing') {
-      restingStatus = 'closed';
-    } else if (status === 'retracting') {
-      restingStatus = 'retracted';
-    } else {
-      return;
-    }
-
-    this.setState({ status: restingStatus });
-  };
-
-  getQuadrant(targetRect) {
-    const {
-      windowWidth,
-      windowHeight,
-    } = this.props;
-
-    // When expanding from something, we want
-    // to use its "opposite" corner. Imagine
-    // we divide the screen into quadrants:
-    //  ___________
-    // |  1  |  2  |
-    // |-----|-----|
-    // |  3  |  4  |
-    // ------------
-
-    const windowCenter = {
-      x: windowWidth / 2,
-      y: windowHeight / 2,
-    };
-
-    if (targetRect.centerY < windowCenter.y) {
-      // top half, left or right
-      return targetRect.centerX <
-        windowCenter.x
-        ? 1
-        : 2;
-    } else {
-      // bottom half, left or right
-      return targetRect.centerX <
-        windowCenter.x
-        ? 3
-        : 4;
-    }
-  }
-
-  getChildPosition(
-    quadrant,
-    targetRect,
-    status
-  ) {
-    const { childRect } = this;
-
-    const orientRelativeToCorner =
-      status === 'open' ||
-      status === 'retracted';
-
-    switch (quadrant) {
-      case 1:
-        return {
-          top: orientRelativeToCorner
-            ? targetRect.bottom
-            : targetRect.centerY -
-              childRect.height / 2,
-          left: orientRelativeToCorner
-            ? targetRect.right
-            : targetRect.centerX -
-              childRect.width / 2,
-        };
-      case 2:
-        return {
-          top: orientRelativeToCorner
-            ? targetRect.bottom
-            : targetRect.centerY -
-              childRect.height / 2,
-          right: orientRelativeToCorner
-            ? targetRect.fromBottomRight.left
-            : targetRect.fromBottomRight
-                .centerX -
-              childRect.width / 2,
-        };
-      case 3:
-        return {
-          bottom: orientRelativeToCorner
-            ? targetRect.fromBottomRight.top
-            : targetRect.fromBottomRight
-                .centerY -
-              childRect.height / 2,
-          left: orientRelativeToCorner
-            ? targetRect.right
-            : targetRect.centerX -
-              childRect.width / 2,
-        };
-      case 4:
-        return {
-          bottom: orientRelativeToCorner
-            ? targetRect.fromBottomRight.top
-            : targetRect.fromBottomRight
-                .centerY -
-              childRect.height / 2,
-          right: orientRelativeToCorner
-            ? targetRect.fromBottomRight.left
-            : targetRect.fromBottomRight
-                .centerX -
-              childRect.width / 2,
-        };
-      default:
-        throw new Error(
-          `Unrecognized quadrant: ${quadrant}`
-        );
-    }
-  }
-
-  getTranslate(status, pendingChildRect) {
+  getTranslate(pendingChildRect, status) {
     const {
       childRect: currentChildRect,
     } = this;
@@ -263,54 +96,33 @@ class ChildTransporter extends Component {
       currentChildRect,
       pendingChildRect
     );
+
     return { translateX: x, translateY: y };
   }
 
+  finishPlaying = () => {
+    this.setState({ inTransit: false });
+  };
+
   render() {
-    const {
-      children,
-      springOpenHorizontal,
-      springOpenVertical,
-      springCloseHorizontal,
-      springCloseVertical,
-    } = this.props;
+    const { children } = this.props;
     const { status, position } = this.state;
-
-    const {
-      top,
-      left,
-      right,
-      bottom,
-      scaleX,
-      scaleY,
-      translateX,
-      translateY,
-    } = position;
-
-    const shouldSpringScale = [
-      'opening',
-      'closing',
-      'retracting',
-    ].includes(status);
-
-    const shouldSpringTransform =
-      status === 'closing';
 
     return (
       <Motion
         style={{
-          scaleX: shouldSpringScale
-            ? spring(scaleX)
-            : scaleX,
-          scaleY: shouldSpringScale
-            ? spring(scaleY)
-            : scaleY,
-          translateX: shouldSpringTransform
-            ? spring(translateX)
-            : translateX,
-          translateY: shouldSpringTransform
-            ? spring(translateY)
-            : translateY,
+          scaleX: inTransit
+            ? spring(position.scaleX)
+            : position.scaleX,
+          scaleY: inTransit
+            ? spring(position.scaleY)
+            : position.scaleY,
+          translateX: inTransit
+            ? spring(position.translateX)
+            : position.translateX,
+          translateY: inTransit
+            ? spring(position.translateY)
+            : position.translateY,
         }}
       >
         {({
@@ -324,11 +136,7 @@ class ChildTransporter extends Component {
               this.childWrapperNode = node;
             }}
             style={{
-              position: 'fixed',
-              top,
-              left,
-              bottom,
-              right,
+              ...position
               transform: `
                 translate(${translateX}px, ${translateY}px)
                 scale(${scaleX}, ${scaleY})
