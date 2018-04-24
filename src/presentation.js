@@ -38,10 +38,11 @@ import tobiasActionPromptSrc from './assets/tobias-action-prompt.gif';
 import newSendAnimatedSrc from './assets/new-send-animated.mp4';
 import newCloseAnimatedSrc from './assets/new-close-animated.mp4';
 import tooMuchAnimationSrc from './assets/too-much-animation-rachel-nabors.jpeg';
-import whimsicalOverallSrc from './assets/whimsical-overall.mp4';
-import whimsicalReplySrc from './assets/whimsical-reply.mp4';
-import whimsicalFoldSlowmoSrc from './assets/whimsical-fold-slowmo.mp4';
-import childTransporterSrc from './assets/child-transporter.mp4';
+import whimsicalNodesSrc from './assets/whimsical-nodes.mp4';
+import whimsicalMeaningfulSrc from './assets/whimsical-meaningful.mp4';
+import whimsicalFold from './assets/whimsical-fold.mp4';
+import childTransporterStorybookSrc from './assets/child-transporter-storybook.mp4';
+import childTransporterAreasSrc from './assets/child-transporter-areas.jpg';
 import houdiniSrc from './assets/houdini-ripple.mp4';
 import webRenderSrc from './assets/webrender.mp4';
 import caniusePrefersReducedMotionSrc from './assets/caniuse-prefers-reduced-motion.png';
@@ -427,22 +428,13 @@ export default class Presentation extends React.Component {
             { loc: [97, 98] },
             { loc: [99, 104] },
             { loc: [105, 106] },
-
-            // Render again
-            { loc: [124, 125] },
           ]}
         />
 
-        <Slide>TODO: SVG vs Canvas?</Slide>
-
-        <Slide>
-          TODO: Performance. Talk about how at this scale, you have 16ms per
-          frame, and that's really only 10ms of JS-time. React re-rendering
-          takes x ms, an cloning an object takes 0.5ms, which is actually
-          significant at this scale.
-          <br />
-          Although do mention that even at this scale, `map` is fine instead of
-          a `for` loop, inline functions are still fine, etc.
+        <Slide bgColor="secondary" transition={[null]}>
+          <Heading textColor="purple">
+            Why not <span style={{ color: COLORS.pink[500] }}>SVG</span>?
+          </Heading>
         </Slide>
 
         <Slide
@@ -503,8 +495,8 @@ export default class Presentation extends React.Component {
           <SectionStart subtitle="Example 2" title="Email Client" />
         </Slide>
 
-        <Slide bgColor="#000000">
-          <video controls src={whimsicalOverallSrc} width={920} />
+        <Slide bgColor="secondary" textColor="primary">
+          [Go do a demo Josh!]
         </Slide>
 
         <Slide
@@ -526,7 +518,7 @@ export default class Presentation extends React.Component {
             Meaningful & action-driven:
           </Heading>
           <Spacer size={40} />
-          TODO: GIF
+          <video autoPlay loop src={whimsicalMeaningfulSrc} width={920} />
         </Slide>
 
         <Slide
@@ -572,7 +564,8 @@ export default class Presentation extends React.Component {
             Transporting between nodes
           </Heading>
           <Spacer size={40} />
-          TODO: GIF
+
+          <video autoPlay loop src={whimsicalNodesSrc} width={920} />
         </Slide>
 
         <Slide
@@ -586,7 +579,7 @@ export default class Presentation extends React.Component {
             Folding animation
           </Heading>
           <Spacer size={40} />
-          TODO: GIF
+          <video autoPlay loop src={whimsicalFold} width={920} />
         </Slide>
 
         <Slide
@@ -620,8 +613,9 @@ export default class Presentation extends React.Component {
             we should abolish jokes entirely!
 
             You can also just add a user setting to disable animations, which
-            is not only helpful for straight-to-business curmudgeons, but also
-            folks with vestibular disorders. More on this in a bit.
+            is not only helpful for no-nonsense, right-down-to-business
+            curmudgeons, but also folks with vestibular disorders.
+            More on this in a bit.
           `}
         >
           <Heading textFont="secondary" textColor="green" size={3}>
@@ -769,7 +763,7 @@ export default class Presentation extends React.Component {
         </Slide>
 
         <Slide bgColor="#000000">
-          <video autoPlay loop src={childTransporterSrc} width={920} />
+          <video autoPlay loop src={childTransporterStorybookSrc} width={920} />
         </Slide>
 
         <CodeSlide
@@ -862,6 +856,10 @@ export default class Presentation extends React.Component {
           ]}
         /> */}
 
+        <Slide bgColor="secondary">
+          <FullscreenImage src={childTransporterAreasSrc} />
+        </Slide>
+
         <CodeSlide
           bgColor="secondary"
           lang="jsx"
@@ -881,11 +879,6 @@ export default class Presentation extends React.Component {
             { loc: [14, 19] },
           ]}
         />
-
-        <Slide>
-          TODO: image showing the ChildTransporter terms overlaid on a
-          screenshot of whimsical mail
-        </Slide>
 
         {/*
 
