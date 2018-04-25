@@ -118,6 +118,7 @@ const theme = createTheme(
     purple: COLORS.purple[500],
     deepPurple: COLORS.deepPurple[700],
     pink: COLORS.pink[500],
+    indigo: COLORS.indigo[700],
     blue: COLORS.blue[500],
     red: COLORS.red[500],
     green: COLORS.green[700],
@@ -867,7 +868,7 @@ export default class Presentation extends React.Component {
           ranges={[
             {
               loc: [0],
-              title: 'ChildTransporter Usage',
+              title: '<Transport /> Usage',
             },
             { loc: [0, 1] },
             { loc: [1, 4] },
@@ -1052,7 +1053,6 @@ if (prefersReducedMotion) {
         </Slide>
 
         <Slide
-          bgColor="secondary"
           notes={`
             Even if you don't need confetti, though, I'd encourage you to
             imagine what you could use that <Canvas /> component for.
@@ -1064,25 +1064,30 @@ if (prefersReducedMotion) {
             toolbox to tackle it.
           `}
         >
-          <Heading textColor="yellow" textFont="secondary">
+          {/* <Heading textColor="yellow" textFont="secondary">
             The Takeaway
-          </Heading>
-          <Spacer size={80} />
+          </Heading> */}
 
-          <Heading textColor="pink" size={5}>
-            <span style={{ color: 'white' }}>Whimsical experiences</span> lead
-            to better user experiences.
+          <Heading textColor="indigo" size={5}>
+            When it comes to animation and interaction, there are many unsolved
+            problems.
           </Heading>
-
           <Spacer size={40} />
-
+          <Heading textColor="deepPurple" size={5}>
+            But, they're not unsolvable! And they'll get easier over time.
+          </Heading>
+          <Spacer size={40} />
           <Heading textColor="pink" size={5}>
-            By <span style={{ color: 'white' }}>expanding our toolbox</span>, we
-            can build a wider variety of experiences .
+            This stuff matters to the user experience, and it's super fun to
+            build!
+          </Heading>
+          <Spacer size={40} />
+          <Heading textColor="red" size={5}>
+            Come help work on it!
           </Heading>
         </Slide>
 
-        <Slide bgColor="secondary">
+        <Slide>
           <Heading
             textColor="pink"
             textFont="secondary"

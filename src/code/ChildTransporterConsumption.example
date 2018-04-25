@@ -12,7 +12,7 @@ class ComposeEmailModal extends Component {
           composeButton,
           outboxHeading,
         }) => (
-          <ChildTransporter
+          <Transport
             status={this.state.status}
             fromNode={composeButton}
             toNode={outboxHeading}
