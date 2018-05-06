@@ -592,17 +592,6 @@ export default class Presentation extends React.Component {
             And that's a totally fair bit of feedback, but it's also easy to address.
           `}
         >
-          <Heading
-            size={4}
-            textColor="primary"
-            textFont="secondary"
-            style={{
-              marginTop: -100,
-              marginBottom: 50,
-            }}
-          >
-            I know what you're thinking...
-          </Heading>
           <FullscreenImage src={tooMuchAnimationSrc} />
           <Caption>Source: Rachel Nabors, rachelnabors.com</Caption>
         </Slide>
@@ -800,7 +789,7 @@ export default class Presentation extends React.Component {
           ranges={[
             {
               loc: [0],
-              title: 'Usage',
+              title: 'NodeProvider Usage',
             },
             // App
             { loc: [0, 9] },
@@ -858,6 +847,8 @@ export default class Presentation extends React.Component {
         /> */}
 
         <Slide bgColor="secondary">
+          <Heading textColor="primary">{'<Transport />'}</Heading>
+          <Spacer size={40} />
           <FullscreenImage src={childTransporterAreasSrc} />
         </Slide>
 
@@ -1052,6 +1043,13 @@ if (prefersReducedMotion) {
           <FullscreenImage src={caniusePrefersReducedMotionSrc} />
         </Slide>
 
+        <Slide>
+          <Heading size={4} textColor="green">
+            At Khan Academy, we have a "disable animations" property on our user
+            model. We check that as well as `prefers-reduced-motion`.
+          </Heading>
+        </Slide>
+
         <Slide
           notes={`
             Even if you don't need confetti, though, I'd encourage you to
@@ -1064,26 +1062,25 @@ if (prefersReducedMotion) {
             toolbox to tackle it.
           `}
         >
-          {/* <Heading textColor="yellow" textFont="secondary">
+          <Heading textColor="green" textFont="secondary">
             The Takeaway
-          </Heading> */}
+          </Heading>
+          <Spacer size={40} />
 
           <Heading textColor="indigo" size={5}>
-            When it comes to animation and interaction, there are many unsolved
-            problems.
+            Animations and interactions are a key part of the user experience.
           </Heading>
-          <Spacer size={40} />
+          <Spacer size={20} />
           <Heading textColor="deepPurple" size={5}>
-            But, they're not unsolvable! And they'll get easier over time.
+            There are really interesting unsolved problems here.
           </Heading>
-          <Spacer size={40} />
+          <Spacer size={20} />
           <Heading textColor="pink" size={5}>
-            This stuff matters to the user experience, and it's super fun to
-            build!
+            This area is poised to blow up, as new web technologies emerge.
           </Heading>
-          <Spacer size={40} />
+          <Spacer size={20} />
           <Heading textColor="red" size={5}>
-            Come help work on it!
+            Come be a part of it!
           </Heading>
         </Slide>
 
@@ -1093,7 +1090,7 @@ if (prefersReducedMotion) {
             textFont="secondary"
             style={{ marginTop: -150 }}
           >
-            That's all, folks!
+            Thanks!
           </Heading>
           <br />
           <br />
