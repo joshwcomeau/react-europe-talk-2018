@@ -1,8 +1,3 @@
-import React, { Component } from 'react';
-import PropTypes from 'prop-types';
-
-import Canvas from '../Canvas';
-
 class Confetti extends Component {
   static propTypes = {
     width: PropTypes.number.isRequired,
@@ -18,16 +13,11 @@ class Confetti extends Component {
     maxSpeed: PropTypes.number,
     minScale: PropTypes.number,
     maxScale: PropTypes.number,
-    onComplete: PropTypes.func,
 
     makeItRainOn: PropTypes.oneOf([
       'click',
       'mount', // Not implemented
     ]),
-  };
-
-  static defaultProps = {
-    // ✂️ Sensible defaults ✂️
   };
 
   state = {
@@ -46,24 +36,15 @@ class Confetti extends Component {
     }
   }
 
-  componentWillUnmount() {
-    window.cancelAnimationFrame(this.rafId);
-  }
-
   generateParticles = () => {
-    let i = 0;
-    let newParticles = [];
-
-    while (i < this.props.numParticles) {
-      // ✂️ Particle initialization ✂️
-      // Includes generating random values
-      // for size, speed, spin, twist, etc.
-      // Features ~trigonometry~
-
-      newParticles.push(newParticle);
-
-      i++;
-    }
+    const newParticles =
+      range(0, this.props.numParticles)
+        .map(() => {
+          // ✂️ Particle initialization ✂️
+          // Includes generating random values
+          // for size, speed, spin, twist...
+          // Features ~trigonometry~
+        });
 
     this.setState({
       particles: [
@@ -74,36 +55,23 @@ class Confetti extends Component {
   };
 
   tick = () => {
-    if (this.state.particles.length === 0) {
-      return;
-    }
+    window.requestAnimationFrame(() => {
+      const particles = this.calculateNextPositionForParticles();
 
-    this.rafId = window.requestAnimationFrame(
-      () => {
-        const particles = this.calculateNextPositionForParticles();
-
-        this.setState(
-          { particles },
-          this.tick
-        );
-      }
-    );
+      this.setState(
+        { particles },
+        this.tick
+      );
+    });
   };
 
   calculateNextPositionForParticles = () => {
-    const now = Date.now();
-
     return this.state.particles
       .map(particle => {
         // ✂️ Particle calculations ✂️
-
-        if (particleNotOnScreen) {
-          return null;
-        } else {
-          return updatedParticle;
-        }
+        // Figure out each particle's new
+        // onscreen position
       })
-      .filter(particle => !!particle);
   };
 
   draw = ctx => {
@@ -128,10 +96,6 @@ class Confetti extends Component {
       height,
       makeItRainOn,
     } = this.props;
-
-    if (prefersReducedMotion()) {
-      return null;
-    }
 
     return (
       <Canvas

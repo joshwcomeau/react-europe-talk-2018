@@ -9,14 +9,16 @@ class ComposeEmailModal extends Component {
     return (
       <NodeConsumer>
         {({
-          composeButton,
+          composeBtn,
           outboxHeading,
         }) => (
           <Transport
             status={this.state.status}
-            fromNode={composeButton}
+            fromNode={composeBtn}
             toNode={outboxHeading}
-          />
+          >
+            <FoldableLetter />
+          </Transport>
         )}
       </NodeConsumer>
     );

@@ -35,8 +35,6 @@ import confettiMockupSrc from './assets/confetti-mockup.png';
 import khanConfettiSrc from './assets/confetti.mp4';
 import tobiasStatePromptSrc from './assets/tobias-state-prompt.gif';
 import tobiasActionPromptSrc from './assets/tobias-action-prompt.gif';
-import newSendAnimatedSrc from './assets/new-send-animated.mp4';
-import newCloseAnimatedSrc from './assets/new-close-animated.mp4';
 import tooMuchAnimationSrc from './assets/too-much-animation-rachel-nabors.jpeg';
 import whimsicalNodesSrc from './assets/whimsical-nodes.mp4';
 import whimsicalMeaningfulSrc from './assets/whimsical-meaningful.mp4';
@@ -50,6 +48,9 @@ import magicSchoolBusSrc from './assets/magic-school-bus.gif';
 import emailRetractSrc from './assets/email-retract.gif';
 import emailSaveSrc from './assets/email-save.gif';
 import emailSendSrc from './assets/email-send.gif';
+import nodeProviderFlowChartSrc from './assets/node-provider-flow-chart.png';
+import unsplashErrorKetchupSrc from './assets/unsplash-error-ketchup.mp4';
+import unsplashErrorCatSrc from './assets/unsplash-error-cat.mp4';
 
 import FullscreenImage from './components/FullscreenImage';
 import Video from './components/Video';
@@ -95,8 +96,8 @@ preloader({
   khanConfettiSrc,
   tobiasStatePromptSrc,
   tobiasActionPromptSrc,
-  newSendAnimatedSrc,
-  newCloseAnimatedSrc,
+  unsplashErrorKetchupSrc,
+  unsplashErrorCatSrc,
 });
 
 // HACK: Spectacle applies a `transform: scale(1)` to all slides.
@@ -156,6 +157,8 @@ export default class Presentation extends React.Component {
           bgColor="secondary"
           notes={`
             I started using the internet in the 90s, and at that time, the internet looked like this.<br /><br />
+
+            Everything was perpetually under construction, we found new stuff through web rings, and we hadn't yet discovered web design, that wasn't a thing yet.
           `}
         >
           <FullscreenImage src={jesseSkiingSrc} />
@@ -259,11 +262,27 @@ export default class Presentation extends React.Component {
         </Slide>
 
         <Slide bgColor="secondary">
-          <Video videoId={261999187} />
+          <video
+            autoPlay
+            loop
+            src={unsplashErrorKetchupSrc}
+            style={{
+              width: '75%',
+              margin: 'auto',
+            }}
+          />
         </Slide>
 
         <Slide bgColor="secondary" transition={['none']}>
-          <Video videoId={261999178} />
+          <video
+            autoPlay
+            loop
+            src={unsplashErrorCatSrc}
+            style={{
+              width: '75%',
+              margin: 'auto',
+            }}
+          />
         </Slide>
 
         <Slide
@@ -380,92 +399,80 @@ export default class Presentation extends React.Component {
               title: '<Confetti />',
               note: '✂️ Abridged Version ✂️',
             },
-            { loc: [3, 4] },
-            { loc: [5, 9] },
-            { loc: [10, 21] },
-            { loc: [22, 26] },
-            { loc: [28, 31] },
-            { loc: [32, 35] },
+            { loc: [0, 1] },
+            { loc: [2, 4] },
+            { loc: [5, 15] },
+            { loc: [16, 20] },
+            { loc: [22, 25] },
+
             // Render
-            { loc: [124, 125] },
-            { loc: [131, 134] },
-            { loc: [135, 146] },
-            { loc: [139, 140] },
-            { loc: [140, 144] },
+            { loc: [92, 93] },
+            { loc: [93, 98] },
+            { loc: [99, 110] },
+            { loc: [103, 104] },
+            { loc: [104, 108] },
             // draw
-            { loc: [108, 123] },
-            { loc: [111, 112] },
-            { loc: [113, 117] },
-            { loc: [118, 119] },
-            { loc: [120, 121] },
+            { loc: [76, 77] },
+            { loc: [79, 80] },
+            { loc: [81, 82] },
+            { loc: [82, 85] },
+            { loc: [86, 87] },
+            { loc: [88, 89] },
 
             // generateParticles
-            { loc: [52, 53] },
-            { loc: [53, 57] },
-            { loc: [57, 61] },
-            { loc: [62, 63] },
-            { loc: [64, 65] },
-            { loc: [67, 73] },
+            { loc: [38, 39] },
+            { loc: [39, 41] },
+            { loc: [41, 47] },
+            { loc: [48, 54] },
             {
-              loc: [67, 73],
+              loc: [48, 54],
               note: 'How does our animation loop start?',
             },
 
             // cDU
-            { loc: [36, 47] },
+            { loc: [26, 37] },
 
             // tick
-            { loc: [75, 91] },
-            { loc: [76, 79] },
-            { loc: [80, 82] },
-            { loc: [82, 83] },
-            { loc: [84, 88] },
-            { loc: [86, 87] },
+            { loc: [56, 57] },
+            { loc: [57, 58] },
+            { loc: [58, 59] },
+            { loc: [60, 64] },
+            { loc: [62, 63] },
 
             // calculateNextPositionForParticles
-            { loc: [92, 93] },
-            { loc: [93, 94] },
-            { loc: [95, 97] },
-            { loc: [97, 98] },
-            { loc: [99, 104] },
-            { loc: [105, 106] },
+            { loc: [67, 68] },
+            { loc: [68, 74] },
+
+            // Render
+            { loc: [92, 111] },
           ]}
         />
 
         <Slide bgColor="secondary" transition={[null]}>
-          <Heading textColor="purple">
-            Why not <span style={{ color: COLORS.pink[500] }}>SVG</span>?
-          </Heading>
+          <Heading textColor="red">Perf Hacks</Heading>
+          <List textColor="primary">
+            <ListItem>Use Canvas</ListItem>
+            <ListItem>Mutate variables</ListItem>
+            <ListItem>Sneak around React</ListItem>
+          </List>
         </Slide>
 
         <Slide
           bgColor="secondary"
           notes={`
-            This may seem very niche, or not relevant to the work y'all do.
-            I think you'd be surprised how handy it can be, though.
+            This may seem like a niche example, specific only to Khan Academy, but you may be surprised how useful this knowledge can be...
           `}
         >
-          <Heading textColor="purple" textFont="secondary" size={3}>
-            I work at <br />
-            <span
-              style={{
-                fontWeight: 100,
-                fontFamily: 'monospace',
-                color: COLORS.pink[500],
-              }}
-            >
-              [serious company]
-            </span>,
-            <br />
-            we wouldn't add confetti to our app!
+          <Heading textColor="pink" textFont="secondary" size={3}>
+            “But I'm not building an educational app...”
           </Heading>
         </Slide>
 
         <Slide
           notes={`
-            Facebook, for example, has an easter egg that pops confetti. I
-            think I've seen it on Medium as well, when they do their
-            end-of-year summaries.
+            Facebook, for example, has an easter egg that pops confetti. Twitter does something similar on your birthday. Many apps celebrate milestones.
+
+            There is often a gap between what designers want, and what is feasible to build. How many times have y'all gotten a mockup from product and said "X is non-trivial"? Wouldn't it be great if our toolkit was expanded, so that more things were trivial?
 
             But yeah, I take the point that not every app needs whimsical
             Canvas animations.
@@ -501,29 +508,8 @@ export default class Presentation extends React.Component {
         </Slide>
 
         <Slide
-          notes={`
-            There's a lot going on in this demo, so let's break it down into
-            a few pieces.
-
-            First, I'd like to focus on the fact that these animations are
-            action-driven, not state-driven.
-
-            In React, we typically animate based on our application's state,
-            like whether or not a modal is open. In this case, though, I'm
-            animating in response to the user's action. Cancelling a modal
-            is different from saving a draft, which is different from sending
-            an email.
-          `}
-        >
-          <Heading textFont="secondary" size={4}>
-            Meaningful & action-driven:
-          </Heading>
-          <Spacer size={40} />
-          <video autoPlay loop src={whimsicalMeaningfulSrc} width={920} />
-        </Slide>
-
-        <Slide
           bgColor="secondary"
+          transition={['none']}
           notes={`
             I'm only scratching the surface of this subject, but I'd encourage
             y'all to check out this blog post if the distinction between state-
@@ -550,34 +536,13 @@ export default class Presentation extends React.Component {
 
         <Slide
           notes={`
-            Next up, there's the idea that nodes on our page can function as
-            spawn points, as well as receivers, for our modals.
-
-            In addition to being a whimsical touch, I feel like this is really
-            useful. it's happened to me where I'll save a draft in some app,
-            and then I have no idea where to find the draft I saved. Some apps
-            rely on those convoluted tooltip walkthroughs for this, you know,
-            those things everyone bails out of ASAP? Why not use animations to
-            show the user how our app is laid out?
-          `}
-        >
-          <Heading textFont="secondary" size={4}>
-            Transporting between nodes
-          </Heading>
-          <Spacer size={40} />
-
-          <video autoPlay loop src={whimsicalNodesSrc} width={920} />
-        </Slide>
-
-        <Slide
-          notes={`
             Finally, there's this cute folding animation. This is my favorite
             part of it, because it's a throwback to the days of snail mail, and
             who doesn't like receiving a letter?
           `}
         >
           <Heading textFont="secondary" size={4}>
-            Folding animation
+            Slow-mo fold
           </Heading>
           <Spacer size={40} />
           <video autoPlay loop src={whimsicalFold} width={920} />
@@ -598,6 +563,7 @@ export default class Presentation extends React.Component {
 
         <Slide
           bgColor="secondary"
+          transition={['none']}
           notes={`
             A joke isn't funny the 70th time you hear it, but that doesn't mean
             we should abolish jokes entirely!
@@ -667,54 +633,6 @@ export default class Presentation extends React.Component {
           ]}
         />
 
-        {/* <CodeSlide
-          bgColor="secondary"
-          lang="flow"
-          code={require('./code/Foldable.example')}
-          ranges={[
-            {
-              loc: [0],
-              title: '<Foldable />',
-            },
-            // Props, defaultProps, instance vars
-            { loc: [9, 16] },
-            { loc: [17, 21] },
-            { loc: [22, 24] },
-
-            // `componentDidUpdate`
-            { loc: [25, 41] },
-            // `componentWillUnmount`
-            { loc: [42, 50] },
-
-            // `renderOriginal`
-            { loc: [51, 67] },
-
-            // `renderFoldedCopy`
-            { loc: [68, 70] },
-            { loc: [71, 77] },
-            { loc: [78, 83] },
-            { loc: [84, 93] },
-            // `TopFold`
-            { loc: [93, 110] },
-            { loc: [93, 100] },
-            { loc: [100, 101] },
-            { loc: [101, 107] },
-            { loc: [108, 109] },
-            // `MiddleFold` and `BottomFold`
-            { loc: [111, 124] },
-            { loc: [125, 145] },
-
-            // `render`
-            { loc: [149, 158] },
-
-            // CSS highlights
-            { loc: [160, 172] }, // keyframes 1
-            { loc: [219, 220] }, // transform-style
-            { loc: [240, 249] }, // FoldContents
-            { loc: [250, 261] }, // TopFoldBack
-          ]}
-        /> */}
-
         <Slide
           notes={`
             For imperative effects like this, it can be a bit tricky to figure
@@ -759,6 +677,7 @@ export default class Presentation extends React.Component {
         <CodeSlide
           bgColor="secondary"
           lang="jsx"
+          transition={['none']}
           code={require('./code/NodeProvider.example')}
           ranges={[
             {
@@ -805,56 +724,23 @@ export default class Presentation extends React.Component {
           ]}
         />
 
-        {/* <CodeSlide
-          bgColor="secondary"
-          lang="jsx"
-          code={require('./code/ChildTransporter.example')}
-          ranges={[
-            {
-              loc: [0],
-              title: '<ChildTransporter />',
-              note: '✂️ Abridged Version ✂️',
-            },
-            { loc: [0, 11] },
-            { loc: [2, 3] },
-            { loc: [3, 5] },
-            { loc: [5, 10] },
-
-            { loc: [13, 14] },
-            { loc: [14, 25] },
-
-            { loc: [26, 33] },
-            { loc: [34, 35] },
-            { loc: [37, 40] },
-            { loc: [42, 44] },
-            { loc: [45, 51] },
-
-            { loc: [53, 54] },
-            { loc: [53, 63] },
-
-            { loc: [64, 81] },
-
-            { loc: [82, 83] },
-            { loc: [83, 101] },
-            { loc: [102, 105] },
-
-            { loc: [106, 107] },
-            { loc: [110, 127] },
-            { loc: [128, 132] },
-            { loc: [134, 145] },
-            { loc: [145, 146] },
-          ]}
-        /> */}
+        <Slide>
+          <div style={{ marginTop: -100 }}>
+            <FullscreenImage src={nodeProviderFlowChartSrc} />
+          </div>
+        </Slide>
 
         <Slide bgColor="secondary">
           <Heading textColor="primary">{'<Transport />'}</Heading>
-          <Spacer size={40} />
+          <br />
+          <br />
           <FullscreenImage src={childTransporterAreasSrc} />
         </Slide>
 
         <CodeSlide
           bgColor="secondary"
           lang="jsx"
+          transition={['none']}
           code={require('./code/ChildTransporterConsumption.example')}
           ranges={[
             {
@@ -868,7 +754,7 @@ export default class Presentation extends React.Component {
 
             { loc: [7, 8] },
             { loc: [8, 14] },
-            { loc: [14, 19] },
+            { loc: [14, 21] },
           ]}
         />
 
@@ -920,19 +806,6 @@ export default class Presentation extends React.Component {
           <Heading textFont="secondary" textColor="pink" size={1}>
             SO EXCITING
           </Heading>
-        </Slide>
-
-        <Slide>
-          <Heading
-            textFont="secondary"
-            textColor="purple"
-            size={2}
-            style={{ marginTop: -150 }}
-          >
-            CSS Paint
-          </Heading>
-          <br />
-          <video autoPlay loop src={houdiniSrc} style={{ height: 400 }} />
         </Slide>
 
         <Slide bgColor="secondary">
@@ -1085,20 +958,70 @@ if (prefersReducedMotion) {
         </Slide>
 
         <Slide>
-          <Heading
-            textColor="pink"
-            textFont="secondary"
-            style={{ marginTop: -150 }}
-          >
-            Thanks!
-          </Heading>
-          <br />
-          <br />
-          <br />
-          <Text textColor="primary">Slides and code available at</Text>
-          <Heading textColor="blue">@joshwcomeau</Heading>
+          <div style={{ position: 'relative', zIndex: 2 }}>
+            <Heading
+              textColor="pink"
+              textFont="secondary"
+              style={{ marginTop: -150 }}
+            >
+              Thanks!
+            </Heading>
+            <br />
+            <br />
+            <br />
+            <Text textColor="secondary">Slides and code available at</Text>
+            <Heading textColor="blue">@joshwcomeau</Heading>
+          </div>
+
+          <div style={{ position: 'relative', zIndex: 1 }}>
+            <MakeItFullscreen>
+              <Confetti
+                makeItRainOn="mount"
+                width={window.innerWidth}
+                height={window.innerHeight}
+                emitDuration={6000}
+                numParticles={200}
+                minScale={1}
+                maxScale={2}
+              />
+            </MakeItFullscreen>
+          </div>
         </Slide>
       </Deck>
+    );
+  }
+}
+
+/**
+ * Spectacle puts everything in its own transformed layer, and so it's actually
+ * quite difficult to make something truly fullscreen.
+ * This is a hacky af workaround, I'm doing this hastily since the talk is
+ * looming.
+ */
+class MakeItFullscreen extends Component {
+  state = {
+    offsetLeft: 0,
+    offsetTop: 0,
+  };
+
+  componentDidMount() {
+    const bb = this.node.getBoundingClientRect();
+
+    this.setState({
+      offsetLeft: -bb.left,
+      offsetTop: -bb.top,
+    });
+  }
+
+  render() {
+    const { offsetLeft, offsetTop } = this.state;
+    return (
+      <div
+        ref={node => (this.node = node)}
+        style={{ position: 'absolute', top: offsetTop, left: offsetLeft }}
+      >
+        {this.props.children}
+      </div>
     );
   }
 }
