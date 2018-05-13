@@ -1,4 +1,4 @@
-class SomeParentComponent extends Component {
+class ComposeEmailModal extends Component {
   state = {
     sent: false,
   }
@@ -12,8 +12,8 @@ class SomeParentComponent extends Component {
       <Foldable
         isFolded={this.state.sent}
         front={
-          <Letter 
-            handleSend={this.sendLetter} 
+          <Letter
+            handleSend={this.sendLetter}
           />
         }
         back={<Envelope />}

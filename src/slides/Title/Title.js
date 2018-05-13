@@ -17,6 +17,16 @@ class Title extends Component {
           >
             Whimsy
           </Heading>
+          <Heading
+            textColor="primary"
+            style={{
+              marginTop: '6rem',
+              fontSize: '3rem',
+              fontWeight: '300',
+            }}
+          >
+            by <strong>Josh Comeau</strong>
+          </Heading>
         </Wrapper>
         <TitleParticles />
       </Fragment>

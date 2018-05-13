@@ -1,9 +1,11 @@
 class ComposeEmailModal extends Component {
   state = {
-    status: 'closed',
-  };
+    sent: false,
+  }
 
-  // Modal control stuff
+  sendLetter = () => {
+    this.setState({ sent: true });
+  }
 
   render() {
     return (
@@ -13,11 +15,22 @@ class ComposeEmailModal extends Component {
           outboxHeading,
         }) => (
           <Transport
-            status={this.state.status}
+            status={
+              this.state.sent
+                ? 'open'
+                : 'closed'
+            }
             fromNode={composeBtn}
             toNode={outboxHeading}
           >
-            <FoldableLetter />
+            <Foldable
+              isFolded={this.state.sent}
+              front={
+                <Letter
+                  handleSend={this.sendLetter}
+                />
+              }
+            />
           </Transport>
         )}
       </NodeConsumer>

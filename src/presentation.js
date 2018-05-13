@@ -51,6 +51,7 @@ import emailSendSrc from './assets/email-send.gif';
 import nodeProviderFlowChartSrc from './assets/node-provider-flow-chart.png';
 import unsplashErrorKetchupSrc from './assets/unsplash-error-ketchup.mp4';
 import unsplashErrorCatSrc from './assets/unsplash-error-cat.mp4';
+import joshComputerSrc from './assets/josh-cpu.jpg';
 
 import FullscreenImage from './components/FullscreenImage';
 import Video from './components/Video';
@@ -98,6 +99,7 @@ preloader({
   tobiasActionPromptSrc,
   unsplashErrorKetchupSrc,
   unsplashErrorCatSrc,
+  joshComputerSrc,
 });
 
 // HACK: Spectacle applies a `transform: scale(1)` to all slides.
@@ -141,16 +143,12 @@ export default class Presentation extends React.Component {
         progress={null}
         theme={theme}
       >
-        <Slide className="slideWithoutScale">
-          <Title />
-        </Slide>
-
-        <Slide>
-          <WhoAmI />
-        </Slide>
-
         <Slide>
           <WishTheInternet />
+        </Slide>
+
+        <Slide bgColor="#000000">
+          <FullscreenImage src={joshComputerSrc} />
         </Slide>
 
         <Slide
@@ -174,18 +172,6 @@ export default class Presentation extends React.Component {
           `}
         >
           <FullscreenImage src={askJeevesSrc} />
-        </Slide>
-
-        <Slide
-          bgColor="secondary"
-          transition={['none']}
-          notes={`
-            The animated GIF.<br/><br />
-
-            The cool thing about this golden era of the web is that nobody knew what they were doing.
-          `}
-        >
-          <FullscreenImage src={cameronsWorldSrc} />
         </Slide>
 
         <Slide
@@ -222,6 +208,14 @@ export default class Presentation extends React.Component {
           `}
         >
           <FullscreenImage src={mcdonaldsNowSrc} />
+        </Slide>
+
+        <Slide className="slideWithoutScale">
+          <Title />
+        </Slide>
+
+        <Slide>
+          <WhoAmI />
         </Slide>
 
         <Slide
@@ -449,10 +443,9 @@ export default class Presentation extends React.Component {
         />
 
         <Slide bgColor="secondary" transition={[null]}>
-          <Heading textColor="red">Perf Hacks</Heading>
+          <Heading textColor="red">Performance</Heading>
           <List textColor="primary">
             <ListItem>Use Canvas</ListItem>
-            <ListItem>Mutate variables</ListItem>
             <ListItem>Sneak around React</ListItem>
           </List>
         </Slide>
@@ -724,11 +717,11 @@ export default class Presentation extends React.Component {
           ]}
         />
 
-        <Slide>
+        {/* <Slide>
           <div style={{ marginTop: -100 }}>
             <FullscreenImage src={nodeProviderFlowChartSrc} />
           </div>
-        </Slide>
+        </Slide> */}
 
         <Slide bgColor="secondary">
           <Heading textColor="primary">{'<Transport />'}</Heading>
@@ -750,11 +743,14 @@ export default class Presentation extends React.Component {
             { loc: [0, 1] },
             { loc: [1, 4] },
 
-            { loc: [5, 6] },
+            { loc: [5, 8] },
 
-            { loc: [7, 8] },
-            { loc: [8, 14] },
-            { loc: [14, 21] },
+            { loc: [9, 16] },
+            { loc: [16, 25] },
+            { loc: [17, 22] },
+            { loc: [22, 24] },
+
+            { loc: [25, 33] },
           ]}
         />
 
