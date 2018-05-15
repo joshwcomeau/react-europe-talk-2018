@@ -469,7 +469,7 @@ export default class Presentation extends React.Component {
         <CodeSlide
           bgColor="secondary"
           lang="flow"
-          code={require('./code/FoldableConcise.example')}
+          code={require('./code/Foldable.example')}
           ranges={[
             {
               loc: [0],

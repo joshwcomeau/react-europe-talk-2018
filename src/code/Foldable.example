@@ -1,67 +1,28 @@
-// @flow
-import React, {
-  PureComponent,
-  Fragment,
-} from 'react';
-import styled, {
-  keyframes,
-} from 'styled-components';
-
-type Props = {
-  isFolded: boolean,
-  front: React$Element<*>,
-  back: React$Element<*>,
-  duration: number,
-  onCompleteFolding: () => void,
-};
-
 class Foldable extends PureComponent<Props> {
+  static propTypes = {
+    isFolded: PropTypes.bool,
+    front: PropTypes.element.isRequired,
+    back: PropTypes.element,
+    duration: PropTypes.number,
+  }
+
   static defaultProps = {
     duration: 1000,
   };
 
-  node: ?HTMLElement;
-  finalFoldNode: ?HTMLElement;
-
-  componentDidUpdate(prevProps: Props) {
-    const {
-      isFolded,
-      onCompleteFolding,
-    } = this.props;
-
-    const foldIsStarting =
-      !prevProps.isFolded && isFolded;
-
-    if (foldIsStarting) {
-      this.finalFoldNode.addEventListener(
-        'animationend',
-        onCompleteFolding
-      );
-    }
-  }
-
-  componentWillUnmount() {
-    const { onCompleteFolding } = this.props;
-
-    this.finalFoldNode.removeEventListener(
-      'animationend',
-      onCompleteFolding
-    );
-  }
-
   renderOriginal() {
-    const { front, isFolded } = this.props;
-
     return (
       <div
         ref={node => {
           this.node = node;
         }}
         style={{
-          opacity: isFolded ? 0 : 1,
+          opacity: this.props.isFolded
+            ? 0
+            : 1,
         }}
       >
-        {front}
+        {this.props.front}
       </div>
     );
   }
@@ -76,12 +37,6 @@ class Foldable extends PureComponent<Props> {
       height,
     } = this.node.getBoundingClientRect();
 
-    const foldHeights = [
-      height * 0.35,
-      height * 0.35,
-      height * 0.3,
-    ];
-
     return (
       <Wrapper
         style={{
@@ -92,15 +47,12 @@ class Foldable extends PureComponent<Props> {
         }}
       >
         <TopFold
-          innerRef={node => {
-            this.finalFoldNode = node;
-          }}
           duration={duration}
-          foldHeight={foldHeights[0]}
+          foldHeight={✂️}
         >
           <HideOverflow>
             <TopFoldContents
-              foldHeight={foldHeights[0]}
+              foldHeight={✂️}
               dangerouslySetInnerHTML={{
                 __html: this.node.outerHTML,
               }}
@@ -110,12 +62,12 @@ class Foldable extends PureComponent<Props> {
         </TopFold>
 
         <MiddleFold
-          foldHeight={foldHeights[1]}
-          offsetTop={foldHeights[0]}
+          foldHeight={✂️}
+          offsetTop={✂️}
         >
           <HideOverflow>
             <MiddleFoldContents
-              offsetTop={foldHeights[0]}
+              offsetTop={✂️}
               dangerouslySetInnerHTML={{
                 __html: this.node.outerHTML,
               }}
@@ -125,17 +77,12 @@ class Foldable extends PureComponent<Props> {
 
         <BottomFold
           duration={duration}
-          foldHeight={foldHeights[2]}
-          offsetTop={
-            foldHeights[0] + foldHeights[1]
-          }
+          foldHeight={✂️}
+          offsetTop={✂️}
         >
           <HideOverflow>
             <BottomFoldContents
-              offsetTop={
-                foldHeights[0] +
-                foldHeights[1]
-              }
+              offsetTop={✂️}
               dangerouslySetInnerHTML={{
                 __html: this.node.outerHTML,
               }}
@@ -161,12 +108,12 @@ class Foldable extends PureComponent<Props> {
 const foldTopDown = keyframes`
   from {
     transform-origin: bottom center;
-    transform: 
+    transform:
       perspective(1000px) rotateX(0deg);
   }
   to {
     transform-origin: bottom center;
-    transform: 
+    transform:
       perspective(1000px) rotateX(-180deg);
   }
 `;
@@ -174,12 +121,12 @@ const foldTopDown = keyframes`
 const foldBottomUp = keyframes`
   from {
     transform-origin: top center;
-    transform: 
+    transform:
       perspective(1000px) rotateX(0deg);
   }
   to {
     transform-origin: top center;
-    transform: 
+    transform:
       perspective(1000px) rotateX(180deg);
   }
 `;
