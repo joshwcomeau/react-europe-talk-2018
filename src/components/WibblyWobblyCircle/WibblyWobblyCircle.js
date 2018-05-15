@@ -3,6 +3,7 @@ import React, { Component } from 'react';
 import Bezier from 'bezier-js';
 import { Motion, spring } from 'react-motion';
 import produce from 'immer';
+import styled, { keyframes } from 'styled-components';
 
 import { range, sample } from '../../utils';
 
@@ -260,16 +261,32 @@ class WibblyWobblyCircle extends Component<Props, State> {
 
   render() {
     return (
-      <PointMotion
-        initialPoints={this.initialPoints}
-        points={this.state.points}
-      >
-        {this.props.renderTo === 'canvas'
-          ? this.renderToCanvas
-          : this.renderToSvg}
-      </PointMotion>
+      <Wrapper>
+        <PointMotion
+          initialPoints={this.initialPoints}
+          points={this.state.points}
+        >
+          {this.props.renderTo === 'canvas'
+            ? this.renderToCanvas
+            : this.renderToSvg}
+        </PointMotion>
+      </Wrapper>
     );
   }
 }
+
+const rotation = keyframes`
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+`;
+
+const Wrapper = styled.div`
+  /* A bit of slow rotation helps sell the effect */
+  animation: ${rotation} 10s linear infinite;
+`;
 
 export default WibblyWobblyCircle;
