@@ -151,62 +151,23 @@ export default class Presentation extends React.Component {
           <FullscreenImage src={joshComputerSrc} />
         </Slide>
 
-        <Slide
-          bgColor="secondary"
-          notes={`
-            I started using the internet in the 90s, and at that time, the internet looked like this.<br /><br />
-
-            Everything was perpetually under construction, we found new stuff through web rings, and we hadn't yet discovered web design, that wasn't a thing yet.
-          `}
-        >
+        <Slide bgColor="secondary">
           <FullscreenImage src={jesseSkiingSrc} />
         </Slide>
 
-        <Slide
-          bgColor="secondary"
-          transition={['none']}
-          notes={`
-            Anyone remember Ask Jeeves? I remember never getting any useful answers out of him, but I found the experience delightful nonetheless.<br /><br />
-
-            Web developers had one tool, and one tool only, for animation...
-          `}
-        >
+        <Slide bgColor="secondary" transition={['none']}>
           <FullscreenImage src={askJeevesSrc} />
         </Slide>
 
-        <Slide
-          bgColor="secondary"
-          transition={['none']}
-          notes={`
-            This is actually McDonald's website, circa early 1997.
-          `}
-        >
+        <Slide bgColor="secondary" transition={['none']}>
           <FullscreenImage src={mcdonaldsSrc} />
         </Slide>
 
-        <Slide
-          bgColor="secondary"
-          transition={['none']}
-          notes={`
-          Check it out, there's a little man popping out from behind the golden arches to give them a quick polish.<br /><br />
-
-          Web technologies were essentially nonexistent at this time. Javascript was less than a year old, CSS wouldn't show up for another year. We built documents, and embedded animated GIFs for flavor.
-          `}
-        >
+        <Slide bgColor="secondary" transition={['none']}>
           <FullscreenImage src={mcdonaldsZoomSrc} />
         </Slide>
 
-        <Slide
-          bgColor="secondary"
-          transition={['none']}
-          notes={`
-            By contrast, here's McDonald's website today, 20+ years later.<br /><br />
-
-            I think most people would agree that this is better, right? There's a ton more info, there's good photos, you can even order it online (I had delivery mcdonalds and it was thoroughly unsettling).
-
-            And yet, this website is bland. It's exactly what it needs to be, and nothing more. I miss the whimsical charm of their old site.
-          `}
-        >
+        <Slide bgColor="secondary" transition={['none']}>
           <FullscreenImage src={mcdonaldsNowSrc} />
         </Slide>
 
@@ -215,33 +176,10 @@ export default class Presentation extends React.Component {
         </Slide>
 
         <Slide>
-          <WhoAmI />
-        </Slide>
-
-        <Slide
-          notes={`
-            When I say "whimsy", here's what I mean.<br /><br />
-
-            "An unexpected flourish that sparks joy". It's not stuff that is critical to the usability of your product, but it's something that makes your users smile, something that makes your product a little more enjoyable to use.<br /><br />
-          `}
-        >
           <FullscreenImage src={whimsyDefinitionSrc} />
         </Slide>
 
-        <Slide
-          notes={`
-            That definition is very broad!<br /><br />
-
-            Let's narrow it down to only talk about interactions and animation.
-            <br /><br />
-
-            I chose this scope for a few reasons:<br />
-            - It's what we have the most control over, as developers<br />
-            - It's woefully underdeveloped on web.<br />
-            - "fun problems". interesting technically.<br />
-            - It has huge potential to delight<br />
-          `}
-        >
+        <Slide>
           <Heading size={2} textFont="secondary" textColor="purple">
             With this <br />
             <span
@@ -279,19 +217,7 @@ export default class Presentation extends React.Component {
           />
         </Slide>
 
-        <Slide
-          bgColor="secondary"
-          transition={['none']}
-          notes={`
-            I could spend the rest of my time up here talking about whimsical error pages, but it's not the most important thing to focus on.<br /><br />
-
-            I chose this scope for a few reasons:<br />
-            - It's what we have the most control over, as developers<br />
-            - It's woefully underdeveloped on web.<br />
-            - "fun problems". interesting technically.<br />
-            - It has huge potential to delight<br />
-          `}
-        >
+        <Slide bgColor="secondary" transition={['none']}>
           <Heading size={3} textFont="secondary" textColor="pink">
             Let's focus on<br />
             <span
@@ -329,18 +255,7 @@ export default class Presentation extends React.Component {
           />
         </Slide>
 
-        <Slide
-          notes={`
-            - Click to show
-            - Increase scale to make it more visible for audience
-            - Talk about how lifeless it is
-            - Add spin
-            - Add twist
-            - add spin + twist
-            - Add gravity
-            - Mention the protip: Building something like this manager, to have a really short feedback loop between a parameter and its effects, is a great way to develop animations and interactions.
-          `}
-        >
+        <Slide>
           <ConfettiManager />
         </Slide>
 
@@ -450,27 +365,13 @@ export default class Presentation extends React.Component {
           </List>
         </Slide>
 
-        <Slide
-          bgColor="secondary"
-          notes={`
-            This may seem like a niche example, specific only to Khan Academy, but you may be surprised how useful this knowledge can be...
-          `}
-        >
+        <Slide bgColor="secondary">
           <Heading textColor="pink" textFont="secondary" size={3}>
             “But I'm not building an educational app...”
           </Heading>
         </Slide>
 
-        <Slide
-          notes={`
-            Facebook, for example, has an easter egg that pops confetti. Twitter does something similar on your birthday. Many apps celebrate milestones.
-
-            There is often a gap between what designers want, and what is feasible to build. How many times have y'all gotten a mockup from product and said "X is non-trivial"? Wouldn't it be great if our toolkit was expanded, so that more things were trivial?
-
-            But yeah, I take the point that not every app needs whimsical
-            Canvas animations.
-          `}
-        >
+        <Slide>
           <FullscreenImage portrait src={facebookCongratsSrc} />
         </Slide>
 
@@ -484,15 +385,7 @@ export default class Presentation extends React.Component {
 
         */}
 
-        <Slide
-          bgColor="teal"
-          notes={`
-            Let's look at something far more conventional: an email client.
-
-            Whimsy isn't all bubblegum and rainbows, sometimes it's about
-            helpful, meaningful interactions that make our users smile.
-          `}
-        >
+        <Slide bgColor="teal">
           <SectionStart subtitle="Example 2" title="Email Client" />
         </Slide>
 
@@ -500,15 +393,7 @@ export default class Presentation extends React.Component {
           [Go do a demo Josh!]
         </Slide>
 
-        <Slide
-          bgColor="secondary"
-          transition={['none']}
-          notes={`
-            I'm only scratching the surface of this subject, but I'd encourage
-            y'all to check out this blog post if the distinction between state-
-            driven and action-driven animations is interesting.
-          `}
-        >
+        <Slide bgColor="secondary" transition={['none']}>
           <Heading textFont="secondary" textColor="green" size={5}>
             “Meaningful Motion with<br />Action-Driven Animation”
           </Heading>
@@ -527,13 +412,7 @@ export default class Presentation extends React.Component {
           <br />
         </Slide>
 
-        <Slide
-          notes={`
-            Finally, there's this cute folding animation. This is my favorite
-            part of it, because it's a throwback to the days of snail mail, and
-            who doesn't like receiving a letter?
-          `}
-        >
+        <Slide>
           <Heading textFont="secondary" size={4}>
             Slow-mo fold
           </Heading>
@@ -564,7 +443,6 @@ export default class Presentation extends React.Component {
             You can also just add a user setting to disable animations, which
             is not only helpful for no-nonsense, right-down-to-business
             curmudgeons, but also folks with vestibular disorders.
-            More on this in a bit.
           `}
         >
           <Heading textFont="secondary" textColor="green" size={3}>
@@ -626,12 +504,7 @@ export default class Presentation extends React.Component {
           ]}
         />
 
-        <Slide
-          notes={`
-            For imperative effects like this, it can be a bit tricky to figure
-            out how to do
-          `}
-        >
+        <Slide>
           <Heading size={2} textColor="pink" textFont="secondary">
             React is Awesome
           </Heading>
@@ -717,12 +590,6 @@ export default class Presentation extends React.Component {
           ]}
         />
 
-        {/* <Slide>
-          <div style={{ marginTop: -100 }}>
-            <FullscreenImage src={nodeProviderFlowChartSrc} />
-          </div>
-        </Slide> */}
-
         <Slide bgColor="secondary">
           <Heading textColor="primary">{'<Transport />'}</Heading>
           <br />
@@ -804,7 +671,14 @@ export default class Presentation extends React.Component {
           </Heading>
         </Slide>
 
-        <Slide bgColor="secondary">
+        <Slide
+          bgColor="secondary"
+          notes={`
+            This demo is of 600 DOM nodes, each being animated using top/left
+            and width/height. This works in Firefox's new rendering engine
+            because it can hardware-accelerate all CSS properties (!!!)
+          `}
+        >
           <Heading
             textFont="secondary"
             textColor="primary"
@@ -919,18 +793,7 @@ if (prefersReducedMotion) {
           </Heading>
         </Slide>
 
-        <Slide
-          notes={`
-            Even if you don't need confetti, though, I'd encourage you to
-            imagine what you could use that <Canvas /> component for.
-
-            A common thing we developers like to tell designers is that
-            something is "non-trivial". Right? I've used this. This is about
-            expanding our toolkit, so that if we have an idea for something,
-            or we get a design for something tricky, we have more tools in our
-            toolbox to tackle it.
-          `}
-        >
+        <Slide>
           <Heading textColor="green" textFont="secondary">
             The Takeaway
           </Heading>
@@ -949,7 +812,7 @@ if (prefersReducedMotion) {
           </Heading>
           <Spacer size={20} />
           <Heading textColor="red" size={5}>
-            Come be a part of it!
+            Come be a part of it, and expand your toolkit!
           </Heading>
         </Slide>
 
