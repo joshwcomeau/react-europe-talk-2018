@@ -20,7 +20,6 @@ import { Motion, spring } from 'react-motion';
 
 import { COLORS } from './constants';
 
-import titleBgSrc from './assets/sprinkles.jpg';
 import askJeevesSrc from './assets/ask-jeeves.gif';
 import mcdonaldsSrc from './assets/mcdonalds-full.gif';
 import mcdonaldsZoomSrc from './assets/mcdonalds-zoom.gif';
@@ -36,47 +35,28 @@ import khanConfettiSrc from './assets/confetti.mp4';
 import tobiasStatePromptSrc from './assets/tobias-state-prompt.gif';
 import tobiasActionPromptSrc from './assets/tobias-action-prompt.gif';
 import tooMuchAnimationSrc from './assets/too-much-animation-rachel-nabors.jpeg';
-import whimsicalNodesSrc from './assets/whimsical-nodes.mp4';
-import whimsicalMeaningfulSrc from './assets/whimsical-meaningful.mp4';
 import whimsicalFold from './assets/whimsical-fold.mp4';
-import childTransporterStorybookSrc from './assets/child-transporter-storybook.mp4';
-import childTransporterAreasSrc from './assets/child-transporter-areas.jpg';
-import houdiniSrc from './assets/houdini-ripple.mp4';
+import transportStorybookSrc from './assets/transport-storybook.mp4';
+import transportAreasSrc from './assets/transport-areas.jpg';
 import webRenderSrc from './assets/webrender.mp4';
 import caniusePrefersReducedMotionSrc from './assets/caniuse-prefers-reduced-motion.png';
-import magicSchoolBusSrc from './assets/magic-school-bus.gif';
-import emailRetractSrc from './assets/email-retract.gif';
-import emailSaveSrc from './assets/email-save.gif';
-import emailSendSrc from './assets/email-send.gif';
-import nodeProviderFlowChartSrc from './assets/node-provider-flow-chart.png';
 import unsplashErrorKetchupSrc from './assets/unsplash-error-ketchup.mp4';
 import unsplashErrorCatSrc from './assets/unsplash-error-cat.mp4';
 import joshComputerSrc from './assets/josh-cpu.jpg';
 
 import FullscreenImage from './components/FullscreenImage';
-import Video from './components/Video';
-import Hierarchy from './components/Hierarchy';
-import CssTransitionDemo from './components/CssTransitionDemo';
 import ConfettiManager from './components/ConfettiManager';
 import Canvas from './components/Canvas';
 import Confetti from './components/Confetti';
-import Particles from './components/Confetti/Particles';
-import { createZigZag } from './components/Confetti/confetti-shapes.js';
 import Caption from './components/Caption';
 import FoldConcept from './components/FoldConcept';
 import Foldable from './components/Foldable';
-import WibblyWobblyCircle from './components/WibblyWobblyCircle';
 import Underlined from './components/Underlined';
 import Spacer from './components/Spacer';
 
 import Title from './slides/Title';
 import SectionStart from './slides/SectionStart';
-import WhoAmI from './slides/WhoAmI';
 import WishTheInternet from './slides/WishTheInternet';
-import ConfettiArchitecture from './slides/ConfettiArchitecture';
-import LevelsOfAbstraction from './slides/LevelsOfAbstraction';
-import StateDrivenAnimation from './slides/StateDrivenAnimation';
-import ActionDrivenAnimation from './slides/ActionDrivenAnimation';
 import Circles from './slides/Circles';
 
 require('normalize.css');
@@ -476,31 +456,35 @@ export default class Presentation extends React.Component {
               title: '<Foldable />',
               note: '✂️ Abridged Version ✂️',
             },
-            { loc: [0, 7] },
-            { loc: [8, 11] },
+            { loc: [0, 1] },
+            { loc: [2, 3] },
+            { loc: [3, 4] },
+            { loc: [4, 5] },
+            { loc: [7, 10] },
 
-            { loc: [96, 105] },
+            { loc: [94, 103] },
+            { loc: [97, 98] },
+            { loc: [98, 100] },
 
-            { loc: [12, 13] },
-            { loc: [24, 25] },
-            { loc: [14, 27] },
-            { loc: [15, 18] },
-            { loc: [18, 22] },
+            { loc: [11, 12] },
+            { loc: [23, 24] },
+            { loc: [12, 26] },
+            { loc: [14, 17] },
+            { loc: [17, 22] },
 
-            { loc: [29, 30] },
-            { loc: [32, 38] },
-            { loc: [40, 48] },
-            { loc: [48, 62] },
-            { loc: [48, 52] },
-            { loc: [52, 53] },
-            { loc: [53, 59] },
-            { loc: [56, 57] },
-            { loc: [62, 76] },
-            { loc: [77, 92] },
+            { loc: [28, 29] },
+            { loc: [31, 37] },
+            { loc: [38, 46] },
+            { loc: [47, 60] },
+            { loc: [54, 57] },
+            { loc: [61, 74] },
+            { loc: [75, 90] },
 
-            { loc: [96, 105] },
+            { loc: [94, 103] },
 
-            { loc: [108, 222] },
+            { loc: [105, 222] },
+            { loc: [160, 222] },
+            { loc: [200, 222] },
           ]}
         />
 
@@ -528,16 +512,18 @@ export default class Presentation extends React.Component {
             },
             { loc: [0, 4] },
             { loc: [5, 8] },
-            { loc: [9, 22] },
+            { loc: [9, 20] },
+            { loc: [13, 14] },
+            { loc: [14, 17] },
           ]}
         />
 
         <Slide bgColor="deepPurple" textColor="primary">
-          <SectionStart subtitle="Element 2" title="Transporting Children" />
+          <SectionStart subtitle="Element 2" title="Node Transporter" />
         </Slide>
 
         <Slide bgColor="#000000">
-          <video autoPlay loop src={childTransporterStorybookSrc} width={920} />
+          <video autoPlay loop src={transportStorybookSrc} width={920} />
         </Slide>
 
         <CodeSlide
@@ -594,30 +580,29 @@ export default class Presentation extends React.Component {
           <Heading textColor="primary">{'<Transport />'}</Heading>
           <br />
           <br />
-          <FullscreenImage src={childTransporterAreasSrc} />
+          <FullscreenImage src={transportAreasSrc} />
         </Slide>
 
         <CodeSlide
           bgColor="secondary"
           lang="jsx"
           transition={['none']}
-          code={require('./code/ChildTransporterConsumption.example')}
+          code={require('./code/TransportConsumption.example')}
           ranges={[
             {
               loc: [0],
               title: '<Transport /> Usage',
             },
             { loc: [0, 1] },
-            { loc: [1, 4] },
+            { loc: [1, 8] },
 
-            { loc: [5, 8] },
+            { loc: [9, 10] },
+            { loc: [12, 16] },
 
-            { loc: [9, 16] },
-            { loc: [16, 25] },
-            { loc: [17, 22] },
-            { loc: [22, 24] },
-
-            { loc: [25, 33] },
+            { loc: [17, 23] },
+            { loc: [23, 28] },
+            { loc: [28, 35] },
+            { loc: [17, 38] },
           ]}
         />
 

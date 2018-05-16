@@ -1,23 +1,21 @@
 class ComposeEmailModal extends Component {
   state = {
-    sent: false,
+    action: null,
   }
 
   sendLetter = () => {
-    this.setState({ sent: true });
+    this.setState({ action: 'send' });
   }
 
   render() {
+    const { action } = this.state;
+
     return (
-      <Foldable
-        isFolded={this.state.sent}
-        front={
-          <Letter
-            handleSend={this.sendLetter}
-          />
-        }
-        back={<Envelope />}
-      />;
+      <Foldable isFolded={action === 'send'}>
+        <Letter
+          handleSend={this.sendLetter}
+        />
+      </Foldable>;
     )
   }
 }

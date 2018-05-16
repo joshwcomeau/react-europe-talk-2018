@@ -1,8 +1,7 @@
 class Foldable extends PureComponent<Props> {
   static propTypes = {
     isFolded: PropTypes.bool,
-    front: PropTypes.element.isRequired,
-    back: PropTypes.element,
+    children: PropTypes.element.isRequired,
     duration: PropTypes.number,
   }
 
@@ -22,13 +21,13 @@ class Foldable extends PureComponent<Props> {
             : 1,
         }}
       >
-        {this.props.front}
+        {this.props.children}
       </div>
     );
   }
 
   renderFoldedCopy() {
-    const { back, duration } = this.props;
+    const { duration } = this.props;
 
     const {
       top,
@@ -58,7 +57,6 @@ class Foldable extends PureComponent<Props> {
               }}
             />
           </HideOverflow>
-          <TopFoldBack>{back}</TopFoldBack>
         </TopFold>
 
         <MiddleFold
