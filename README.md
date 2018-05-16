@@ -33,7 +33,6 @@ For the code, it lives in this repo. Here are some links:
 
 * [Canvas](https://github.com/joshwcomeau/react-europe-talk-2018/blob/master/src/components/Canvas/Canvas.js) - The generic, reusable HTML canvas primitive component.
 * [Confetti](https://github.com/joshwcomeau/react-europe-talk-2018/blob/master/src/components/Confetti/Confetti.js)
-* [Confetti.optimized](https://github.com/joshwcomeau/react-europe-talk-2018/blob/master/src/components/Confetti/Confetti.optimized.js) - I mentioned in the talk that at Khan Academy, we bypass React's lifecycle by managing the animation loop ourselves. This version is much closer to the production version we use at KA. To be clear, the difference between the two versions in terms of performance is pretty small. The "unoptimized" one still runs pretty well on a modern $100 chromebook.
 * [ConfettiManager](https://github.com/joshwcomeau/react-europe-talk-2018/blob/master/src/components/ConfettiManager/ConfettiManager.js) - This is the code for managing the [demo](http://the-case-for-whimsy.surge.sh/#/16), to tweak the parameters.
 
 Additionally, the live-editable examples can be found [here](https://github.com/joshwcomeau/react-europe-talk-2018/tree/master/src/code).

@@ -10,17 +10,6 @@ import {
 
 import Canvas from '../Canvas';
 
-import type { Particle, Shape } from './types.js';
-
-const PIXEL_RATIO = window.devicePixelRatio || 1;
-
-export type Props = {
-  width: number,
-  height: number,
-  particles: Array<Particle>,
-  onClick?: () => void,
-};
-
 class Confetti extends Component {
   static propTypes = {
     // The width of the HTML canvas.
@@ -299,8 +288,6 @@ class Confetti extends Component {
 
   render() {
     const { width, height, onClick, makeItRainOn } = this.props;
-
-    console.log('render');
 
     return (
       <Canvas
