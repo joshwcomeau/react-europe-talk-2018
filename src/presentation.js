@@ -131,7 +131,7 @@ export default class Presentation extends React.Component {
           <FullscreenImage src={joshComputerSrc} />
         </Slide>
 
-        <Slide bgColor="secondary">
+        <Slide bgColor="secondary" transition={['none']}>
           <FullscreenImage src={jesseSkiingSrc} />
         </Slide>
 
@@ -513,8 +513,9 @@ export default class Presentation extends React.Component {
             { loc: [0, 4] },
             { loc: [5, 8] },
             { loc: [9, 20] },
-            { loc: [13, 14] },
-            { loc: [14, 17] },
+            { loc: [13, 16] },
+            { loc: [16, 19] },
+            { loc: [12, 20] },
           ]}
         />
 
