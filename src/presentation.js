@@ -1,18 +1,15 @@
 import React, { Component } from 'react';
 import {
-  BlockQuote,
-  Cite,
   CodePane,
   ComponentPlayground,
   Deck,
   Heading,
   ListItem,
   List,
-  Quote,
   Slide,
   Text,
 } from 'spectacle';
-import styled, { injectGlobal } from 'styled-components';
+import { injectGlobal } from 'styled-components';
 import createTheme from 'spectacle/lib/themes/default';
 import preloader from 'spectacle/lib/utils/preloader';
 import CodeSlide from 'spectacle-code-slide';
@@ -25,15 +22,10 @@ import mcdonaldsSrc from './assets/mcdonalds-full.gif';
 import mcdonaldsZoomSrc from './assets/mcdonalds-zoom.gif';
 import mcdonaldsNowSrc from './assets/mcdonalds-now.png';
 import jesseSkiingSrc from './assets/jesse-skiing.jpg';
-import cameronsWorldSrc from './assets/camerons-world.gif';
 import whimsyDefinitionSrc from './assets/whimsy-definition.png';
-import moleskineBallsSrc from './assets/moleskine-balls.gif';
-import flipbookSrc from './assets/flipbook.gif';
 import facebookCongratsSrc from './assets/facebook-congrats.gif';
 import confettiMockupSrc from './assets/confetti-mockup.png';
 import khanConfettiSrc from './assets/confetti.mp4';
-import tobiasStatePromptSrc from './assets/tobias-state-prompt.gif';
-import tobiasActionPromptSrc from './assets/tobias-action-prompt.gif';
 import tooMuchAnimationSrc from './assets/too-much-animation-rachel-nabors.jpeg';
 import whimsicalFold from './assets/whimsical-fold.mp4';
 import transportStorybookSrc from './assets/transport-storybook.mp4';
@@ -63,20 +55,21 @@ require('normalize.css');
 require('highlight.js/styles/arta.css');
 
 preloader({
+  askJeevesSrc,
   mcdonaldsSrc,
   mcdonaldsZoomSrc,
   mcdonaldsNowSrc,
   jesseSkiingSrc,
-  askJeevesSrc,
-  cameronsWorldSrc,
   whimsyDefinitionSrc,
-  moleskineBallsSrc,
-  flipbookSrc,
   facebookCongratsSrc,
   confettiMockupSrc,
   khanConfettiSrc,
-  tobiasStatePromptSrc,
-  tobiasActionPromptSrc,
+  tooMuchAnimationSrc,
+  whimsicalFold,
+  transportStorybookSrc,
+  transportAreasSrc,
+  webRenderSrc,
+  caniusePrefersReducedMotionSrc,
   unsplashErrorKetchupSrc,
   unsplashErrorCatSrc,
   joshComputerSrc,
