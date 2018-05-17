@@ -23,11 +23,10 @@ class Confetti extends Component {
     shapes: PropTypes.array,
 
     // When do we want to invoke "generateParticles"?
-    // NOTE: a better implementation would take an array, and support `mount`
-    // and `hover`. Doing it the simplest way for the demo, but a more fleshed-
-    // out implementation would be:
+    // NOTE: a better implementation would take an array. Doing it the simplest
+    // way for the demo, but a more fleshed-out implementation would be:
     // PropTypes.arrayOf(PropTypes.oneOf(['click', 'mount', 'hover']))
-    makeItRainOn: PropTypes.oneOf(['click']),
+    makeItRainOn: PropTypes.oneOf(['click', 'mount']),
 
     // The number of particles to generate, spread over the
     // `emitDuration` length.
