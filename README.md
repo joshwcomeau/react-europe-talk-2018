@@ -8,7 +8,7 @@ Sadly, it's a bit disorganized (I thought I'd have time to organize everything, 
 
 #### Recording
 
-[coming soon]
+[Watch on Youtube](https://www.youtube.com/watch?v=Z2d9rw9RwyE)
 
 #### Slides
 
